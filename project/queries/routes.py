@@ -1,23 +1,7 @@
-from flask import Flask
 from flask import jsonify, request, make_response
 
 import sqlite3
-
-'''
-Tables
-org_relations: orgid,rel_id,rel_type
-p2au: paperid,authorid
-p2org: paperid,orgid
-p2s: paperid,Department,School,University,NotSpecified,Laboratory,Institute,Center,College,Division,GovernmentAgency,Hospital,Program
-pcount: paperid,year,term,count,ngram,field
-pdetails: paperid,title,abstract
-g2a: authorid, grantid, startdate, enddate
-g2p: paperid, grantid, startdate, enddate
-'''
-
-app = Flask(__name__)
-
-## TODO: Make keys in response smaller (e.g. title to t)/use constants in River
+from . import midas_blueprint
 
 author_prefix = 'https://midasnetwork.us/people/'
 org_prefix = 'https://midasnetwork.us/organizations/'
@@ -33,7 +17,7 @@ def connect_to_db():
 
     return conn
 
-@app.route('/papers/overlap/', methods=['GET'])
+@midas_blueprint.route('/papers/overlap/', methods=['GET'])
 def get_paper_list():
     conn = connect_to_db()
     cur = conn.cursor()
@@ -103,7 +87,7 @@ def get_paper_list():
     papers = [x['paperid'] for x in rows]
     return make_response(jsonify(papers), 200) 
 
-@app.route('/grants/overlap/', methods=['GET'])
+@midas_blueprint.route('/grants/overlap/', methods=['GET'])
 def get_grant_list():
     conn = connect_to_db()
     cur = conn.cursor()
@@ -177,7 +161,7 @@ def get_grant_list():
     grants = [x['grantid'] for x in rows]
     return make_response(jsonify(grants), 200) 
 
-@app.route('/authors/overlap/', methods=['GET'])
+@midas_blueprint.route('/authors/overlap/', methods=['GET'])
 def get_author_list():
     conn = connect_to_db()
     cur = conn.cursor()
@@ -210,10 +194,10 @@ def get_author_list():
                 q += ' INTERSECT '
 
             if withDates:
-                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid in (SELECT DISTINCT paperid FRON p2au WHERE authorid=?)'
+                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?) AND paperid IN (SELECT DISTINCT paperid FROM pcount WHERE year BETWEEN ? AND ?)'
                 formatted_ids.extend([author, request.json['dates']['start'],request.json['dates']['end']])
             else:
-                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid in (SELECT DISTINCT paperid FRON p2au WHERE authorid=?)'
+                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
                 formatted_ids.append(author)
     if withPapers:
         for paper in request.json['papers']:
@@ -231,7 +215,7 @@ def get_author_list():
                 q += ' INTERSECT '
 
             if withDates:
-                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2org a JOIN pcount b ON a.paperid=b.paperid WHERE orgid=? AND year BETWEEN ? AND ?)'
+                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT a.paperid FROM p2org a JOIN pcount b ON a.paperid=b.paperid WHERE orgid=? AND year BETWEEN ? AND ?)'
                 formatted_ids.extend([org, request.json['dates']['start'],request.json['dates']['end']])
             else:
                 q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2org WHERE orgid=?)'
@@ -259,12 +243,13 @@ def get_author_list():
                 formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
                                       request.json['dates']['start'],request.json['dates']['end']])
     
+    print(q)
     cur.execute(q, tuple(formatted_ids))
     rows = cur.fetchall()
     authors = [x['authorid'] for x in rows]
     return make_response(jsonify(authors), 200) 
 
-@app.route('/orgs/overlap/', methods=['GET'])
+@midas_blueprint.route('/orgs/overlap/', methods=['GET'])
 def get_org_list():
     conn = connect_to_db()
     cur = conn.cursor()
@@ -322,18 +307,3 @@ def get_org_list():
     rows = cur.fetchall()
     orgs = [x['orgid'] for x in rows]
     return make_response(jsonify(orgs), 200) 
-    conn = connect_to_db()
-    cur = conn.cursor()
-
-    papers = get_paper_list(request, conn)
-
-    q2 = 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN ({ppr_seq})'.format(ppr_seq=','.join(['?']*len(papers)))
-    cur.execute(q2, papers)
-    rows = cur.fetchall()
-    orgs = [x['orgid'] for x in rows]
-    
-    return make_response(jsonify(orgs), 200)
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=105)
-

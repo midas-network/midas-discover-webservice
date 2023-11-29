@@ -16,6 +16,11 @@ g2p: paperid, grantid, startdate, enddate
 def create_app():
     app = Flask(__name__)
 
-    from . import routes
+    register_blueprints(app)
 
     return app
+
+def register_blueprints(app):
+    from project.queries import midas_blueprint
+
+    app.register_blueprint(midas_blueprint)

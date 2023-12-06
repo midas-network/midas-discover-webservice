@@ -93,7 +93,7 @@ def get_full_term_list(is_internal=False):
         return make_response(jsonify(terms), 200)
 
 
-@midas_blueprint.rout('/getSearchData/', methods=['GET'])
+@midas_blueprint.route('/getSearchData/', methods=['GET'])
 def get_search_data():
     papers = get_full_paper_list(True)
     orgs = get_full_org_list(True)

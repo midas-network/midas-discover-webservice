@@ -26,7 +26,7 @@ def get_full_paper_list(is_internal=False):
     q = 'SELECT DISTINCT paperid, title FROM pdetails'
     cur.execute(q)
     rows = cur.fetchall()
-    papers = {'papers': [{'uri': x['paperid'], 'title': x['title']} for x in rows]}
+    papers = {'papers': [{'id': x['paperid'], 'name': x['title']} for x in rows]}
     if is_internal:
         return papers
     else:
@@ -41,7 +41,7 @@ def get_full_org_list(is_internal=False):
     q = 'SELECT DISTINCT orgid, org_name FROM odetails'
     cur.execute(q)
     rows = cur.fetchall()
-    orgs = {'orgs': [{'uri': x['orgid'], 'name': x['org_name']} for x in rows]}
+    orgs = {'orgs': [{'id': x['orgid'], 'name': x['org_name']} for x in rows]}
     if is_internal:
         return orgs
     else:
@@ -56,7 +56,7 @@ def get_full_author_list(is_internal=False):
     q = 'SELECT DISTINCT authorid, author_name FROM adetails'
     cur.execute(q)
     rows = cur.fetchall()
-    authors = {'authors': [{'uri': x['authorid'], 'name': x['author_name']} for x in rows]}
+    authors = {'authors': [{'id': x['authorid'], 'name': x['author_name']} for x in rows]}
     if is_internal:
         return authors
     else:
@@ -71,7 +71,7 @@ def get_full_grant_list(is_internal=False):
     q = 'SELECT DISTINCT grantid, title FROM gdetails'
     cur.execute(q)
     rows = cur.fetchall()
-    grants = {'grants': [{'uri': x['grantid'], 'title': x['title']} for x in rows]}
+    grants = {'grants': [{'id': x['grantid'], 'name': x['title']} for x in rows]}
     if is_internal:
         return grants
     else:

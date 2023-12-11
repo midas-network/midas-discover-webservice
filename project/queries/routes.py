@@ -6,6 +6,7 @@ from . import midas_blueprint
 author_prefix = 'https://midasnetwork.us/people/'
 org_prefix = 'https://midasnetwork.us/organizations/'
 
+## TODO: add titles to papers, names to orgs and grants
 def connect_to_db():
     db_file = '/Users/looseymoose/midasDB'
     try:
@@ -17,16 +18,15 @@ def connect_to_db():
 
     return conn
 
-
 @midas_blueprint.route('/papers/', methods=['GET'])
 def get_full_paper_list(is_internal=False):
     conn = connect_to_db()
     cur = conn.cursor()
 
-    q = 'SELECT DISTINCT paperid FROM pdetails'
+    q = 'SELECT DISTINCT paperid, title FROM pdetails'
     cur.execute(q)
     rows = cur.fetchall()
-    papers = {'papers': [x['paperid'] for x in rows]}
+    papers = {'papers': [{'uri': x['paperid'], 'title': x['title']} for x in rows]}
     if is_internal:
         return papers
     else:
@@ -38,10 +38,10 @@ def get_full_org_list(is_internal=False):
     conn = connect_to_db()
     cur = conn.cursor()
 
-    q = 'SELECT DISTINCT orgid FROM p2org'
+    q = 'SELECT DISTINCT orgid, org_name FROM odetails'
     cur.execute(q)
     rows = cur.fetchall()
-    orgs = {'orgs': [x['orgid'] for x in rows]}
+    orgs = {'orgs': [{'uri': x['orgid'], 'name': x['org_name']} for x in rows]}
     if is_internal:
         return orgs
     else:
@@ -53,10 +53,10 @@ def get_full_author_list(is_internal=False):
     conn = connect_to_db()
     cur = conn.cursor()
 
-    q = 'SELECT DISTINCT authorid FROM p2au'
+    q = 'SELECT DISTINCT authorid, author_name FROM adetails'
     cur.execute(q)
     rows = cur.fetchall()
-    authors = {'authors': [x['authorid'] for x in rows]}
+    authors = {'authors': [{'uri': x['authorid'], 'name': x['author_name']} for x in rows]}
     if is_internal:
         return authors
     else:
@@ -68,10 +68,10 @@ def get_full_grant_list(is_internal=False):
     conn = connect_to_db()
     cur = conn.cursor()
 
-    q = 'SELECT DISTINCT grantid FROM g2p'
+    q = 'SELECT DISTINCT grantid, title FROM gdetails'
     cur.execute(q)
     rows = cur.fetchall()
-    grants = {'grants': [x['grantid'] for x in rows]}
+    grants = {'grants': [{'uri': x['grantid'], 'title': x['title']} for x in rows]}
     if is_internal:
         return grants
     else:
@@ -101,7 +101,7 @@ def get_search_data():
     grants = get_full_grant_list(True)
     terms = get_full_term_list(True)
 
-    response = papers.update(orgs).update(authors).update(grants).update(terms)
+    response = {**papers, **orgs, **authors, **grants, **terms}
     return make_response(jsonify(response), 200)
 
 
@@ -207,7 +207,7 @@ def get_grant_list():
             formatted_ids.append(author)
 
             if withDates:
-                q += ' AND strftime("%Y", startdate) BETWEEN ? AND ? OR strftime("%Y", enddate) BETWEEN ? AND ?)'
+                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
                 formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
                                       request.json['dates']['start'],request.json['dates']['end']])
     if withOrgs:
@@ -218,7 +218,7 @@ def get_grant_list():
             formatted_ids.append(org)
 
             if withDates:
-                q += ' AND strftime("%Y", startdate) BETWEEN ? AND ? OR strftime("%Y", enddate) BETWEEN ? AND ?)'
+                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
                 formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
                                       request.json['dates']['start'],request.json['dates']['end']])
     if withTerms:
@@ -229,7 +229,7 @@ def get_grant_list():
             formatted_ids.append(term)
 
             if withDates:
-                q += ' AND strftime("%Y", startdate) BETWEEN ? AND ? OR strftime("%Y", enddate) BETWEEN ? AND ?)'
+                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
                 formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
                                       request.json['dates']['start'],request.json['dates']['end']])
     if withPapers:
@@ -240,7 +240,7 @@ def get_grant_list():
             formatted_ids.append(paper)
 
             if withDates:
-                q += ' AND strftime("%Y", startdate) BETWEEN ? AND ? OR strftime("%Y", enddate) BETWEEN ? AND ?)'
+                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
                 formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
                                       request.json['dates']['start'],request.json['dates']['end']])
     
@@ -327,7 +327,7 @@ def get_author_list():
             formatted_ids.append(grant)
 
             if withDates:
-                q += ' AND strftime("%Y", startdate) BETWEEN ? AND ? OR strftime("%Y", enddate) BETWEEN ? AND ?)'
+                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
                 formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
                                       request.json['dates']['start'],request.json['dates']['end']])
     
@@ -384,7 +384,7 @@ def get_org_list():
                 q += ' INTERSECT '
 
             if withDates:
-                q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM g2p WHERE grantid=? AND strftime("%Y", startdate) BETWEEN ? AND ? OR strftime("%Y", enddate) BETWEEN ? AND ?))'
+                q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM g2p WHERE grantid=? AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?))'
                 formatted_ids.extend(grant, [request.json['dates']['start'],request.json['dates']['end'],
                                       request.json['dates']['start'],request.json['dates']['end']])
             else:

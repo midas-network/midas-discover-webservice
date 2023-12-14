@@ -1,4 +1,5 @@
 from flask import jsonify, request, make_response
+from flasgger import swag_from
 
 import sqlite3
 from . import midas_blueprint
@@ -6,7 +7,7 @@ from . import midas_blueprint
 author_prefix = 'https://midasnetwork.us/people/'
 org_prefix = 'https://midasnetwork.us/organizations/'
 
-## TODO: add titles to papers, names to orgs and grants
+
 def connect_to_db():
     db_file = '/Users/looseymoose/midasDB'
     try:
@@ -18,94 +19,73 @@ def connect_to_db():
 
     return conn
 
-@midas_blueprint.route('/papers/', methods=['GET'])
-def get_full_paper_list(is_internal=False):
+@midas_blueprint.route('/getSearchData/', methods=['GET'])
+@swag_from('../swagger_docs/getSearchData.yml')
+def get_search_data():
+    searches = [x.lower() for x in request.json['pulls']]
+    if not set(searches).issubset(['all', 'papers', 'organizations', 'authors', 'grants', 'terms']):
+        return make_response("Invalid value in search requests", 400)
+    
     conn = connect_to_db()
     cur = conn.cursor()
+    response = {}
 
+    if 'papers' in searches or 'all' in searches:
+        response.update(get_full_paper_list(cur))
+    if 'organizations' in searches or 'all' in searches:
+        response.update(get_full_org_list(cur))
+    if 'authors' in searches or 'all' in searches:
+        response.update(get_full_author_list(cur))
+    if 'grants' in searches or 'all' in searches:
+        response.update(get_full_grant_list(cur))
+    if 'terms' in searches or 'all' in searches:
+        response.update(get_full_term_list(cur))
+
+    # response = {**papers, **orgs, **authors, **grants, **terms}
+    return make_response(jsonify(response), 200)
+
+def get_full_paper_list(cur):
     q = 'SELECT DISTINCT paperid, title FROM pdetails'
     cur.execute(q)
     rows = cur.fetchall()
     papers = {'papers': [{'id': x['paperid'], 'name': x['title']} for x in rows]}
-    if is_internal:
-        return papers
-    else:
-        return make_response(jsonify(papers), 200)
+    return papers
 
 
-@midas_blueprint.route('/orgs/', methods=['GET'])
-def get_full_org_list(is_internal=False):
-    conn = connect_to_db()
-    cur = conn.cursor()
-
+def get_full_org_list(cur):
     q = 'SELECT DISTINCT orgid, org_name FROM odetails'
     cur.execute(q)
     rows = cur.fetchall()
     orgs = {'orgs': [{'id': x['orgid'], 'name': x['org_name']} for x in rows]}
-    if is_internal:
-        return orgs
-    else:
-        return make_response(jsonify(orgs), 200)
+    return orgs
 
 
-@midas_blueprint.route('/authors/', methods=['GET'])
-def get_full_author_list(is_internal=False):
-    conn = connect_to_db()
-    cur = conn.cursor()
-
+def get_full_author_list(cur):
     q = 'SELECT DISTINCT authorid, author_name FROM adetails'
     cur.execute(q)
     rows = cur.fetchall()
     authors = {'authors': [{'id': x['authorid'], 'name': x['author_name']} for x in rows]}
-    if is_internal:
-        return authors
-    else:
-        return make_response(jsonify(authors), 200)
+    return authors
 
 
-@midas_blueprint.route('/grants/', methods=['GET'])
-def get_full_grant_list(is_internal=False):
-    conn = connect_to_db()
-    cur = conn.cursor()
-
+def get_full_grant_list(cur):
     q = 'SELECT DISTINCT grantid, title FROM gdetails'
     cur.execute(q)
     rows = cur.fetchall()
     grants = {'grants': [{'id': x['grantid'], 'name': x['title']} for x in rows]}
-    if is_internal:
-        return grants
-    else:
-        return make_response(jsonify(grants), 200)
+    return grants
 
 
-@midas_blueprint.route('/terms/', methods=['GET'])
-def get_full_term_list(is_internal=False):
-    conn = connect_to_db()
-    cur = conn.cursor()
-
+def get_full_term_list(cur):
     q = 'SELECT DISTINCT term FROM pcount'
     cur.execute(q)
     rows = cur.fetchall()
     terms = {'terms': [x['term'] for x in rows]}
-    if is_internal:
-        return terms
-    else:
-        return make_response(jsonify(terms), 200)
-
-
-@midas_blueprint.route('/getSearchData/', methods=['GET'])
-def get_search_data():
-    papers = get_full_paper_list(True)
-    orgs = get_full_org_list(True)
-    authors = get_full_author_list(True)
-    grants = get_full_grant_list(True)
-    terms = get_full_term_list(True)
-
-    response = {**papers, **orgs, **authors, **grants, **terms}
-    return make_response(jsonify(response), 200)
+    return terms
 
 
 @midas_blueprint.route('/papers/overlap/', methods=['GET'])
+@swag_from('../swagger_docs/paperOverlap.yml')
 def get_paper_list():
     conn = connect_to_db()
     cur = conn.cursor()
@@ -176,6 +156,7 @@ def get_paper_list():
     return make_response(jsonify(papers), 200) 
 
 @midas_blueprint.route('/grants/overlap/', methods=['GET'])
+@swag_from('../swagger_docs/grantOverlap.yml')
 def get_grant_list():
     conn = connect_to_db()
     cur = conn.cursor()
@@ -250,6 +231,7 @@ def get_grant_list():
     return make_response(jsonify(grants), 200) 
 
 @midas_blueprint.route('/authors/overlap/', methods=['GET'])
+@swag_from('../swagger_docs/authorOverlap.yml')
 def get_author_list():
     conn = connect_to_db()
     cur = conn.cursor()
@@ -338,6 +320,7 @@ def get_author_list():
     return make_response(jsonify(authors), 200) 
 
 @midas_blueprint.route('/orgs/overlap/', methods=['GET'])
+@swag_from('../swagger_docs/orgOverlap.yml')
 def get_org_list():
     conn = connect_to_db()
     cur = conn.cursor()

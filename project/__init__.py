@@ -1,4 +1,5 @@
 from flask import Flask
+from flasgger import Swagger
 
 
 '''
@@ -16,11 +17,12 @@ adetails: authorid,author_name
 gdetails: grantid,title
 '''
 
+
 def create_app():
     app = Flask(__name__)
+    swagger = Swagger(app)
 
     register_blueprints(app)
-
     return app
 
 def register_blueprints(app):

@@ -1,4 +1,4 @@
-Endpoint for pulling all orgs with common data elements
+Endpoint for pulling all authors with common data elements
 ---
 parameters:
     - name: body
@@ -7,24 +7,28 @@ parameters:
       schema: 
         type: object
         properties:
-          people:
-            type: array
-            description: The list of people assoiciated with the organization.
-            items:
-              $ref: '#/definitions/UniqueIdentifier'
           papers:
             type: object
-            description: The list of papers written by members of the returned organizations and/or the date range those papers were published in.
+            description: The list of papers the authors have written and/or the date range papers were published in.
             properties:
               paperList:
                 type: array
                 items:
                   $ref: '#/definitions/UniqueIdentifier'
               dates:
+                description: The date range the papers were written in.
                 $ref: '#/definitions/DateRange'
+          coauthors:
+            type: array
+            description: The list of authors that the returned people have co-written papers with.
+            items:
+              $ref: '#/definitions/UniqueIdentifier'
+          org:
+            type: string
+            description: The organization the authors are associated with.
           grants:
             type: object
-            description: The list of grants associated with members of the returned organizations and/or the date range those grants were active in.
+            description: The list of grants the people are associated with and/or the date range those grants were active in.
             properties:
               grantList:
                 type: array
@@ -34,12 +38,12 @@ parameters:
                 $ref: '#/definitions/DateRange'
           keywords:
             type: array
-            description: The keywords on papers written by members of the returned organizations.
+            description: The list of keywords the people have written papers about.
             items:
               $ref: '#/definitions/UniqueIdentifier'
 responses:
   200:
-    description: A list of all orgs that match the filter
+    description: A list of all authors that match the filter
     schema:
       $ref: '#/definitions/DataList'
     # examples:

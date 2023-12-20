@@ -7,23 +7,33 @@ parameters:
       schema: 
         type: object
         properties:
-          authors:
+          people:
             type: array
+            description: The list of people associated with the grants.
             items:
               $ref: '#/definitions/UniqueIdentifier'
           orgs:
             type: array
+            description: The list of organizations people associated with the grants are part of.
             items:
               $ref: '#/definitions/UniqueIdentifier'
           papers:
+            type: object
+            description: The list of papers associated with the grants and/or the date range those papers were published in.
+            properties:
+              paperList:
+                type: array
+                items:
+                  $ref: '#/definitions/UniqueIdentifier'
+              dates:
+                $ref: '#/definitions/DateRange'
+          keywords:
             type: array
+            description: The list of keywords papers associated with the grants cover.
             items:
               $ref: '#/definitions/UniqueIdentifier'
-          terms:
-            type: array
-            items:
-              $ref: '#/definitions/UniqueIdentifier'
-          dates:
+          grantDates:
+            description: The date range the grants were active in.
             $ref: '#/definitions/DateRange'
 responses:
   200:

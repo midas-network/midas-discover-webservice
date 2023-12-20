@@ -7,16 +7,16 @@ parameters:
       schema: 
         type: object
         properties:
-            pulls:
+            categories:
                 type: array
                 items:
-                    $ref: '#/definitions/ListPull'
-                example: ['all', 'papers', 'organizations', 'authors', 'grants', 'terms']
+                    $ref: '#/definitions/Category'
+                example: ['papers', 'organizations', 'authors', 'grants', 'keywords']
 definitions:
-    ListPull:
+    Category:
         type: string
-        description: What full list to pull from database
-        enum: ['all', 'papers', 'organizations', 'authors', 'grants', 'terms']
+        description: The categories of search terms to retrieve from the database
+        enum: ['papers', 'organizations', 'authors', 'grants', 'keywords']
     UniqueIdentifier:
         type: string
         description: The unique identifier for a search term
@@ -25,7 +25,7 @@ definitions:
         properties:
           start:
             type: integer
-            descriptions: 4-digit year for start of date filter
+            description: 4-digit year for start of date filter
             example: 2015
           end:
             type: integer
@@ -42,10 +42,10 @@ definitions:
                 $ref: '#/definitions/DataList'
             grants:
                 $ref: '#/definitions/DataList'
-            terms:
+            keywords:
                 type: array
                 items:
-                    $ref: '#/definitions/TermList'
+                    $ref: '#/definitions/KeywordList'
     DataList:
         type: array
         items:
@@ -59,9 +59,9 @@ definitions:
             name:
                 type: string
                 description: the name or title of the item
-    TermList:
+    KeywordList:
         type: string
-        description: available keyword from the papers
+        description: available keywords from the papers
 responses:
   200:
     description: A list of available data

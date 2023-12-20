@@ -19,26 +19,26 @@ def connect_to_db():
 
     return conn
 
-@midas_blueprint.route('/getSearchData/', methods=['GET'])
+@midas_blueprint.route('/searchData/', methods=['GET'])
 @swag_from('../swagger_docs/getSearchData.yml')
 def get_search_data():
-    searches = [x.lower() for x in request.json['pulls']]
-    if not set(searches).issubset(['all', 'papers', 'organizations', 'authors', 'grants', 'terms']):
+    searches = [x.lower() for x in request.json['categories']]
+    if not set(searches).issubset(['all', 'papers', 'organizations', 'authors', 'grants', 'keywords']):
         return make_response("Invalid value in search requests", 400)
     
     conn = connect_to_db()
     cur = conn.cursor()
     response = {}
 
-    if 'papers' in searches or 'all' in searches:
+    if 'papers' in searches:
         response.update(get_full_paper_list(cur))
-    if 'organizations' in searches or 'all' in searches:
+    if 'organizations' in searches:
         response.update(get_full_org_list(cur))
-    if 'authors' in searches or 'all' in searches:
+    if 'authors' in searches:
         response.update(get_full_author_list(cur))
-    if 'grants' in searches or 'all' in searches:
+    if 'grants' in searches:
         response.update(get_full_grant_list(cur))
-    if 'terms' in searches or 'all' in searches:
+    if 'keywords' in searches:
         response.update(get_full_term_list(cur))
 
     # response = {**papers, **orgs, **authors, **grants, **terms}
@@ -76,15 +76,15 @@ def get_full_grant_list(cur):
     return grants
 
 
-def get_full_term_list(cur):
+def get_full_keyword_list(cur):
     q = 'SELECT DISTINCT term FROM pcount'
     cur.execute(q)
     rows = cur.fetchall()
-    terms = {'terms': [x['term'] for x in rows]}
+    terms = {'keywords': [x['term'] for x in rows]}
     return terms
 
 
-@midas_blueprint.route('/papers/overlap/', methods=['GET'])
+@midas_blueprint.route('/intersection/papers/', methods=['GET'])
 @swag_from('../swagger_docs/paperOverlap.yml')
 def get_paper_list():
     conn = connect_to_db()
@@ -92,7 +92,7 @@ def get_paper_list():
 
     withAuthors = False
     withOrgs = False
-    withTerms = False
+    withKeywords = False
     withGrants = False
     withDates = False
 
@@ -100,8 +100,8 @@ def get_paper_list():
         withAuthors = True
     if 'orgs' in request.json.keys():
         withOrgs = True
-    if 'terms' in request.json.keys():
-        withTerms = True
+    if 'keywords' in request.json.keys():
+        withKeywords = True
     if 'grants' in request.json.keys():
         withGrants = True
     if 'dates' in request.json.keys():
@@ -129,8 +129,8 @@ def get_paper_list():
             if withDates:
                 q += ' AND paperid IN (SELECT DISTINCT paperid FROM pcount WHERE year BETWEEN ? AND ?)'
                 formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end']])
-    if withTerms:
-        for term in request.json['terms']:
+    if withKeywords:
+        for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT paperid FROM pcount WHERE term=?'
@@ -155,7 +155,7 @@ def get_paper_list():
     papers = [x['paperid'] for x in rows]
     return make_response(jsonify(papers), 200) 
 
-@midas_blueprint.route('/grants/overlap/', methods=['GET'])
+@midas_blueprint.route('/intersection/grants/', methods=['GET'])
 @swag_from('../swagger_docs/grantOverlap.yml')
 def get_grant_list():
     conn = connect_to_db()
@@ -163,7 +163,7 @@ def get_grant_list():
 
     withAuthors = False
     withOrgs = False # Not in powerpoint but seems doable
-    withTerms = False
+    withKeywords = False
     withPapers = False
     withDates = False
 
@@ -171,8 +171,8 @@ def get_grant_list():
         withAuthors = True
     if 'orgs' in request.json.keys():
         withOrgs = True
-    if 'terms' in request.json.keys():
-        withTerms = True
+    if 'keywords' in request.json.keys():
+        withKeywords = True
     if 'papers' in request.json.keys():
         withPapers = True
     if 'dates' in request.json.keys():
@@ -202,8 +202,8 @@ def get_grant_list():
                 q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
                 formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
                                       request.json['dates']['start'],request.json['dates']['end']])
-    if withTerms:
-        for term in request.json['terms']:
+    if withKeywords:
+        for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT grantid FROM g2p a JOIN p2org b ON a.paperid=b.paperid WHERE term=?'
@@ -230,27 +230,27 @@ def get_grant_list():
     grants = [x['grantid'] for x in rows]
     return make_response(jsonify(grants), 200) 
 
-@midas_blueprint.route('/authors/overlap/', methods=['GET'])
-@swag_from('../swagger_docs/authorOverlap.yml')
-def get_author_list():
+@midas_blueprint.route('/intersection/people/', methods=['GET'])
+@swag_from('../swagger_docs/peopleOverlap.yml')
+def get_poeple_list():
     conn = connect_to_db()
     cur = conn.cursor()
 
     withAuthors = False
     withPapers = False # Not in powerpoint but seems doable
     withOrgs = False
-    withTerms = False
+    withKeywords = False
     withGrants = False
     withDates = False
 
-    if 'authors' in request.json.keys():
+    if 'coauthors' in request.json.keys():
         withAuthors = True
     if 'papers' in request.json.keys():
         withPapers = True
     if 'orgs' in request.json.keys():
         withOrgs = True
-    if 'terms' in request.json.keys():
-        withTerms = True
+    if 'keywords' in request.json.keys():
+        withKeywords = True
     if 'grants' in request.json.keys():
         withGrants = True
     if 'dates' in request.json.keys():
@@ -259,7 +259,7 @@ def get_author_list():
     q = ''
     formatted_ids = []
     if withAuthors:
-        for author in request.json['authors']:
+        for author in request.json['coauthors']:
             if len(q) != 0:
                 q += ' INTERSECT '
 
@@ -290,8 +290,8 @@ def get_author_list():
             else:
                 q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2org WHERE orgid=?)'
                 formatted_ids.append(org)
-    if withTerms:
-        for term in request.json['terms']:
+    if withKeywords:
+        for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
             
@@ -316,24 +316,24 @@ def get_author_list():
     print(q)
     cur.execute(q, tuple(formatted_ids))
     rows = cur.fetchall()
-    authors = [x['authorid'] for x in rows]
-    return make_response(jsonify(authors), 200) 
+    people = [x['authorid'] for x in rows]
+    return make_response(jsonify(people), 200) 
 
-@midas_blueprint.route('/orgs/overlap/', methods=['GET'])
+@midas_blueprint.route('/intersection/orgs/', methods=['GET'])
 @swag_from('../swagger_docs/orgOverlap.yml')
 def get_org_list():
     conn = connect_to_db()
     cur = conn.cursor()
 
     withAuthors = False
-    withTerms = False
+    withKeywords = False
     withGrants = False
     withDates = False
 
     if 'authors' in request.json.keys():
         withAuthors = True
-    if 'terms' in request.json.keys():
-        withTerms = True
+    if 'keywords' in request.json.keys():
+        withKeywords = True
     if 'grants' in request.json.keys():
         withGrants = True
     if 'dates' in request.json.keys():
@@ -351,8 +351,8 @@ def get_org_list():
             else:
                 q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
                 formatted_ids.append(author)
-    if withTerms:
-        for term in request.json['terms']:
+    if withKeywords:
+        for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
             if withDates:

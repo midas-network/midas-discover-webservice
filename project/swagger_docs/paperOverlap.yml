@@ -7,19 +7,19 @@ parameters:
       schema: 
         type: object
         properties:
-          people:
-            description: The list of authors the papers are co-written by.
+          authors:
+            description: The list of authors on the papers in the target paper set.
             type: array
             items:
               $ref: '#/definitions/UniqueIdentifier'
           orgs:
-            description: The list of organizations the paper authors are associated with.
+            description: The list of organizations associated with authors on the papers in the target paper set.
             type: array
             items:
               $ref: '#/definitions/UniqueIdentifier'
           grants:
             type: object
-            description: The list of grants the papers are associated with and/or the date range those grants were active in.
+            description: The list of grants associated with the papers in the target paper set and/or the active date range of grants associated with the papers in the target paper set.
             properties:
               grantList:
                 type: array
@@ -27,14 +27,14 @@ parameters:
                   $ref: '#/definitions/UniqueIdentifier'
               dates:
                 $ref: '#/definitions/DateRange'
-          terms:
+          keywords:
             type: object
-            description: The list of keywords that the papers are associated with.
+            description: The list of keywords of papers in the target paper set.
             type: array
             items:
               $ref: '#/definitions/UniqueIdentifier'
-          paperDates:
-            description: The date range the papers were published in.
+          publicationDateRange:
+            description: The date range the papers in the target paper set was published in.
             $ref: '#/definitions/DateRange'
 responses:
   200:

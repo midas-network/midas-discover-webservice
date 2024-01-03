@@ -7,14 +7,13 @@ parameters:
       schema: 
         type: object
         properties:
-          people:
-            type: array
-            description: The list of people assoiciated with the organization.
-            items:
-              $ref: '#/definitions/UniqueIdentifier'
+          person:
+            type: string
+            description: The person assoiciated with the organization.
+            $ref: '#/definitions/UniqueIdentifier'
           papers:
             type: object
-            description: The list of papers written by members of the returned organizations and/or the date range those papers were published in.
+            description: The list of papers written by members of the organizations in the target organization set and/or the date range papers were published in written by members of the organizations in the target organization set.
             properties:
               paperList:
                 type: array
@@ -24,7 +23,7 @@ parameters:
                 $ref: '#/definitions/DateRange'
           grants:
             type: object
-            description: The list of grants associated with members of the returned organizations and/or the date range those grants were active in.
+            description: The list of grants associated with members of the organizations in the target organization set and/or the active date range of grants associated with members of the organizations in the target organization set.
             properties:
               grantList:
                 type: array
@@ -34,7 +33,7 @@ parameters:
                 $ref: '#/definitions/DateRange'
           keywords:
             type: array
-            description: The keywords on papers written by members of the returned organizations.
+            description: The keywords on papers written by members of the organizations in the target organization set.
             items:
               $ref: '#/definitions/UniqueIdentifier'
 responses:

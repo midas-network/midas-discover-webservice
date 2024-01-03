@@ -9,12 +9,12 @@ p2au: paperid,authorid
 p2org: paperid,orgid
 p2s: paperid,Department,School,University,NotSpecified,Laboratory,Institute,Center,College,Division,GovernmentAgency,Hospital,Program
 pcount: paperid,year,term,count,ngram,field
-g2a: authorid, grantid, startdate, enddate
-g2p: paperid, grantid, startdate, enddate
+g2a: authorid, grantid
+g2p: paperid, grantid
 pdetails: paperid,title,abstract
 odetails: orgid,org_name
-adetails: authorid,author_name
-gdetails: grantid,title
+adetails: authorid,author_name,orgid
+gdetails: grantid,title,startdate,enddate
 '''
 
 

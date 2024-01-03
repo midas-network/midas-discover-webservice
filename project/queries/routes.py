@@ -39,7 +39,7 @@ def get_search_data():
     if 'grants' in searches:
         response.update(get_full_grant_list(cur))
     if 'keywords' in searches:
-        response.update(get_full_term_list(cur))
+        response.update(get_full_keyword_list(cur))
 
     # response = {**papers, **orgs, **authors, **grants, **terms}
     return make_response(jsonify(response), 200)
@@ -94,6 +94,7 @@ def get_paper_list():
     withOrgs = False
     withKeywords = False
     withGrants = False
+    withGrantDates = False
     withDates = False
 
     if 'authors' in request.json.keys():
@@ -104,51 +105,64 @@ def get_paper_list():
         withKeywords = True
     if 'grants' in request.json.keys():
         withGrants = True
-    if 'dates' in request.json.keys():
+    if 'publicationDateRange' in request.json.keys():
         withDates = True
 
     q = ''
     formatted_ids = []
+    if withDates:
+        q = 'SELECT DISTINCT paperid FROM pcount WHERE '
+        if 'start' in request.json['publicationDateRange'].keys():
+            if 'end' in request.json['publicationDateRange'].keys():
+                q += 'year BETWEEN ? AND ?'
+                formatted_ids.extend([request.json['publicationDateRange']['start'],request.json['publicationDateRange']['end']])
+            else:
+                q += 'year >= ?'
+                formatted_ids.extend([request.json['publicationDateRange']['start']])
+        elif 'end' in request.json['publicationDateRange'].keys():
+            q += 'year <= ?'
+            formatted_ids.extend([request.json['publicationDateRange']['end']])
     if withAuthors:
         for author in request.json['authors']:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT paperid FROM p2au WHERE authorid=?'
             formatted_ids.append(author)
-
-            if withDates:
-                q += ' AND paperid in (SELECT DISTINCT paperid FROM pcount WHERE year BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end']])
     if withOrgs:
         for org in request.json['orgs']:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT paperid FROM p2org WHERE orgid=?'
             formatted_ids.append(org)
-
-            if withDates:
-                q += ' AND paperid IN (SELECT DISTINCT paperid FROM pcount WHERE year BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end']])
     if withKeywords:
         for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT paperid FROM pcount WHERE term=?'
             formatted_ids.append(term)
-
-            if withDates:
-                q += ' AND paperid IN (SELECT DISTINCT paperid FROM pcount WHERE year BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end']])
     if withGrants:
-        for grant in request.json['grants']:
+        if 'grantList' in request.json['grants'].keys():
+            for grant in request.json['grants']['grantList']:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += 'SELECT DISTINCT paperid FROM g2p WHERE grantid=?'
+                formatted_ids.append(grant)
+        if 'dates' in request.json['grants'].keys():
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT paperid FROM g2p WHERE grantid=?'
-            formatted_ids.append(grant)
-
-            if withDates:
-                q += ' AND paperid IN (SELECT DISTINCT paperid FROM pcount WHERE year BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end']])
+            q += 'SELECT DISTINCT paperid FROM g2p WHERE grantid IN (SELECT DISTINCT grantid FROM gdetails WHERE '
+            if 'start' in request.json['grants']['dates'].keys():
+                if 'end' in request.json['grants']['dates'].keys():
+                    q += '(startdate BETWEEN ? AND ?) OR (enddate BETWEEN ? AND ?)'
+                    formatted_ids.extend([request.json['grants']['dates']['start'],request.json['grants']['dates']['end'],
+                                          request.json['grants']['dates']['start'],request.json['grants']['dates']['end']])
+                else:
+                    q += 'startdate >= ? OR enddate >= ?'
+                    formatted_ids.extend([request.json['grants']['dates']['start'], request.json['grants']['dates']['start']])
+            elif 'end' in request.json['grants']['dates'].keys():
+                q += 'startdate <= ? OR enddate <= ?'
+                formatted_ids.extend([request.json['grants']['dates']['end'], request.json['grants']['dates']['end']])
+            q += ')'
     
     cur.execute(q, tuple(formatted_ids))
     rows = cur.fetchall()
@@ -161,69 +175,78 @@ def get_grant_list():
     conn = connect_to_db()
     cur = conn.cursor()
 
-    withAuthors = False
+    withPeople = False
     withOrgs = False # Not in powerpoint but seems doable
     withKeywords = False
     withPapers = False
     withDates = False
 
-    if 'authors' in request.json.keys():
-        withAuthors = True
+    if 'people' in request.json.keys():
+        withPeople = True
     if 'orgs' in request.json.keys():
         withOrgs = True
     if 'keywords' in request.json.keys():
         withKeywords = True
     if 'papers' in request.json.keys():
         withPapers = True
-    if 'dates' in request.json.keys():
+    if 'grantDateRange' in request.json.keys():
         withDates = True
 
     q = ''
     formatted_ids = []
-    if withAuthors:
-        for author in request.json['authors']:
+    if withDates:
+        q = 'SELECT DISTINCT grantid FROM gdetails WHERE '
+        if 'start' in request.json['grantDateRange'].keys():
+            if 'end' in request.json['grantDateRange'].keys():
+                q += '(startdate BETWEEN ? AND ?) OR (enddate BETWEEN ? AND ?)'
+                formatted_ids.extend([request.json['grantDateRange']['start'],request.json['grantDateRange']['end'],
+                                      request.json['grantDateRange']['start'],request.json['grantDateRange']['end']])
+            else:
+                q += 'startdate >= ? OR enddate >= ?'
+                formatted_ids.extend([request.json['grantDateRange']['start'], request.json['grantDateRange']['start']])
+        elif 'end' in request.json['grantDateRange'].keys():
+            q += 'startdate <= ? OR enddate <= ?'
+            formatted_ids.extend([request.json['grantDateRange']['end'], request.json['grantDateRange']['end']])
+    if withPeople:
+        for author in request.json['people']:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT grantid FROM g2a WHERE grantid=?'
             formatted_ids.append(author)
-
-            if withDates:
-                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
-                                      request.json['dates']['start'],request.json['dates']['end']])
     if withOrgs:
         for org in request.json['orgs']:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT grantid FROM g2p a JOIN p2org b ON a.paperid=b.paperid WHERE orgid=?'
             formatted_ids.append(org)
-
-            if withDates:
-                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
-                                      request.json['dates']['start'],request.json['dates']['end']])
     if withKeywords:
         for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT grantid FROM g2p a JOIN p2org b ON a.paperid=b.paperid WHERE term=?'
+            q += 'SELECT DISTINCT grantid FROM g2p a JOIN pcount b ON a.paperid=b.paperid WHERE term=?'
             formatted_ids.append(term)
-
-            if withDates:
-                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
-                                      request.json['dates']['start'],request.json['dates']['end']])
     if withPapers:
-        for paper in request.json['papers']:
+        if 'paperList' in request.json['papers'].keys():
+            for paper in request.json['papers']['paperList']:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += 'SELECT DISTINCT grantid FROM g2p WHERE paperid=?'
+                formatted_ids.append(paper)
+        if 'dates' in request.json['papers'].keys():
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT grantid FROM g2p WHERE paperid=?'
-            formatted_ids.append(paper)
-
-            if withDates:
-                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
-                                      request.json['dates']['start'],request.json['dates']['end']])
+            q += 'SELECT DISTINCT grantid FROM g2p WHERE paperid IN (SELECT paperid FROM pcount WHERE '
+            if 'start' in request.json['papers']['dates'].keys():
+                if 'end' in request.json['papers']['dates'].keys():
+                    q += 'year BETWEEN ? AND ?'
+                    formatted_ids.extend([request.json['papers']['dates']['start'],request.json['papers']['dates']['end']])
+                else:
+                    q += 'year >= ?'
+                    formatted_ids.extend([request.json['papers']['dates']['start']])
+            elif 'end' in request.json['papers']['dates'].keys():
+                q += 'year <= ?'
+                formatted_ids.extend([request.json['papers']['dates']['end']])
+            q += ')'
     
     cur.execute(q, tuple(formatted_ids))
     rows = cur.fetchall()
@@ -232,29 +255,26 @@ def get_grant_list():
 
 @midas_blueprint.route('/intersection/people/', methods=['GET'])
 @swag_from('../swagger_docs/peopleOverlap.yml')
-def get_poeple_list():
+def get_people_list():
     conn = connect_to_db()
     cur = conn.cursor()
 
     withAuthors = False
     withPapers = False # Not in powerpoint but seems doable
-    withOrgs = False
+    withOrg = False
     withKeywords = False
     withGrants = False
-    withDates = False
 
     if 'coauthors' in request.json.keys():
         withAuthors = True
     if 'papers' in request.json.keys():
         withPapers = True
-    if 'orgs' in request.json.keys():
-        withOrgs = True
+    if 'org' in request.json.keys():
+        withOrg = True
     if 'keywords' in request.json.keys():
         withKeywords = True
     if 'grants' in request.json.keys():
         withGrants = True
-    if 'dates' in request.json.keys():
-        withDates = True
 
     q = ''
     formatted_ids = []
@@ -262,56 +282,64 @@ def get_poeple_list():
         for author in request.json['coauthors']:
             if len(q) != 0:
                 q += ' INTERSECT '
-
-            if withDates:
-                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?) AND paperid IN (SELECT DISTINCT paperid FROM pcount WHERE year BETWEEN ? AND ?)'
-                formatted_ids.extend([author, request.json['dates']['start'],request.json['dates']['end']])
-            else:
-                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
-                formatted_ids.append(author)
+            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
+            formatted_ids.append(author)
     if withPapers:
-        for paper in request.json['papers']:
+        if 'paperList' in request.json['papers'].keys():
+            for paper in request.json['papers']['paperList']:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += 'SELECT DISTINCT authorid FROM g2a WHERE paperid=?'
+                formatted_ids.append(paper)
+        if 'dates' in request.json['papers'].keys():
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid=?'
-            formatted_ids.append(paper)
-
-            if withDates:
-                q += ' AND paperid in (SELECT DISTINCT paperid FROM pcount WHERE year BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end']])
-    if withOrgs:
-        for org in request.json['orgs']:
-            if len(q) != 0:
-                q += ' INTERSECT '
-
-            if withDates:
-                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT a.paperid FROM p2org a JOIN pcount b ON a.paperid=b.paperid WHERE orgid=? AND year BETWEEN ? AND ?)'
-                formatted_ids.extend([org, request.json['dates']['start'],request.json['dates']['end']])
-            else:
-                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2org WHERE orgid=?)'
-                formatted_ids.append(org)
+            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT paperid FROM pcount WHERE '
+            if 'start' in request.json['papers']['dates'].keys():
+                if 'end' in request.json['papers']['dates'].keys():
+                    q += 'year BETWEEN ? AND ?'
+                    formatted_ids.extend([request.json['papers']['dates']['start'],request.json['papers']['dates']['end']])
+                else:
+                    q += 'year >= ?'
+                    formatted_ids.extend([request.json['papers']['dates']['start']])
+            elif 'end' in request.json['papers']['dates'].keys():
+                q += 'year <= ?'
+                formatted_ids.extend([request.json['papers']['dates']['end']])
+            q += ')'
+    if withOrg:
+        if len(q) != 0:
+            q += ' INTERSECT '
+        q += 'SELECT DISTINCT authorid FROM adetails WHERE orgid=?'
+        formatted_ids.append(request.json['org'])
     if withKeywords:
         for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
-            
-            if withDates:
-                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE term=? AND year BETWEEN ? AND ?)'
-                formatted_ids.extend([term, request.json['dates']['start'],request.json['dates']['end']])
-            else:
-                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE term=?)'
-                formatted_ids.append(term)
+            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE term=?)'
+            formatted_ids.append(term)
     if withGrants:
-        for grant in request.json['grants']:
+        if 'grantList' in request.json['grants'].keys():
+            for grant in request.json['grants']['grantList']:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += 'SELECT DISTINCT authorid FROM g2a WHERE grantid=?'
+                formatted_ids.append(grant)
+        if 'dates' in request.json['grants'].keys():
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT authorid FROM g2a WHERE grantid=?'
-            formatted_ids.append(grant)
-
-            if withDates:
-                q += ' AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?)'
-                formatted_ids.extend([request.json['dates']['start'],request.json['dates']['end'],
-                                      request.json['dates']['start'],request.json['dates']['end']])
+            q += 'SELECT DISTINCT authorid FROM g2a WHERE grantid IN (SELECT DISTINCT grantid FROM gdetails WHERE '
+            if 'start' in request.json['grants']['dates'].keys():
+                if 'end' in request.json['grants']['dates'].keys():
+                    q += '(startdate BETWEEN ? AND ?) OR (enddate BETWEEN ? AND ?)'
+                    formatted_ids.extend([request.json['grants']['dates']['start'],request.json['grants']['dates']['end'],
+                                          request.json['grants']['dates']['start'],request.json['grants']['dates']['end']])
+                else:
+                    q += 'startdate >= ? OR enddate >= ?'
+                    formatted_ids.extend([request.json['grants']['dates']['start'], request.json['grants']['dates']['start']])
+            elif 'end' in request.json['grants']['dates'].keys():
+                q += 'startdate <= ? OR enddate <= ?'
+                formatted_ids.extend([request.json['grants']['dates']['end'], request.json['grants']['dates']['end']])
+            q += ')'
     
     print(q)
     cur.execute(q, tuple(formatted_ids))
@@ -325,54 +353,76 @@ def get_org_list():
     conn = connect_to_db()
     cur = conn.cursor()
 
-    withAuthors = False
+    withPerson = False
     withKeywords = False
     withGrants = False
-    withDates = False
+    withPapers = False
 
-    if 'authors' in request.json.keys():
-        withAuthors = True
+    if 'person' in request.json.keys():
+        withPerson = True
     if 'keywords' in request.json.keys():
         withKeywords = True
     if 'grants' in request.json.keys():
         withGrants = True
-    if 'dates' in request.json.keys():
-        withDates = True
+    if 'papers' in request.json.keys():
+        withPapers = True
 
     q = ''
     formatted_ids = []
-    if withAuthors:
-        for author in request.json['authors']:
-            if len(q) != 0:
-                q += ' INTERSECT '
-            if withDates:
-                q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM p2au a JOIN pcount b ON a.paperid=b.paperid WHERE authorid=? AND year BETWEEN ? AND ?)'
-                formatted_ids.extend([author, request.json['dates']['start'],request.json['dates']['end']])
-            else:
-                q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
-                formatted_ids.append(author)
+    if withPerson:
+        q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid=?'
+        formatted_ids.append(request.json['person'])
     if withKeywords:
         for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
-            if withDates:
-                q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE term=? AND year BETWEEN ? AND ?)'
-                formatted_ids.extend([term, request.json['dates']['start'],request.json['dates']['end']])
-            else:
-                q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE term=?)'
-                formatted_ids.append(term)
+            q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE term=?)'
+            formatted_ids.append(term)
     if withGrants:
-        for grant in request.json['grants']:
+        if 'grantList' in request.json['grants'].keys():
+            for grant in request.json['grants']['grantList']:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid IN (SELECT DISTINCT authorid FROM g2a WHERE grantid=?)'
+                formatted_ids.append(grant)
+        if 'dates' in request.json['grants'].keys():
             if len(q) != 0:
                 q += ' INTERSECT '
-
-            if withDates:
-                q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM g2p WHERE grantid=? AND grantid IN (SELECT grantid FROM gdetails WHERE startdate BETWEEN ? AND ? OR enddate BETWEEN ? AND ?))'
-                formatted_ids.extend(grant, [request.json['dates']['start'],request.json['dates']['end'],
-                                      request.json['dates']['start'],request.json['dates']['end']])
-            else:
-                q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM g2p WHERE grantid=?)'
-                formatted_ids.append(grant)
+            q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid IN (SELECT DISTINCT authorid FROM g2a WHERE grantid IN (SELECT DISTINCT grantid FROM gdetails WHERE '
+            if 'start' in request.json['grants']['dates'].keys():
+                if 'end' in request.json['grants']['dates'].keys():
+                    q += '(startdate BETWEEN ? AND ?) OR (enddate BETWEEN ? AND ?)'
+                    formatted_ids.extend([request.json['grants']['dates']['start'],request.json['grants']['dates']['end'],
+                                          request.json['grants']['dates']['start'],request.json['grants']['dates']['end']])
+                else:
+                    q += 'startdate >= ? OR enddate >= ?'
+                    formatted_ids.extend([request.json['grants']['dates']['start'], request.json['grants']['dates']['start']])
+            elif 'end' in request.json['grants']['dates'].keys():
+                q += 'startdate <= ? OR enddate <= ?'
+                formatted_ids.extend([request.json['grants']['dates']['end'], request.json['grants']['dates']['end']])
+            q += '))'
+    if withPapers:
+        if 'paperList' in request.json['papers'].keys():
+            for paper in request.json['papers']['paperList']:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid=?'
+                formatted_ids.append(paper)
+        if 'dates' in request.json['papers'].keys():
+            if len(q) != 0:
+                q += ' INTERSECT '
+            q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT paperid FROM pcount WHERE '
+            if 'start' in request.json['papers']['dates'].keys():
+                if 'end' in request.json['papers']['dates'].keys():
+                    q += 'year BETWEEN ? AND ?'
+                    formatted_ids.extend([request.json['papers']['dates']['start'],request.json['papers']['dates']['end']])
+                else:
+                    q += 'year >= ?'
+                    formatted_ids.extend([request.json['papers']['dates']['start']])
+            elif 'end' in request.json['papers']['dates'].keys():
+                q += 'year <= ?'
+                formatted_ids.extend([request.json['papers']['dates']['end']])
+            q += ')'
     
     cur.execute(q, tuple(formatted_ids))
     rows = cur.fetchall()

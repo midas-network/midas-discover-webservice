@@ -9,17 +9,17 @@ parameters:
         properties:
           people:
             type: array
-            description: The list of people associated with the grants.
+            description: The list of people associated with the grants in the target grant set.
             items:
               $ref: '#/definitions/UniqueIdentifier'
           orgs:
             type: array
-            description: The list of organizations people associated with the grants are part of.
+            description: The list of organizations of people who are associated with grants in the target grant set.
             items:
               $ref: '#/definitions/UniqueIdentifier'
           papers:
             type: object
-            description: The list of papers associated with the grants and/or the date range those papers were published in.
+            description: The list of papers associated with the grants in the target grant set and/or the date range papers were published in that are associated with grants in the target grant set.
             properties:
               paperList:
                 type: array
@@ -29,10 +29,10 @@ parameters:
                 $ref: '#/definitions/DateRange'
           keywords:
             type: array
-            description: The list of keywords papers associated with the grants cover.
+            description: The list of keywords for papers associated with grants in the target grant set.
             items:
               $ref: '#/definitions/UniqueIdentifier'
-          grantDates:
+          grantDateRange:
             description: The date range the grants were active in.
             $ref: '#/definitions/DateRange'
 responses:

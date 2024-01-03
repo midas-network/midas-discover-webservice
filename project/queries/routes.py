@@ -23,7 +23,7 @@ def connect_to_db():
 @swag_from('../swagger_docs/getSearchData.yml')
 def get_search_data():
     searches = [x.lower() for x in request.json['categories']]
-    if not set(searches).issubset(['all', 'papers', 'organizations', 'authors', 'grants', 'keywords']):
+    if not set(searches).issubset(['papers', 'organizations', 'authors', 'grants', 'keywords']):
         return make_response("Invalid value in search requests", 400)
     
     conn = connect_to_db()

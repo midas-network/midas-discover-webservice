@@ -11,12 +11,12 @@ parameters:
                 type: array
                 items:
                     $ref: '#/definitions/Category'
-                example: ['papers', 'organizations', 'authors', 'grants', 'keywords']
+                example: ['papers', 'organizations', 'people', 'grants', 'keywords']
 definitions:
     Category:
         type: string
         description: The categories of search terms to retrieve from the database
-        enum: ['papers', 'organizations', 'authors', 'grants', 'keywords']
+        enum: ['papers', 'organizations', 'people', 'grants', 'keywords']
     UniqueIdentifier:
         type: string
         description: The unique identifier for a search term
@@ -38,7 +38,7 @@ definitions:
                 $ref: '#/definitions/DataList'
             orgs:
                 $ref: '#/definitions/DataList'
-            authors:
+            people:
                 $ref: '#/definitions/DataList'
             grants:
                 $ref: '#/definitions/DataList'

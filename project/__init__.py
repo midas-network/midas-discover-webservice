@@ -8,10 +8,10 @@ org_relations: orgid,rel_id,rel_type
 p2au: paperid,authorid
 p2org: paperid,orgid
 p2s: paperid,Department,School,University,NotSpecified,Laboratory,Institute,Center,College,Division,GovernmentAgency,Hospital,Program
-pcount: paperid,year,term,count,ngram,field
+pcount: paperid,term,count,ngram,field
 g2a: authorid, grantid
 g2p: paperid, grantid
-pdetails: paperid,title,abstract
+pdetails: paperid,title,abstract,year
 odetails: orgid,org_name
 adetails: authorid,author_name,orgid
 gdetails: grantid,title,startdate,enddate

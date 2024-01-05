@@ -1,29 +1,31 @@
+import sqlite3
+import traceback
+
 from flask import jsonify, request, make_response
 from flasgger import swag_from
 
-import sqlite3
 from . import midas_blueprint
+from . import DB_LOCATION
 
-author_prefix = 'https://midasnetwork.us/people/'
-org_prefix = 'https://midasnetwork.us/organizations/'
-
+# TODO: Better errors for identifying malformed queries
 
 def connect_to_db():
-    db_file = '/Users/looseymoose/midasDB'
     try:
-        conn = sqlite3.connect(db_file)
+        conn = sqlite3.connect(DB_LOCATION)
         conn.row_factory=sqlite3.Row
         print('connection successful')
+        return conn
     except sqlite3.Error as e:
+        tb = traceback.format_exc()
         print(e)
+        print(tb)
 
-    return conn
 
 @midas_blueprint.route('/searchData/', methods=['GET'])
 @swag_from('../swagger_docs/getSearchData.yml')
 def get_search_data():
     searches = [x.lower() for x in request.json['categories']]
-    if not set(searches).issubset(['papers', 'organizations', 'authors', 'grants', 'keywords']):
+    if not set(searches).issubset(['papers', 'organizations', 'people', 'grants', 'keywords']):
         return make_response("Invalid value in search requests", 400)
     
     conn = connect_to_db()
@@ -34,8 +36,8 @@ def get_search_data():
         response.update(get_full_paper_list(cur))
     if 'organizations' in searches:
         response.update(get_full_org_list(cur))
-    if 'authors' in searches:
-        response.update(get_full_author_list(cur))
+    if 'people' in searches:
+        response.update(get_full_people_list(cur))
     if 'grants' in searches:
         response.update(get_full_grant_list(cur))
     if 'keywords' in searches:
@@ -60,12 +62,12 @@ def get_full_org_list(cur):
     return orgs
 
 
-def get_full_author_list(cur):
+def get_full_people_list(cur):
     q = 'SELECT DISTINCT authorid, author_name FROM adetails'
     cur.execute(q)
     rows = cur.fetchall()
-    authors = {'authors': [{'id': x['authorid'], 'name': x['author_name']} for x in rows]}
-    return authors
+    people = {'people': [{'id': x['authorid'], 'name': x['author_name']} for x in rows]}
+    return people
 
 
 def get_full_grant_list(cur):
@@ -87,6 +89,9 @@ def get_full_keyword_list(cur):
 @midas_blueprint.route('/intersection/papers/', methods=['GET'])
 @swag_from('../swagger_docs/paperOverlap.yml')
 def get_paper_list():
+    if not set(request.json.keys()).issubset(['authors', 'grants', 'keywords', 'orgs', 'publicationDateRange']):
+        return make_response("Invalid value in search requests", 400)
+
     conn = connect_to_db()
     cur = conn.cursor()
 
@@ -94,7 +99,6 @@ def get_paper_list():
     withOrgs = False
     withKeywords = False
     withGrants = False
-    withGrantDates = False
     withDates = False
 
     if 'authors' in request.json.keys():
@@ -111,7 +115,7 @@ def get_paper_list():
     q = ''
     formatted_ids = []
     if withDates:
-        q = 'SELECT DISTINCT paperid FROM pcount WHERE '
+        q = 'SELECT DISTINCT paperid FROM pdetails WHERE '
         if 'start' in request.json['publicationDateRange'].keys():
             if 'end' in request.json['publicationDateRange'].keys():
                 q += 'year BETWEEN ? AND ?'
@@ -164,14 +168,18 @@ def get_paper_list():
                 formatted_ids.extend([request.json['grants']['dates']['end'], request.json['grants']['dates']['end']])
             q += ')'
     
-    cur.execute(q, tuple(formatted_ids))
+    final_q = 'SELECT DISTINCT paperid, title FROM pdetails WHERE paperid IN (' + q + ')'
+    print(('='*5) + 'query' + ('='*5) + '\n' + q)
+    cur.execute(final_q, tuple(formatted_ids))
     rows = cur.fetchall()
-    papers = [x['paperid'] for x in rows]
+    papers = [{'id': x['paperid'], 'name': x['title']} for x in rows]
     return make_response(jsonify(papers), 200) 
 
 @midas_blueprint.route('/intersection/grants/', methods=['GET'])
 @swag_from('../swagger_docs/grantOverlap.yml')
 def get_grant_list():
+    if not set(request.json.keys()).issubset(['people', 'papers', 'keywords', 'orgs', 'grantDateRange']):
+        return make_response("Invalid value in search requests", 400)
     conn = connect_to_db()
     cur = conn.cursor()
 
@@ -235,7 +243,7 @@ def get_grant_list():
         if 'dates' in request.json['papers'].keys():
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT grantid FROM g2p WHERE paperid IN (SELECT paperid FROM pcount WHERE '
+            q += 'SELECT DISTINCT grantid FROM g2p WHERE paperid IN (SELECT paperid FROM pdetails WHERE '
             if 'start' in request.json['papers']['dates'].keys():
                 if 'end' in request.json['papers']['dates'].keys():
                     q += 'year BETWEEN ? AND ?'
@@ -248,14 +256,19 @@ def get_grant_list():
                 formatted_ids.extend([request.json['papers']['dates']['end']])
             q += ')'
     
-    cur.execute(q, tuple(formatted_ids))
+    final_q = 'SELECT DISTINCT grantid, title FROM gdetails WHERE grantid IN (' + q + ')'
+    print(('='*5) + 'query' + ('='*5) + '\n' + q)
+    cur.execute(final_q, tuple(formatted_ids))
     rows = cur.fetchall()
-    grants = [x['grantid'] for x in rows]
+    grants = [{'id': x['grantid'], 'name': x['title']} for x in rows]
     return make_response(jsonify(grants), 200) 
 
 @midas_blueprint.route('/intersection/people/', methods=['GET'])
 @swag_from('../swagger_docs/peopleOverlap.yml')
 def get_people_list():
+    if not set(request.json.keys()).issubset(['coauthors', 'grants', 'keywords', 'orgs', 'papers']):
+        return make_response("Invalid value in search requests", 400)
+    print('##' * 20)
     conn = connect_to_db()
     cur = conn.cursor()
 
@@ -294,7 +307,7 @@ def get_people_list():
         if 'dates' in request.json['papers'].keys():
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT paperid FROM pcount WHERE '
+            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT paperid FROM pdetails WHERE '
             if 'start' in request.json['papers']['dates'].keys():
                 if 'end' in request.json['papers']['dates'].keys():
                     q += 'year BETWEEN ? AND ?'
@@ -341,15 +354,18 @@ def get_people_list():
                 formatted_ids.extend([request.json['grants']['dates']['end'], request.json['grants']['dates']['end']])
             q += ')'
     
-    print(q)
-    cur.execute(q, tuple(formatted_ids))
+    final_q = 'SELECT DISTINCT authorid, author_name FROM adetails WHERE authorid IN (' + q + ')'
+    print(('='*5) + 'query' + ('='*5) + '\n' + q)
+    cur.execute(final_q, tuple(formatted_ids))
     rows = cur.fetchall()
-    people = [x['authorid'] for x in rows]
+    people = [{'id': x['authorid'], 'name': x['author_name']} for x in rows]
     return make_response(jsonify(people), 200) 
 
 @midas_blueprint.route('/intersection/orgs/', methods=['GET'])
 @swag_from('../swagger_docs/orgOverlap.yml')
 def get_org_list():
+    if not set(request.json.keys()).issubset(['person', 'grants', 'keywords', 'papers']):
+        return make_response("Invalid value in search requests", 400)
     conn = connect_to_db()
     cur = conn.cursor()
 
@@ -411,7 +427,7 @@ def get_org_list():
         if 'dates' in request.json['papers'].keys():
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT paperid FROM pcount WHERE '
+            q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT paperid FROM pdetails WHERE '
             if 'start' in request.json['papers']['dates'].keys():
                 if 'end' in request.json['papers']['dates'].keys():
                     q += 'year BETWEEN ? AND ?'
@@ -424,7 +440,9 @@ def get_org_list():
                 formatted_ids.extend([request.json['papers']['dates']['end']])
             q += ')'
     
-    cur.execute(q, tuple(formatted_ids))
+    final_q = 'SELECT DISTINCT orgid, org_name FROM odetails WHERE orgid IN (' + q + ')'
+    print(('='*5) + 'query' + ('='*5) + '\n' + q)
+    cur.execute(final_q, tuple(formatted_ids))
     rows = cur.fetchall()
-    orgs = [x['orgid'] for x in rows]
+    orgs = [{'id': x['orgid'], 'name': x['org_name']} for x in rows]
     return make_response(jsonify(orgs), 200) 

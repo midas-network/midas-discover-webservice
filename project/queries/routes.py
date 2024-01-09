@@ -21,12 +21,21 @@ def connect_to_db():
         print(tb)
 
 
-@midas_blueprint.route('/searchData/', methods=['GET'])
+@midas_blueprint.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'POST')
+    return response
+
+
+@midas_blueprint.route('/searchData/', methods=['POST'])
 @swag_from('../swagger_docs/getSearchData.yml')
 def get_search_data():
+    SEARCH_OPTIONS = ['papers', 'organizations', 'people', 'grants', 'keywords']
     searches = [x.lower() for x in request.json['categories']]
-    if not set(searches).issubset(['papers', 'organizations', 'people', 'grants', 'keywords']):
-        return make_response("Invalid value in search requests", 400)
+    if not set(searches).issubset(SEARCH_OPTIONS):
+        return make_response('Invalid value in search requests. Options are: ' + ' '.join(SEARCH_OPTIONS), 400)
     
     conn = connect_to_db()
     cur = conn.cursor()
@@ -86,11 +95,14 @@ def get_full_keyword_list(cur):
     return terms
 
 
-@midas_blueprint.route('/intersection/papers/', methods=['GET'])
+@midas_blueprint.route('/intersection/papers/', methods=['POST'])
 @swag_from('../swagger_docs/paperOverlap.yml')
 def get_paper_list():
-    if not set(request.json.keys()).issubset(['authors', 'grants', 'keywords', 'orgs', 'publicationDateRange']):
-        return make_response("Invalid value in search requests", 400)
+    PAPER_OPTIONS = ['authors', 'grants', 'keywords', 'orgs', 'publicationDateRange']
+    if type(request.json) != dict:
+        return make_response('Check structure of request', 400)
+    elif not set(request.json.keys()).issubset(PAPER_OPTIONS):
+        return make_response('Invalid value in search requests. Options are: ' + ' '.join(PAPER_OPTIONS), 400)
 
     conn = connect_to_db()
     cur = conn.cursor()
@@ -142,9 +154,14 @@ def get_paper_list():
         for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT paperid FROM pcount WHERE term=?'
-            formatted_ids.append(term)
+            q += 'SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?'
+            formatted_ids.append(term.lower())
     if withGrants:
+        if type(request.json['grants']) != dict:
+            return make_response('Invalid value in search requests. Check grants.', 400)
+        elif not set(request.json['grants'].keys()).issubset(['dates', 'grantList']):
+            return make_response('Invalid value in search requests. Check grants.', 400)
+        
         if 'grantList' in request.json['grants'].keys():
             for grant in request.json['grants']['grantList']:
                 if len(q) != 0:
@@ -175,10 +192,13 @@ def get_paper_list():
     papers = [{'id': x['paperid'], 'name': x['title']} for x in rows]
     return make_response(jsonify(papers), 200) 
 
-@midas_blueprint.route('/intersection/grants/', methods=['GET'])
+@midas_blueprint.route('/intersection/grants/', methods=['POST'])
 @swag_from('../swagger_docs/grantOverlap.yml')
 def get_grant_list():
-    if not set(request.json.keys()).issubset(['people', 'papers', 'keywords', 'orgs', 'grantDateRange']):
+    GRANT_OPTIONS = ['people', 'papers', 'keywords', 'orgs', 'grantDateRange']
+    if type(request.json) != dict:
+        return make_response('Check structure of request', 400)
+    if not set(request.json.keys()).issubset(GRANT_OPTIONS):
         return make_response("Invalid value in search requests", 400)
     conn = connect_to_db()
     cur = conn.cursor()
@@ -219,21 +239,26 @@ def get_grant_list():
         for author in request.json['people']:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT grantid FROM g2a WHERE grantid=?'
+            q += 'SELECT DISTINCT grantid FROM g2a WHERE authorid=?'
             formatted_ids.append(author)
     if withOrgs:
         for org in request.json['orgs']:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT grantid FROM g2p a JOIN p2org b ON a.paperid=b.paperid WHERE orgid=?'
+            q += 'SELECT DISTINCT grantid FROM g2a a JOIN adetails b ON a.authorid=b.authorid WHERE orgid=?'
             formatted_ids.append(org)
     if withKeywords:
         for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT grantid FROM g2p a JOIN pcount b ON a.paperid=b.paperid WHERE term=?'
-            formatted_ids.append(term)
+            q += 'SELECT DISTINCT grantid FROM g2p a JOIN pcount b ON a.paperid=b.paperid WHERE lower(term)=?'
+            formatted_ids.append(term.lower())
     if withPapers:
+        if type(request.json['papers']) != dict:
+            return make_response('Invalid value in search requests. Check papers.', 400)
+        elif not set(request.json['papers'].keys()).issubset(['dates', 'paperList']):
+            return make_response('Invalid value in search requests. Check papers.', 400)
+
         if 'paperList' in request.json['papers'].keys():
             for paper in request.json['papers']['paperList']:
                 if len(q) != 0:
@@ -263,11 +288,14 @@ def get_grant_list():
     grants = [{'id': x['grantid'], 'name': x['title']} for x in rows]
     return make_response(jsonify(grants), 200) 
 
-@midas_blueprint.route('/intersection/people/', methods=['GET'])
+@midas_blueprint.route('/intersection/people/', methods=['POST'])
 @swag_from('../swagger_docs/peopleOverlap.yml')
 def get_people_list():
-    if not set(request.json.keys()).issubset(['coauthors', 'grants', 'keywords', 'orgs', 'papers']):
-        return make_response("Invalid value in search requests", 400)
+    PEOPLE_OPTIONS = ['coauthors', 'grants', 'keywords', 'org', 'papers']
+    if type(request.json) != dict:
+        return make_response('Check structure of request', 400)
+    if not set(request.json.keys()).issubset(PEOPLE_OPTIONS):
+        return make_response('Invalid value in search requests. Allowed values: ' + ', '.join(allowed_values), 400)
     print('##' * 20)
     conn = connect_to_db()
     cur = conn.cursor()
@@ -298,11 +326,16 @@ def get_people_list():
             q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
             formatted_ids.append(author)
     if withPapers:
+        if type(request.json['papers']) != dict:
+            return make_response('Invalid value in search requests. Check papers.', 400)
+        elif not set(request.json['papers'].keys()).issubset(['dates', 'paperList']):
+            return make_response('Invalid value in search requests. Check papers.', 400)
+        
         if 'paperList' in request.json['papers'].keys():
             for paper in request.json['papers']['paperList']:
                 if len(q) != 0:
                     q += ' INTERSECT '
-                q += 'SELECT DISTINCT authorid FROM g2a WHERE paperid=?'
+                q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid=?'
                 formatted_ids.append(paper)
         if 'dates' in request.json['papers'].keys():
             if len(q) != 0:
@@ -328,9 +361,14 @@ def get_people_list():
         for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE term=?)'
-            formatted_ids.append(term)
+            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?)'
+            formatted_ids.append(term.lower())
     if withGrants:
+        if type(request.json['grants']) != dict:
+            return make_response('Invalid value in search requests. Check grants.', 400)
+        elif not set(request.json['grants'].keys()).issubset(['dates', 'grantList']):
+            return make_response('Invalid value in search requests. Check grants.', 400)
+
         if 'grantList' in request.json['grants'].keys():
             for grant in request.json['grants']['grantList']:
                 if len(q) != 0:
@@ -361,10 +399,13 @@ def get_people_list():
     people = [{'id': x['authorid'], 'name': x['author_name']} for x in rows]
     return make_response(jsonify(people), 200) 
 
-@midas_blueprint.route('/intersection/orgs/', methods=['GET'])
+@midas_blueprint.route('/intersection/orgs/', methods=['POST'])
 @swag_from('../swagger_docs/orgOverlap.yml')
 def get_org_list():
-    if not set(request.json.keys()).issubset(['person', 'grants', 'keywords', 'papers']):
+    ORG_OPTIONS = ['person', 'grants', 'keywords', 'papers']
+    if type(request.json) != dict:
+        return make_response('Check structure of request', 400)
+    if not set(request.json.keys()).issubset(ORG_OPTIONS):
         return make_response("Invalid value in search requests", 400)
     conn = connect_to_db()
     cur = conn.cursor()
@@ -392,9 +433,14 @@ def get_org_list():
         for term in request.json['keywords']:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE term=?)'
-            formatted_ids.append(term)
+            q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?)'
+            formatted_ids.append(term.lower())
     if withGrants:
+        if type(request.json['grants']) != dict:
+            return make_response('Invalid value in search requests. Check grants.', 400)
+        elif not set(request.json['grants'].keys()).issubset(['dates', 'grantList']):
+            return make_response('Invalid value in search requests. Check grants.', 400)
+            
         if 'grantList' in request.json['grants'].keys():
             for grant in request.json['grants']['grantList']:
                 if len(q) != 0:
@@ -418,6 +464,11 @@ def get_org_list():
                 formatted_ids.extend([request.json['grants']['dates']['end'], request.json['grants']['dates']['end']])
             q += '))'
     if withPapers:
+        if type(request.json['papers']) != dict:
+            return make_response('Invalid value in search requests. Check papers.', 400)
+        elif not set(request.json['papers'].keys()).issubset(['dates', 'paperList']):
+            return make_response('Invalid value in search requests. Check papers.', 400)
+
         if 'paperList' in request.json['papers'].keys():
             for paper in request.json['papers']['paperList']:
                 if len(q) != 0:

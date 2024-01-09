@@ -1,5 +1,7 @@
 from flask import Flask
 from flasgger import Swagger
+from werkzeug.middleware.proxy_fix import ProxyFix
+from decouple import config
 
 
 '''
@@ -23,6 +25,8 @@ def create_app():
     swagger = Swagger(app)
 
     register_blueprints(app)
+    if (config('user') == "SERVER"):
+        app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
     return app
 
 def register_blueprints(app):

@@ -29,6 +29,12 @@ def after_request(response):
     return response
 
 
+@midas_blueprint.route('/searchCategories/', methods=['GET'])
+def get_search_categories():
+    response = ['papers', 'organizations', 'people', 'grants', 'keywords']
+    return make_response(jsonify(response), 200)
+
+
 @midas_blueprint.route('/searchData/', methods=['POST'])
 @swag_from('../swagger_docs/getSearchData.yml')
 def get_search_data():

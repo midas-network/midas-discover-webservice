@@ -12,7 +12,7 @@ parameters:
             description: The list of people associated with the grants in the target grant set.
             items:
               $ref: '#/definitions/UniqueIdentifier'
-          orgs:
+          organizations:
             type: array
             description: The list of organizations of people who are associated with grants in the target grant set.
             items:

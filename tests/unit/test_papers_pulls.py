@@ -30,7 +30,7 @@ def test_paper_authors(test_client):
     assert json.loads(response.data.decode('utf-8')) == expected_result
 
 def test_paper_orgs(test_client):
-    query_params = {"orgs": ["https://midasnetwork.us/organizations/666"]}
+    query_params = {"organizations": ["https://midasnetwork.us/organizations/666"]}
     expected_result = [
             {
                 "id": "https://midasnetwork.us/papers/System-Dynamics-Modeling-of-Within-Host-Viral-Kinetics-of-Coronavirus-SARS-CoV-2",

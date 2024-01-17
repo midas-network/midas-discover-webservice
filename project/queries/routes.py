@@ -21,6 +21,15 @@ def connect_to_db():
         print(tb)
 
 
+def find_org_children(cur, org):
+    q = 'SELECT DISTINCT orgid FROM org_relations WHERE rel_id=?'
+    cur.execute(q, (org,))
+    rows = cur.fetchall()
+    orgs = [x['orgid'] for x in rows]
+
+    return orgs
+
+
 @midas_blueprint.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
@@ -73,7 +82,7 @@ def get_full_org_list(cur):
     q = 'SELECT DISTINCT orgid, org_name FROM odetails'
     cur.execute(q)
     rows = cur.fetchall()
-    orgs = {'orgs': [{'id': x['orgid'], 'name': x['org_name']} for x in rows]}
+    orgs = {'organizations': [{'id': x['orgid'], 'name': x['org_name']} for x in rows]}
     return orgs
 
 
@@ -104,7 +113,7 @@ def get_full_keyword_list(cur):
 @midas_blueprint.route('/intersection/papers/', methods=['POST'])
 @swag_from('../swagger_docs/paperOverlap.yml')
 def get_paper_list():
-    PAPER_OPTIONS = ['authors', 'grants', 'keywords', 'orgs', 'publicationDateRange']
+    PAPER_OPTIONS = ['authors', 'grants', 'keywords', 'organizations', 'publicationDateRange']
     if type(request.json) != dict:
         return make_response('Check structure of request', 400)
     elif not set(request.json.keys()).issubset(PAPER_OPTIONS):
@@ -121,7 +130,7 @@ def get_paper_list():
 
     if 'authors' in request.json.keys():
         withAuthors = True
-    if 'orgs' in request.json.keys():
+    if 'organizations' in request.json.keys():
         withOrgs = True
     if 'keywords' in request.json.keys():
         withKeywords = True
@@ -151,11 +160,13 @@ def get_paper_list():
             q += 'SELECT DISTINCT paperid FROM p2au WHERE authorid=?'
             formatted_ids.append(author)
     if withOrgs:
-        for org in request.json['orgs']:
+        for org in request.json['organizations']:
+            orgs = find_org_children(cur, org)
+            org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT paperid FROM p2org WHERE orgid=?'
-            formatted_ids.append(org)
+            q += 'SELECT DISTINCT paperid FROM p2org WHERE orgid IN ' + org_q
+            formatted_ids.extend(orgs)
     if withKeywords:
         for term in request.json['keywords']:
             if len(q) != 0:
@@ -201,7 +212,7 @@ def get_paper_list():
 @midas_blueprint.route('/intersection/grants/', methods=['POST'])
 @swag_from('../swagger_docs/grantOverlap.yml')
 def get_grant_list():
-    GRANT_OPTIONS = ['people', 'papers', 'keywords', 'orgs', 'grantDateRange']
+    GRANT_OPTIONS = ['people', 'papers', 'keywords', 'organizations', 'grantDateRange']
     if type(request.json) != dict:
         return make_response('Check structure of request', 400)
     if not set(request.json.keys()).issubset(GRANT_OPTIONS):
@@ -217,7 +228,7 @@ def get_grant_list():
 
     if 'people' in request.json.keys():
         withPeople = True
-    if 'orgs' in request.json.keys():
+    if 'organizations' in request.json.keys():
         withOrgs = True
     if 'keywords' in request.json.keys():
         withKeywords = True
@@ -248,11 +259,13 @@ def get_grant_list():
             q += 'SELECT DISTINCT grantid FROM g2a WHERE authorid=?'
             formatted_ids.append(author)
     if withOrgs:
-        for org in request.json['orgs']:
+        for org in request.json['organizations']:
+            orgs = find_org_children(cur, org)
+            org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT grantid FROM g2a a JOIN adetails b ON a.authorid=b.authorid WHERE orgid=?'
-            formatted_ids.append(org)
+            q += 'SELECT DISTINCT grantid FROM g2a a JOIN adetails b ON a.authorid=b.authorid WHERE orgid IN ' + org_q
+            formatted_ids.extend(orgs)
     if withKeywords:
         for term in request.json['keywords']:
             if len(q) != 0:
@@ -297,7 +310,7 @@ def get_grant_list():
 @midas_blueprint.route('/intersection/people/', methods=['POST'])
 @swag_from('../swagger_docs/peopleOverlap.yml')
 def get_people_list():
-    PEOPLE_OPTIONS = ['coauthors', 'grants', 'keywords', 'org', 'papers']
+    PEOPLE_OPTIONS = ['coauthors', 'grants', 'keywords', 'organization', 'papers']
     if type(request.json) != dict:
         return make_response('Check structure of request', 400)
     if not set(request.json.keys()).issubset(PEOPLE_OPTIONS):
@@ -316,7 +329,7 @@ def get_people_list():
         withAuthors = True
     if 'papers' in request.json.keys():
         withPapers = True
-    if 'org' in request.json.keys():
+    if 'organization' in request.json.keys():
         withOrg = True
     if 'keywords' in request.json.keys():
         withKeywords = True
@@ -359,10 +372,12 @@ def get_people_list():
                 formatted_ids.extend([request.json['papers']['dates']['end']])
             q += ')'
     if withOrg:
+        orgs = find_org_children(cur, request.json['organization'])
+        org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
         if len(q) != 0:
             q += ' INTERSECT '
-        q += 'SELECT DISTINCT authorid FROM adetails WHERE orgid=?'
-        formatted_ids.append(request.json['org'])
+        q += 'SELECT DISTINCT authorid FROM adetails WHERE orgid IN ' + org_q
+        formatted_ids.extend(orgs)
     if withKeywords:
         for term in request.json['keywords']:
             if len(q) != 0:
@@ -405,7 +420,7 @@ def get_people_list():
     people = [{'id': x['authorid'], 'name': x['author_name']} for x in rows]
     return make_response(jsonify(people), 200) 
 
-@midas_blueprint.route('/intersection/orgs/', methods=['POST'])
+@midas_blueprint.route('/intersection/organizations/', methods=['POST'])
 @swag_from('../swagger_docs/orgOverlap.yml')
 def get_org_list():
     ORG_OPTIONS = ['person', 'grants', 'keywords', 'papers']
@@ -497,7 +512,8 @@ def get_org_list():
                 formatted_ids.extend([request.json['papers']['dates']['end']])
             q += ')'
     
-    final_q = 'SELECT DISTINCT orgid, org_name FROM odetails WHERE orgid IN (' + q + ')'
+    parent_q = 'SELECT DISTINCT rel_id FROM org_relations WHERE orgid IN (' + q + ')'
+    final_q = 'SELECT DISTINCT orgid, org_name FROM odetails WHERE orgid IN (' + parent_q + ')'
     print(('='*5) + 'query' + ('='*5) + '\n' + q)
     cur.execute(final_q, tuple(formatted_ids))
     rows = cur.fetchall()

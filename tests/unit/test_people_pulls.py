@@ -95,8 +95,12 @@ def test_people_keywords(test_client):
 
 
 def test_people_org(test_client):
-    query_params = {"org": "https://midasnetwork.us/organizations/594"}
+    query_params = {"organization": "https://midasnetwork.us/organizations/594"}
     expected_result = [
+            {
+                "id": "https://midasnetwork.us/people/mohammad-al-mamun/",
+                "name": "Mohammad A Al-Mamun"
+            },
             {
                 "id": "https://midasnetwork.us/people/natallia-katenka/",
                 "name": "Natallia V. Katenka"

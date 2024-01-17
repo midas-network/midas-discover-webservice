@@ -1,4 +1,4 @@
-Endpoint for pulling all orgs with common data elements
+Endpoint for pulling all organizations with common data elements
 ---
 parameters:
     - name: body
@@ -38,7 +38,7 @@ parameters:
               $ref: '#/definitions/UniqueIdentifier'
 responses:
   200:
-    description: A list of all orgs that match the filter
+    description: A list of all organizations that match the filter
     schema:
       $ref: '#/definitions/DataList'
     # examples:

@@ -4,7 +4,7 @@ import json
 
 
 def run_orgs_pull(test_client, query_params):
-    response = test_client.post('/intersection/orgs/',
+    response = test_client.post('/intersection/organizations/',
                     json=query_params)
     return response
 
@@ -14,8 +14,16 @@ def test_orgs_grants(test_client):
             'query_params': {"grants": {"grantList": ["1R01AI151176-01"]}},
             'expected_result': [
                 {
+                    "id": "https://midasnetwork.us/organizations/229",
+                    "name": "College of Natural Sciences"
+                },
+                {
                     "id": "https://midasnetwork.us/organizations/230",
                     "name": "Department of Integrative Biology"
+                },
+                {
+                    "id": "https://midasnetwork.us/organizations/228",
+                    "name": "University of Texas at Austin"
                 }
             ]
         },
@@ -31,12 +39,28 @@ def test_orgs_grants(test_client):
                     "name": "Epidemiology and Biostatistics"
                 },
                 {
+                    "id": "https://midasnetwork.us/organizations/289",
+                    "name": "Indiana University Bloomington"
+                },
+                {
                     "id": "https://midasnetwork.us/organizations/172",
                     "name": "Odum School of Ecology"
                 },
                 {
+                    "id": "https://midasnetwork.us/organizations/55",
+                    "name": "Georgetown University"
+                },
+                {
                     "id": "https://midasnetwork.us/organizations/177",
                     "name": "Rohani Lab"
+                },
+                {
+                    "id": "https://midasnetwork.us/organizations/168",
+                    "name": "University of Georgia"
+                },
+                {
+                    "id": "https://midasnetwork.us/organizations/290",
+                    "name": "School of Public Health"
                 }
             ]
         }

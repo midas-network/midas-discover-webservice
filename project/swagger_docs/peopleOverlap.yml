@@ -23,7 +23,7 @@ parameters:
             description: The list of people that coauthored papers with the people in the target people set.
             items:
               $ref: '#/definitions/UniqueIdentifier'
-          org:
+          organization:
             type: string
             description: The organization of the people in the target people set.
           grants:

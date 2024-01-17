@@ -43,7 +43,7 @@ def test_grants_keywords(test_client):
     assert json.loads(response.data.decode('utf-8')) == expected_result
 
 def test_grants_orgs(test_client):
-    query_params = {"orgs": ["https://midasnetwork.us/organizations/172", "https://midasnetwork.us/organizations/177"]}
+    query_params = {"organizations": ["https://midasnetwork.us/organizations/172", "https://midasnetwork.us/organizations/177"]}
     expected_result = [
             {
                 "id": "1R01GM123007",

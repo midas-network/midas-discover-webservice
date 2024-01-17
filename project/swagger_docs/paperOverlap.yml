@@ -12,7 +12,7 @@ parameters:
             type: array
             items:
               $ref: '#/definitions/UniqueIdentifier'
-          orgs:
+          organizations:
             description: The list of organizations associated with authors on the papers in the target paper set.
             type: array
             items:

@@ -46,11 +46,11 @@ def find_org_children(cur, org):
 
 def get_categories_in_query(keys):
     result = {
-        "withPeople": False,
-        "withOrgs": False,  # Not in powerpoint but seems doable
-        "withKeywords": False,
-        "withPapers": False,
-        "withDates": False,
+        withPeople: False,
+        withOrgs: False,  # Not in powerpoint but seems doable
+        withKeywords: False,
+        withPapers: False,
+        withDates: False,
     }
 
     if PEOPLE in keys:

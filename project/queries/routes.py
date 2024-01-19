@@ -19,6 +19,11 @@ GRANT_LIST = 'grantList'
 START = 'start'
 END = 'end'
 
+withPeople = 'withPeople'
+withOrgs = 'withOrgs'
+withKeywords = 'withKeywords'
+withPapers = 'withPapers'
+withDates = 'withDates'
 
 # TODO: Better errors for identifying malformed queries
 

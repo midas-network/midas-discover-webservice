@@ -113,7 +113,7 @@ def get_full_keyword_list(cur):
 @midas_blueprint.route('/intersection/papers/', methods=['POST'])
 @swag_from('../swagger_docs/paperOverlap.yml')
 def get_paper_list():
-    PAPER_OPTIONS = ['authors', 'grants', 'keywords', 'organizations', 'publicationDateRange']
+    PAPER_OPTIONS = ['people', 'grants', 'keywords', 'organizations', 'publicationDateRange']
     if type(request.json) != dict:
         return make_response('Check structure of request', 400)
     elif not set(request.json.keys()).issubset(PAPER_OPTIONS):
@@ -128,7 +128,7 @@ def get_paper_list():
     withGrants = False
     withDates = False
 
-    if 'authors' in request.json.keys():
+    if 'people' in request.json.keys():
         withAuthors = True
     if 'organizations' in request.json.keys():
         withOrgs = True
@@ -154,7 +154,7 @@ def get_paper_list():
             q += 'year <= ?'
             formatted_ids.extend([request.json['publicationDateRange']['end']])
     if withAuthors:
-        for author in request.json['authors']:
+        for author in request.json['people']:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT paperid FROM p2au WHERE authorid=?'
@@ -310,7 +310,7 @@ def get_grant_list():
 @midas_blueprint.route('/intersection/people/', methods=['POST'])
 @swag_from('../swagger_docs/peopleOverlap.yml')
 def get_people_list():
-    PEOPLE_OPTIONS = ['coauthors', 'grants', 'keywords', 'organization', 'papers']
+    PEOPLE_OPTIONS = ['people', 'grants', 'keywords', 'organizations', 'papers']
     if type(request.json) != dict:
         return make_response('Check structure of request', 400)
     if not set(request.json.keys()).issubset(PEOPLE_OPTIONS):
@@ -325,11 +325,11 @@ def get_people_list():
     withKeywords = False
     withGrants = False
 
-    if 'coauthors' in request.json.keys():
+    if 'people' in request.json.keys():
         withAuthors = True
     if 'papers' in request.json.keys():
         withPapers = True
-    if 'organization' in request.json.keys():
+    if 'organizations' in request.json.keys():
         withOrg = True
     if 'keywords' in request.json.keys():
         withKeywords = True
@@ -339,7 +339,7 @@ def get_people_list():
     q = ''
     formatted_ids = []
     if withAuthors:
-        for author in request.json['coauthors']:
+        for author in request.json['people']:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
@@ -372,7 +372,7 @@ def get_people_list():
                 formatted_ids.extend([request.json['papers']['dates']['end']])
             q += ')'
     if withOrg:
-        orgs = find_org_children(cur, request.json['organization'])
+        orgs = find_org_children(cur, request.json['organizations'])
         org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
         if len(q) != 0:
             q += ' INTERSECT '
@@ -423,7 +423,7 @@ def get_people_list():
 @midas_blueprint.route('/intersection/organizations/', methods=['POST'])
 @swag_from('../swagger_docs/orgOverlap.yml')
 def get_org_list():
-    ORG_OPTIONS = ['person', 'grants', 'keywords', 'papers']
+    ORG_OPTIONS = ['people', 'grants', 'keywords', 'papers']
     if type(request.json) != dict:
         return make_response('Check structure of request', 400)
     if not set(request.json.keys()).issubset(ORG_OPTIONS):
@@ -436,7 +436,7 @@ def get_org_list():
     withGrants = False
     withPapers = False
 
-    if 'person' in request.json.keys():
+    if 'people' in request.json.keys():
         withPerson = True
     if 'keywords' in request.json.keys():
         withKeywords = True
@@ -449,7 +449,7 @@ def get_org_list():
     formatted_ids = []
     if withPerson:
         q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid=?'
-        formatted_ids.append(request.json['person'])
+        formatted_ids.append(request.json['people'])
     if withKeywords:
         for term in request.json['keywords']:
             if len(q) != 0:

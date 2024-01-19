@@ -24,6 +24,8 @@ withOrgs = 'withOrgs'
 withKeywords = 'withKeywords'
 withPapers = 'withPapers'
 withDates = 'withDates'
+withGrants = 'withGrants'
+
 
 # TODO: Better errors for identifying malformed queries
 
@@ -56,18 +58,21 @@ def get_categories_in_query(keys):
         withKeywords: False,
         withPapers: False,
         withDates: False,
+        withGrants: False,
     }
 
     if PEOPLE in keys:
-        result.withPeople = True
+        result[withPeople] = True
     if ORGANIZATIONS in keys:
-        result.withOrgs = True
+        result[withOrgs] = True
     if KEYWORDS in keys:
-        result.withKeywords = True
+        result[withKeywords] = True
     if PAPERS in keys:
-        result.withPapers = True
+        result[withPapers] = True
     if GRANT_DATE_RANGE in keys:
-        result.withDates = True
+        result[withDates] = True
+    if GRANTS in keys:
+        result[withGrants] = True
 
     return result
 
@@ -175,7 +180,7 @@ def get_paper_list():
 
     q = ''
     formatted_ids = []
-    if keys.withDates:
+    if keys[withDates]:
         q = 'SELECT DISTINCT paperid FROM pdetails WHERE '
         if START in request.json[PUBLICATION_DATE_RANGE].keys():
             if END in request.json[PUBLICATION_DATE_RANGE].keys():
@@ -188,13 +193,13 @@ def get_paper_list():
         elif END in request.json[PUBLICATION_DATE_RANGE].keys():
             q += 'year <= ?'
             formatted_ids.extend([request.json[PUBLICATION_DATE_RANGE][END]])
-    if keys.withAuthors:
+    if keys[withPeople]:
         for author in request.json[PEOPLE]:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT paperid FROM p2au WHERE authorid=?'
             formatted_ids.append(author)
-    if keys.withOrgs:
+    if keys[withOrgs]:
         for org in request.json[ORGANIZATIONS]:
             orgs = find_org_children(cur, org)
             org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
@@ -202,13 +207,13 @@ def get_paper_list():
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT paperid FROM p2org WHERE orgid IN ' + org_q
             formatted_ids.extend(orgs)
-    if keys.withKeywords:
+    if keys[withKeywords]:
         for term in request.json[KEYWORDS]:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?'
             formatted_ids.append(term.lower())
-    if keys.withGrants:
+    if keys[withGrants]:
         if not isinstance(request.json[GRANTS], dict):
             return make_response('Invalid value in search requests. Check grants.', 400)
         elif not set(request.json[GRANTS].keys()).issubset([DATES, GRANT_LIST]):
@@ -259,7 +264,7 @@ def get_grant_list():
 
     q = ''
     formatted_ids = []
-    if keys.withDates:
+    if keys[withDates]:
         q = 'SELECT DISTINCT grantid FROM gdetails WHERE '
         if START in request.json[GRANT_DATE_RANGE].keys():
             if END in request.json[GRANT_DATE_RANGE].keys():
@@ -272,13 +277,13 @@ def get_grant_list():
         elif END in request.json[GRANT_DATE_RANGE].keys():
             q += 'startdate <= ? OR enddate <= ?'
             formatted_ids.extend([request.json[GRANT_DATE_RANGE][END], request.json[GRANT_DATE_RANGE][END]])
-    if keys.withPeople:
+    if keys[withPeople]:
         for author in request.json[PEOPLE]:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT grantid FROM g2a WHERE authorid=?'
             formatted_ids.append(author)
-    if keys.withOrgs:
+    if keys[withOrgs]:
         for org in request.json[ORGANIZATIONS]:
             orgs = find_org_children(cur, org)
             org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
@@ -286,13 +291,13 @@ def get_grant_list():
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT grantid FROM g2a a JOIN adetails b ON a.authorid=b.authorid WHERE orgid IN ' + org_q
             formatted_ids.extend(orgs)
-    if keys.withKeywords:
+    if keys[withKeywords]:
         for term in request.json[KEYWORDS]:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT grantid FROM g2p a JOIN pcount b ON a.paperid=b.paperid WHERE lower(term)=?'
             formatted_ids.append(term.lower())
-    if keys.withPapers:
+    if keys[withPapers]:
         if not isinstance(request.json[PAPERS], dict):
             return make_response('Invalid value in search requests. Check papers.', 400)
         elif not set(request.json[PAPERS].keys()).issubset([DATES, 'paperList']):
@@ -343,13 +348,13 @@ def get_people_list():
 
     q = ''
     formatted_ids = []
-    if keys.withAuthors:
+    if keys[withPeople]:
         for author in request.json[PEOPLE]:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
             formatted_ids.append(author)
-    if keys.withPapers:
+    if keys[withPapers]:
         if not isinstance(request.json[PAPERS], dict):
             return make_response('Invalid value in search requests. Check papers.', 400)
         elif not set(request.json[PAPERS].keys()).issubset([DATES, 'paperList']):
@@ -376,20 +381,20 @@ def get_people_list():
                 q += 'year <= ?'
                 formatted_ids.extend([request.json[PAPERS][DATES][END]])
             q += ')'
-    if keys.withOrg:
+    if keys[withOrgs]:
         orgs = find_org_children(cur, request.json[ORGANIZATIONS])
         org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
         if len(q) != 0:
             q += ' INTERSECT '
         q += 'SELECT DISTINCT authorid FROM adetails WHERE orgid IN ' + org_q
         formatted_ids.extend(orgs)
-    if keys.withKeywords:
+    if keys[withKeywords]:
         for term in request.json[KEYWORDS]:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?)'
             formatted_ids.append(term.lower())
-    if keys.withGrants:
+    if keys[withGrants]:
         if not isinstance(request.json[GRANTS], dict):
             return make_response('Invalid value in search requests. Check grants.', 400)
         elif not set(request.json[GRANTS].keys()).issubset([DATES, GRANT_LIST]):
@@ -440,16 +445,16 @@ def get_org_list():
     keys = get_categories_in_query(request.json.keys())
     q = ''
     formatted_ids = []
-    if keys.withPerson:
+    if keys[withPeople]:
         q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid=?'
         formatted_ids.append(request.json[PEOPLE])
-    if keys.withKeywords:
+    if keys[withKeywords]:
         for term in request.json[KEYWORDS]:
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?)'
             formatted_ids.append(term.lower())
-    if keys.withGrants:
+    if keys[withGrants]:
         if not isinstance(request.json[GRANTS], dict):
             return make_response('Invalid value in search requests. Check grants.', 400)
         elif not set(request.json[GRANTS].keys()).issubset([DATES, GRANT_LIST]):
@@ -477,7 +482,7 @@ def get_org_list():
                 q += 'startdate <= ? OR enddate <= ?'
                 formatted_ids.extend([request.json[GRANTS][DATES][END], request.json[GRANTS][DATES][END]])
             q += '))'
-    if keys.withPapers:
+    if keys[withPapers]:
         if not isinstance(request.json[PAPERS], dict):
             return make_response('Invalid value in search requests. Check papers.', 400)
         elif not set(request.json[PAPERS].keys()).issubset([DATES, 'paperList']):

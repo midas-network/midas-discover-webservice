@@ -173,6 +173,9 @@ def get_paper_list():
     errors = check_payload(request, paper_options)
     if errors is not None:
         return errors
+    if len(request.json[ORGANIZATIONS]) > 1:
+        return make_response("There can only be one organization listed in the body of this request: ", 400)
+
     conn = connect_to_db()
     cur = conn.cursor()
 
@@ -382,12 +385,13 @@ def get_people_list():
                 formatted_ids.extend([request.json[PAPERS][DATES][END]])
             q += ')'
     if keys[withOrgs]:
-        orgs = find_org_children(cur, request.json[ORGANIZATIONS])
-        org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
-        if len(q) != 0:
-            q += ' INTERSECT '
-        q += 'SELECT DISTINCT authorid FROM adetails WHERE orgid IN ' + org_q
-        formatted_ids.extend(orgs)
+        for org in request.json[ORGANIZATIONS]:
+            orgs = find_org_children(cur, org)
+            org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
+            if len(q) != 0:
+                q += ' INTERSECT '
+            q += 'SELECT DISTINCT authorid FROM adetails WHERE orgid IN ' + org_q
+            formatted_ids.extend(orgs)
     if keys[withKeywords]:
         for term in request.json[KEYWORDS]:
             if len(q) != 0:
@@ -446,6 +450,7 @@ def get_org_list():
     q = ''
     formatted_ids = []
     if keys[withPeople]:
+        #change this to authorid "in"?
         q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid=?'
         formatted_ids.append(request.json[PEOPLE])
     if keys[withKeywords]:

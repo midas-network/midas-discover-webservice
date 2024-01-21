@@ -453,9 +453,8 @@ def get_org_list():
     if keys[withPeople]:
         #change this to authorid "in"?
         people_arr = request.json[PEOPLE]
-        print(type(people_arr))
-        authors = ','.join(['?'] * len(people_arr))
-        q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid IN (%s)' % authors, tuple(people_arr)
+        q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid IN (' + ','.join(people_arr) + ')'
+        print(q)
         #formatted_ids.append(request.json[PEOPLE])
     if keys[withKeywords]:
         for term in request.json[KEYWORDS]:

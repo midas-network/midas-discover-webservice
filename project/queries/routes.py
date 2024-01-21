@@ -1,3 +1,4 @@
+import json
 import sqlite3
 import traceback
 
@@ -451,9 +452,9 @@ def get_org_list():
     formatted_ids = []
     if keys[withPeople]:
         #change this to authorid "in"?
-        print(request.json[PEOPLE])
-        authors = ','.join(['%s'] * len(request.json[PEOPLE]))
-        q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid IN (%s)' % authors, request.json[PEOPLE]
+        people_arr = json.loads(request.json[PEOPLE])
+        authors = ','.join(['%s'] * len(people_arr))
+        q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid IN (%s)' % authors, people_arr
         #formatted_ids.append(request.json[PEOPLE])
     if keys[withKeywords]:
         for term in request.json[KEYWORDS]:

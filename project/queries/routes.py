@@ -78,11 +78,22 @@ def get_categories_in_query(keys):
     return result
 
 
-def check_payload(request_payload, options):
-    if not isinstance(request_payload.json, dict):
-        return make_response('Check structure of request', 400)
-    if not set(request_payload.json.keys()).issubset(options):
-        return make_response("Invalid value in search requests. Allowed options: " + " ".join(options), 400)
+def check_payload(request_payload, options, category):
+    if category is None:
+        if not isinstance(request_payload.json, dict):
+            return make_response('Check structure of request', 400)
+        if not set(request_payload.json.keys()).issubset(options):
+            return make_response("Invalid value in search requests. Allowed options: " + " ".join(options), 400)
+    elif category == PAPERS:
+        if not isinstance(request.json[PAPERS], dict):
+            return make_response('Invalid value in search requests. Check papers.', 400)
+        elif not set(request.json[PAPERS].keys()).issubset([DATES, 'paperList']):
+            return make_response('Invalid value in search requests. Check papers.', 400)
+    elif category == GRANTS:
+        if not isinstance(request.json[GRANTS], dict):
+            return make_response('Invalid value in search requests. Check grants.', 400)
+        elif not set(request.json[GRANTS].keys()).issubset([DATES, GRANT_LIST]):
+            return make_response('Invalid value in search requests. Check grants.', 400)
     return None
 
 
@@ -218,10 +229,7 @@ def get_paper_list():
             q += 'SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?'
             formatted_ids.append(term.lower())
     if keys[withGrants]:
-        if not isinstance(request.json[GRANTS], dict):
-            return make_response('Invalid value in search requests. Check grants.', 400)
-        elif not set(request.json[GRANTS].keys()).issubset([DATES, GRANT_LIST]):
-            return make_response('Invalid value in search requests. Check grants.', 400)
+        check_payload(request, "", GRANTS)
 
         if GRANT_LIST in request.json[GRANTS].keys():
             for grant in request.json[GRANTS][GRANT_LIST]:
@@ -302,11 +310,7 @@ def get_grant_list():
             q += 'SELECT DISTINCT grantid FROM g2p a JOIN pcount b ON a.paperid=b.paperid WHERE lower(term)=?'
             formatted_ids.append(term.lower())
     if keys[withPapers]:
-        if not isinstance(request.json[PAPERS], dict):
-            return make_response('Invalid value in search requests. Check papers.', 400)
-        elif not set(request.json[PAPERS].keys()).issubset([DATES, 'paperList']):
-            return make_response('Invalid value in search requests. Check papers.', 400)
-
+        check_payload(request, "", PAPERS)
         if 'paperList' in request.json[PAPERS].keys():
             for paper in request.json[PAPERS]['paperList']:
                 if len(q) != 0:
@@ -359,10 +363,7 @@ def get_people_list():
             q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
             formatted_ids.append(author)
     if keys[withPapers]:
-        if not isinstance(request.json[PAPERS], dict):
-            return make_response('Invalid value in search requests. Check papers.', 400)
-        elif not set(request.json[PAPERS].keys()).issubset([DATES, 'paperList']):
-            return make_response('Invalid value in search requests. Check papers.', 400)
+        check_payload(request, "", PAPERS)
 
         if 'paperList' in request.json[PAPERS].keys():
             for paper in request.json[PAPERS]['paperList']:
@@ -400,10 +401,7 @@ def get_people_list():
             q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?)'
             formatted_ids.append(term.lower())
     if keys[withGrants]:
-        if not isinstance(request.json[GRANTS], dict):
-            return make_response('Invalid value in search requests. Check grants.', 400)
-        elif not set(request.json[GRANTS].keys()).issubset([DATES, GRANT_LIST]):
-            return make_response('Invalid value in search requests. Check grants.', 400)
+        check_payload(request, "", GRANTS)
 
         if GRANT_LIST in request.json[GRANTS].keys():
             for grant in request.json[GRANTS][GRANT_LIST]:
@@ -451,14 +449,13 @@ def get_org_list():
     q = ''
     formatted_ids = []
     if keys[withPeople]:
-        #change this to authorid "in"?
+        #TODO: fix
         people_arr = request.json[PEOPLE]
         people_arr_w_quotes = []
         for person in people_arr:
             people_arr_w_quotes.append("'" + person + "'")
         q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid IN (' + ','.join(people_arr_w_quotes) + ')'
         print("query is" + q)
-        #formatted_ids.append(request.json[PEOPLE])
     if keys[withKeywords]:
         for term in request.json[KEYWORDS]:
             if len(q) != 0:
@@ -466,10 +463,7 @@ def get_org_list():
             q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?)'
             formatted_ids.append(term.lower())
     if keys[withGrants]:
-        if not isinstance(request.json[GRANTS], dict):
-            return make_response('Invalid value in search requests. Check grants.', 400)
-        elif not set(request.json[GRANTS].keys()).issubset([DATES, GRANT_LIST]):
-            return make_response('Invalid value in search requests. Check grants.', 400)
+        check_payload(request, "", GRANTS)
 
         if GRANT_LIST in request.json[GRANTS].keys():
             for grant in request.json[GRANTS][GRANT_LIST]:
@@ -494,10 +488,7 @@ def get_org_list():
                 formatted_ids.extend([request.json[GRANTS][DATES][END], request.json[GRANTS][DATES][END]])
             q += '))'
     if keys[withPapers]:
-        if not isinstance(request.json[PAPERS], dict):
-            return make_response('Invalid value in search requests. Check papers.', 400)
-        elif not set(request.json[PAPERS].keys()).issubset([DATES, 'paperList']):
-            return make_response('Invalid value in search requests. Check papers.', 400)
+        check_payload(request, "", PAPERS)
 
         if 'paperList' in request.json[PAPERS].keys():
             for paper in request.json[PAPERS]['paperList']:

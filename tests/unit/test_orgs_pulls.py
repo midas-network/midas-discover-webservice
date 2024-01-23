@@ -121,8 +121,9 @@ def test_orgs_papers(test_client):
         assert response.status_code == 200
         assert json.loads(response.data.decode('utf-8')) == details['expected_result']
 
+
 def test_orgs_person(test_client):
-    query_params = {"person": "https://midasnetwork.us/people/nao-yamamoto/"}
+    query_params = {"people": ["https://midasnetwork.us/people/nao-yamamoto/"]}
     expected_result = [
             {
                 "id": "https://midasnetwork.us/organizations/287",

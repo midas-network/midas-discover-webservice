@@ -4,6 +4,7 @@ from project import create_app
 
 # Usage: python -m pytest -v
 
+
 @pytest.fixture(scope='module')
 def test_client():
     # Set the Testing configuration prior to creating the Flask application

@@ -9,7 +9,7 @@ def run_people_pull(test_client, query_params):
     return response
     
 def test_people_coauthor(test_client):
-    query_params = {"coauthors": ["https://midasnetwork.us/people/angkana-huang/",
+    query_params = {"people": ["https://midasnetwork.us/people/angkana-huang/",
                                   "https://midasnetwork.us/people/donald-burke/"]}
     expected_result = [
             {
@@ -95,7 +95,7 @@ def test_people_keywords(test_client):
 
 
 def test_people_org(test_client):
-    query_params = {"organization": "https://midasnetwork.us/organizations/594"}
+    query_params = {"organizations": ["https://midasnetwork.us/organizations/594"]}
     expected_result = [
             {
                 "id": "https://midasnetwork.us/people/mohammad-al-mamun/",

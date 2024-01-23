@@ -56,8 +56,6 @@ def get_paper_list():
     [q, formatted_ids, cur, keys, errors] = init_endpoint(request, paper_options, None, None)
     if errors is not None:
         return errors
-    if len(request.json[ORGANIZATIONS]) > 1:
-        return make_response("There can only be one organization listed in the body of this request: ", 400)
 
     if keys[withDates]:
         q = 'SELECT DISTINCT paperid FROM pdetails WHERE '
@@ -200,6 +198,8 @@ def get_people_list():
     [q, formatted_ids, cur, keys, errors] = init_endpoint(request, people_options, None, None)
     if errors is not None:
         return errors
+    if ORGANIZATIONS in request.json and len(request.json[ORGANIZATIONS]) > 1:
+        return make_response("There can only be one organization listed in the body of this request: ", 400)
     if keys[withPeople]:
         for author in request.json[PEOPLE]:
             if len(q) != 0:
@@ -209,7 +209,6 @@ def get_people_list():
             formatted_ids.append(author)
     if keys[withPapers]:
         check_payload(request, None, PAPERS, PAPER_LIST)
-
         if PAPER_LIST in request.json[PAPERS].keys():
             for paper in request.json[PAPERS][PAPER_LIST]:
                 if len(q) != 0:

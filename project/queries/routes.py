@@ -1,100 +1,11 @@
-import json
-import sqlite3
-import traceback
-
-from flask import jsonify, request, make_response
 from flasgger import swag_from
-
+from flask import jsonify, request, make_response
 from . import midas_blueprint
-from . import DB_LOCATION
-
-GRANTS = 'grants'
-KEYWORDS = 'keywords'
-PAPERS = 'papers'
-PEOPLE = 'people'
-ORGANIZATIONS = 'organizations'
-DATES = 'dates'
-GRANT_DATE_RANGE = 'grantDateRange'
-PUBLICATION_DATE_RANGE = 'publicationDateRange'
-GRANT_LIST = 'grantList'
-START = 'start'
-END = 'end'
-
-withPeople = 'withPeople'
-withOrgs = 'withOrgs'
-withKeywords = 'withKeywords'
-withPapers = 'withPapers'
-withDates = 'withDates'
-withGrants = 'withGrants'
-
-
-# TODO: Better errors for identifying malformed queries
-
-
-def connect_to_db():
-    try:
-        conn = sqlite3.connect(DB_LOCATION)
-        conn.row_factory = sqlite3.Row
-        print('connection successful')
-        return conn
-    except sqlite3.Error as e:
-        tb = traceback.format_exc()
-        print(e)
-        print(tb)
-
-
-def find_org_children(cur, org):
-    q = 'SELECT DISTINCT orgid FROM org_relations WHERE rel_id=?'
-    cur.execute(q, (org,))
-    rows = cur.fetchall()
-    orgs = [x['orgid'] for x in rows]
-
-    return orgs
-
-
-def get_categories_in_query(keys):
-    result = {
-        withPeople: False,
-        withOrgs: False,  # Not in powerpoint but seems doable
-        withKeywords: False,
-        withPapers: False,
-        withDates: False,
-        withGrants: False,
-    }
-
-    if PEOPLE in keys:
-        result[withPeople] = True
-    if ORGANIZATIONS in keys:
-        result[withOrgs] = True
-    if KEYWORDS in keys:
-        result[withKeywords] = True
-    if PAPERS in keys:
-        result[withPapers] = True
-    if GRANT_DATE_RANGE in keys:
-        result[withDates] = True
-    if GRANTS in keys:
-        result[withGrants] = True
-
-    return result
-
-
-def check_payload(request_payload, options, category):
-    if category is None:
-        if not isinstance(request_payload.json, dict):
-            return make_response('Check structure of request', 400)
-        if not set(request_payload.json.keys()).issubset(options):
-            return make_response("Invalid value in search requests. Allowed options: " + " ".join(options), 400)
-    elif category == PAPERS:
-        if not isinstance(request.json[PAPERS], dict):
-            return make_response('Invalid value in search requests. Check papers.', 400)
-        elif not set(request.json[PAPERS].keys()).issubset([DATES, 'paperList']):
-            return make_response('Invalid value in search requests. Check papers.', 400)
-    elif category == GRANTS:
-        if not isinstance(request.json[GRANTS], dict):
-            return make_response('Invalid value in search requests. Check grants.', 400)
-        elif not set(request.json[GRANTS].keys()).issubset([DATES, GRANT_LIST]):
-            return make_response('Invalid value in search requests. Check grants.', 400)
-    return None
+from .constants import withPeople, withOrgs, withKeywords, withPapers, withDates, withGrants, PEOPLE, ORGANIZATIONS, \
+    KEYWORDS, PAPERS, GRANT_DATE_RANGE, GRANTS, PUBLICATION_DATE_RANGE, START, END, GRANT_LIST, DATES, PAPER_LIST
+from .errorchecking import check_payload
+from .utils import connect_to_db, get_full_paper_list, get_full_org_list, get_full_people_list, get_full_grant_list, \
+    get_full_keyword_list, find_org_children, handle_grants_dates, init_endpoint
 
 
 @midas_blueprint.after_request
@@ -138,63 +49,16 @@ def get_search_data():
     return make_response(jsonify(response), 200)
 
 
-def get_full_paper_list(cur):
-    q = 'SELECT DISTINCT paperid, title FROM pdetails'
-    cur.execute(q)
-    rows = cur.fetchall()
-    papers = {PAPERS: [{'id': x['paperid'], 'name': x['title']} for x in rows]}
-    return papers
-
-
-def get_full_org_list(cur):
-    q = 'SELECT DISTINCT orgid, org_name FROM odetails'
-    cur.execute(q)
-    rows = cur.fetchall()
-    orgs = {ORGANIZATIONS: [{'id': x['orgid'], 'name': x['org_name']} for x in rows]}
-    return orgs
-
-
-def get_full_people_list(cur):
-    q = 'SELECT DISTINCT authorid, author_name FROM adetails'
-    cur.execute(q)
-    rows = cur.fetchall()
-    people = {PEOPLE: [{'id': x['authorid'], 'name': x['author_name']} for x in rows]}
-    return people
-
-
-def get_full_grant_list(cur):
-    q = 'SELECT DISTINCT grantid, title FROM gdetails'
-    cur.execute(q)
-    rows = cur.fetchall()
-    grants = {GRANTS: [{'id': x['grantid'], 'name': x['title']} for x in rows]}
-    return grants
-
-
-def get_full_keyword_list(cur):
-    q = 'SELECT DISTINCT term FROM pcount'
-    cur.execute(q)
-    rows = cur.fetchall()
-    terms = {KEYWORDS: [x['term'] for x in rows]}
-    return terms
-
-
 @midas_blueprint.route('/intersection/papers/', methods=['POST'])
 @swag_from('../swagger_docs/paperOverlap.yml')
 def get_paper_list():
     paper_options = [PEOPLE, GRANTS, KEYWORDS, ORGANIZATIONS, PUBLICATION_DATE_RANGE]
-    errors = check_payload(request, paper_options)
+    [q, formatted_ids, cur, keys, errors] = init_endpoint(request, paper_options, None, None)
     if errors is not None:
         return errors
     if len(request.json[ORGANIZATIONS]) > 1:
         return make_response("There can only be one organization listed in the body of this request: ", 400)
 
-    conn = connect_to_db()
-    cur = conn.cursor()
-
-    keys = get_categories_in_query(request.json.keys())
-
-    q = ''
-    formatted_ids = []
     if keys[withDates]:
         q = 'SELECT DISTINCT paperid FROM pdetails WHERE '
         if START in request.json[PUBLICATION_DATE_RANGE].keys():
@@ -229,7 +93,7 @@ def get_paper_list():
             q += 'SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?'
             formatted_ids.append(term.lower())
     if keys[withGrants]:
-        check_payload(request, "", GRANTS)
+        check_payload(request, None, GRANTS, GRANT_LIST)
 
         if GRANT_LIST in request.json[GRANTS].keys():
             for grant in request.json[GRANTS][GRANT_LIST]:
@@ -241,17 +105,7 @@ def get_paper_list():
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT paperid FROM g2p WHERE grantid IN (SELECT DISTINCT grantid FROM gdetails WHERE '
-            if START in request.json[GRANTS][DATES].keys():
-                if END in request.json[GRANTS][DATES].keys():
-                    q += '(startdate BETWEEN ? AND ?) OR (enddate BETWEEN ? AND ?)'
-                    formatted_ids.extend([request.json[GRANTS][DATES][START], request.json[GRANTS][DATES][END],
-                                          request.json[GRANTS][DATES][START], request.json[GRANTS][DATES][END]])
-                else:
-                    q += 'startdate >= ? OR enddate >= ?'
-                    formatted_ids.extend([request.json[GRANTS][DATES][START], request.json[GRANTS][DATES][START]])
-            elif END in request.json[GRANTS][DATES].keys():
-                q += 'startdate <= ? OR enddate <= ?'
-                formatted_ids.extend([request.json[GRANTS][DATES][END], request.json[GRANTS][DATES][END]])
+            q = handle_grants_dates(request, q, formatted_ids)
             q += ')'
 
     final_q = 'SELECT DISTINCT paperid, title FROM pdetails WHERE paperid IN (' + q + ')'
@@ -262,20 +116,27 @@ def get_paper_list():
     return make_response(jsonify(papers), 200)
 
 
+def handle_papers_dates(request_payload, q, formatted_ids):
+    if START in request_payload.json[PAPERS][DATES].keys():
+        if END in request.json[PAPERS][DATES].keys():
+            q += 'year BETWEEN ? AND ?'
+            formatted_ids.extend([request.json[PAPERS][DATES][START], request.json[PAPERS][DATES][END]])
+        else:
+            q += 'year >= ?'
+            formatted_ids.extend([request.json[PAPERS][DATES][START]])
+    elif END in request.json[PAPERS][DATES].keys():
+        q += 'year <= ?'
+        formatted_ids.extend([request.json[PAPERS][DATES][END]])
+    return q
+
+
 @midas_blueprint.route('/intersection/grants/', methods=['POST'])
 @swag_from('../swagger_docs/grantOverlap.yml')
 def get_grant_list():
     grant_options = [PEOPLE, PAPERS, KEYWORDS, ORGANIZATIONS, GRANT_DATE_RANGE]
-    errors = check_payload(request, grant_options)
+    [q, formatted_ids, cur, keys, errors] = init_endpoint(request, grant_options, None, None)
     if errors is not None:
         return errors
-    conn = connect_to_db()
-    cur = conn.cursor()
-
-    keys = get_categories_in_query(request.json.keys())
-
-    q = ''
-    formatted_ids = []
     if keys[withDates]:
         q = 'SELECT DISTINCT grantid FROM gdetails WHERE '
         if START in request.json[GRANT_DATE_RANGE].keys():
@@ -310,9 +171,9 @@ def get_grant_list():
             q += 'SELECT DISTINCT grantid FROM g2p a JOIN pcount b ON a.paperid=b.paperid WHERE lower(term)=?'
             formatted_ids.append(term.lower())
     if keys[withPapers]:
-        check_payload(request, "", PAPERS)
-        if 'paperList' in request.json[PAPERS].keys():
-            for paper in request.json[PAPERS]['paperList']:
+        check_payload(request, None, PAPERS, PAPER_LIST)
+        if PAPER_LIST in request.json[PAPERS].keys():
+            for paper in request.json[PAPERS][PAPER_LIST]:
                 if len(q) != 0:
                     q += ' INTERSECT '
                 q += 'SELECT DISTINCT grantid FROM g2p WHERE paperid=?'
@@ -321,16 +182,7 @@ def get_grant_list():
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT grantid FROM g2p WHERE paperid IN (SELECT paperid FROM pdetails WHERE '
-            if START in request.json[PAPERS][DATES].keys():
-                if END in request.json[PAPERS][DATES].keys():
-                    q += 'year BETWEEN ? AND ?'
-                    formatted_ids.extend([request.json[PAPERS][DATES][START], request.json[PAPERS][DATES][END]])
-                else:
-                    q += 'year >= ?'
-                    formatted_ids.extend([request.json[PAPERS][DATES][START]])
-            elif END in request.json[PAPERS][DATES].keys():
-                q += 'year <= ?'
-                formatted_ids.extend([request.json[PAPERS][DATES][END]])
+            q = handle_papers_dates(request, q, formatted_ids)
             q += ')'
 
     final_q = 'SELECT DISTINCT grantid, title FROM gdetails WHERE grantid IN (' + q + ')'
@@ -345,28 +197,21 @@ def get_grant_list():
 @swag_from('../swagger_docs/peopleOverlap.yml')
 def get_people_list():
     people_options = [PEOPLE, GRANTS, KEYWORDS, ORGANIZATIONS, PAPERS]
-    errors = check_payload(request, people_options)
+    [q, formatted_ids, cur, keys, errors] = init_endpoint(request, people_options, None, None)
     if errors is not None:
         return errors
-    print('##' * 20)
-    conn = connect_to_db()
-    cur = conn.cursor()
-
-    keys = get_categories_in_query(request.json.keys())
-
-    q = ''
-    formatted_ids = []
     if keys[withPeople]:
         for author in request.json[PEOPLE]:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
+            q += ('SELECT DISTINCT authorid FROM p2au WHERE paperid IN  (SELECT DISTINCT paperid FROM p2au WHERE '
+                  'authorid=?)')
             formatted_ids.append(author)
     if keys[withPapers]:
-        check_payload(request, "", PAPERS)
+        check_payload(request, None, PAPERS, PAPER_LIST)
 
-        if 'paperList' in request.json[PAPERS].keys():
-            for paper in request.json[PAPERS]['paperList']:
+        if PAPER_LIST in request.json[PAPERS].keys():
+            for paper in request.json[PAPERS][PAPER_LIST]:
                 if len(q) != 0:
                     q += ' INTERSECT '
                 q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid=?'
@@ -375,16 +220,7 @@ def get_people_list():
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT paperid FROM pdetails WHERE '
-            if START in request.json[PAPERS][DATES].keys():
-                if END in request.json[PAPERS][DATES].keys():
-                    q += 'year BETWEEN ? AND ?'
-                    formatted_ids.extend([request.json[PAPERS][DATES][START], request.json[PAPERS][DATES][END]])
-                else:
-                    q += 'year >= ?'
-                    formatted_ids.extend([request.json[PAPERS][DATES][START]])
-            elif END in request.json[PAPERS][DATES].keys():
-                q += 'year <= ?'
-                formatted_ids.extend([request.json[PAPERS][DATES][END]])
+            q = handle_papers_dates(request, q, formatted_ids)
             q += ')'
     if keys[withOrgs]:
         for org in request.json[ORGANIZATIONS]:
@@ -398,11 +234,11 @@ def get_people_list():
         for term in request.json[KEYWORDS]:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?)'
+            q += ('SELECT DISTINCT authorid FROM p2au WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE '
+                  'lower(term)=?)')
             formatted_ids.append(term.lower())
     if keys[withGrants]:
-        check_payload(request, "", GRANTS)
-
+        check_payload(request, None, GRANTS, GRANT_LIST)
         if GRANT_LIST in request.json[GRANTS].keys():
             for grant in request.json[GRANTS][GRANT_LIST]:
                 if len(q) != 0:
@@ -413,17 +249,7 @@ def get_people_list():
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT authorid FROM g2a WHERE grantid IN (SELECT DISTINCT grantid FROM gdetails WHERE '
-            if START in request.json[GRANTS][DATES].keys():
-                if END in request.json[GRANTS][DATES].keys():
-                    q += '(startdate BETWEEN ? AND ?) OR (enddate BETWEEN ? AND ?)'
-                    formatted_ids.extend([request.json[GRANTS][DATES][START], request.json[GRANTS][DATES][END],
-                                          request.json[GRANTS][DATES][START], request.json[GRANTS][DATES][END]])
-                else:
-                    q += 'startdate >= ? OR enddate >= ?'
-                    formatted_ids.extend([request.json[GRANTS][DATES][START], request.json[GRANTS][DATES][START]])
-            elif END in request.json[GRANTS][DATES].keys():
-                q += 'startdate <= ? OR enddate <= ?'
-                formatted_ids.extend([request.json[GRANTS][DATES][END], request.json[GRANTS][DATES][END]])
+            q = handle_grants_dates(request, q, formatted_ids)
             q += ')'
 
     final_q = 'SELECT DISTINCT authorid, author_name FROM adetails WHERE authorid IN (' + q + ')'
@@ -438,18 +264,11 @@ def get_people_list():
 @swag_from('../swagger_docs/orgOverlap.yml')
 def get_org_list():
     org_options = [PEOPLE, GRANTS, KEYWORDS, PAPERS]
-    errors = check_payload(request, org_options)
+    [q, formatted_ids, cur, keys, errors] = init_endpoint(request, org_options, None, None)
     if errors is not None:
         return errors
-
-    conn = connect_to_db()
-    cur = conn.cursor()
-
-    keys = get_categories_in_query(request.json.keys())
-    q = ''
-    formatted_ids = []
     if keys[withPeople]:
-        #TODO: fix
+        # TODO: fix
         people_arr = request.json[PEOPLE]
         people_arr_w_quotes = []
         for person in people_arr:
@@ -460,38 +279,30 @@ def get_org_list():
         for term in request.json[KEYWORDS]:
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE lower(term)=?)'
+            q += ('SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT DISTINCT paperid FROM pcount WHERE lower('
+                  'term)=?)')
             formatted_ids.append(term.lower())
     if keys[withGrants]:
-        check_payload(request, "", GRANTS)
+        check_payload(request, None, GRANTS, GRANT_LIST)
 
         if GRANT_LIST in request.json[GRANTS].keys():
             for grant in request.json[GRANTS][GRANT_LIST]:
                 if len(q) != 0:
                     q += ' INTERSECT '
-                q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid IN (SELECT DISTINCT authorid FROM g2a WHERE grantid=?)'
+                q += ('SELECT DISTINCT orgid FROM adetails WHERE authorid IN (SELECT DISTINCT authorid FROM g2a WHERE '
+                      'grantid=?)')
                 formatted_ids.append(grant)
         if DATES in request.json[GRANTS].keys():
             if len(q) != 0:
                 q += ' INTERSECT '
-            q += 'SELECT DISTINCT orgid FROM adetails WHERE authorid IN (SELECT DISTINCT authorid FROM g2a WHERE grantid IN (SELECT DISTINCT grantid FROM gdetails WHERE '
-            if START in request.json[GRANTS][DATES].keys():
-                if END in request.json[GRANTS][DATES].keys():
-                    q += '(startdate BETWEEN ? AND ?) OR (enddate BETWEEN ? AND ?)'
-                    formatted_ids.extend([request.json[GRANTS][DATES][START], request.json[GRANTS][DATES][END],
-                                          request.json[GRANTS][DATES][START], request.json[GRANTS][DATES][END]])
-                else:
-                    q += 'startdate >= ? OR enddate >= ?'
-                    formatted_ids.extend([request.json[GRANTS][DATES][START], request.json[GRANTS][DATES][START]])
-            elif END in request.json[GRANTS][DATES].keys():
-                q += 'startdate <= ? OR enddate <= ?'
-                formatted_ids.extend([request.json[GRANTS][DATES][END], request.json[GRANTS][DATES][END]])
+            q += ('SELECT DISTINCT orgid FROM adetails WHERE authorid IN (SELECT DISTINCT authorid FROM g2a WHERE '
+                  'grantid IN (SELECT DISTINCT grantid FROM gdetails WHERE')
+            q = handle_grants_dates(request, q, formatted_ids)
             q += '))'
     if keys[withPapers]:
-        check_payload(request, "", PAPERS)
-
-        if 'paperList' in request.json[PAPERS].keys():
-            for paper in request.json[PAPERS]['paperList']:
+        check_payload(request, None, PAPERS, PAPER_LIST)
+        if PAPER_LIST in request.json[PAPERS].keys():
+            for paper in request.json[PAPERS][PAPER_LIST]:
                 if len(q) != 0:
                     q += ' INTERSECT '
                 q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid=?'
@@ -500,16 +311,7 @@ def get_org_list():
             if len(q) != 0:
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT orgid FROM p2org WHERE paperid IN (SELECT paperid FROM pdetails WHERE '
-            if START in request.json[PAPERS][DATES].keys():
-                if END in request.json[PAPERS][DATES].keys():
-                    q += 'year BETWEEN ? AND ?'
-                    formatted_ids.extend([request.json[PAPERS][DATES][START], request.json[PAPERS][DATES][END]])
-                else:
-                    q += 'year >= ?'
-                    formatted_ids.extend([request.json[PAPERS][DATES][START]])
-            elif END in request.json[PAPERS][DATES].keys():
-                q += 'year <= ?'
-                formatted_ids.extend([request.json[PAPERS][DATES][END]])
+            q = handle_papers_dates(request, q, formatted_ids)
             q += ')'
 
     parent_q = 'SELECT DISTINCT rel_id FROM org_relations WHERE orgid IN (' + q + ')'

@@ -28,7 +28,7 @@ parameters:
             description: The organization of the people in the target people set.
           grants:
             type: object
-            description: The list of grants associated with the people in the target people set and/or the active date range of grants associated with poeple in the target people set.
+            description: The list of grants associated with the people in the target people set and/or the active date range of grants associated with people in the target people set.
             properties:
               grantList:
                 type: array

@@ -1,7 +1,7 @@
+from decouple import config
 from flask import Flask
 from flasgger import Swagger
 from werkzeug.middleware.proxy_fix import ProxyFix
-from decouple import config
 
 
 '''

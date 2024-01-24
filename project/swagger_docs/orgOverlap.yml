@@ -9,7 +9,7 @@ parameters:
         properties:
           person:
             type: string
-            description: The person assoiciated with the organization.
+            description: The person associated with the organization.
             $ref: '#/definitions/UniqueIdentifier'
           papers:
             type: object

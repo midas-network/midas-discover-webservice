@@ -28,7 +28,6 @@ parameters:
               dates:
                 $ref: '#/definitions/DateRange'
           keywords:
-            type: object
             description: The list of keywords of papers in the target paper set.
             type: array
             items:

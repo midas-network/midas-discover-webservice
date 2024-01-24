@@ -9,7 +9,7 @@ def run_papers_pull(test_client, query_params):
     return response
 
 def test_paper_authors(test_client):
-    query_params = {"authors": ["https://midasnetwork.us/people/rachel-slayton/", "https://midasnetwork.us/people/pragati-prasad/"]}
+    query_params = {"people": ["https://midasnetwork.us/people/rachel-slayton/", "https://midasnetwork.us/people/pragati-prasad/"]}
     expected_result = [
             {
                 "id": "https://midasnetwork.us/papers/Modeling-strategies-for-the-allocation-of-SARS-CoV-2-vaccines-in-the-United-States",
@@ -51,7 +51,7 @@ def test_paper_orgs(test_client):
     assert json.loads(response.data.decode('utf-8')) == expected_result
 
 def test_paper_keywords(test_client):
-    query_params = {"keywords": ["Uterine Cervical Neoplasms","Trichomonas Vaginitis"]}
+    query_params = {"keywords": ["Uterine Cervical Neoplasms", "Trichomonas Vaginitis"]}
     expected_result = [
             {
                 "id": "https://midasnetwork.us/papers/The-dawn-of-novel-STI-prevention-methods-modelling-potential-unintended-effects-of-changes-in-cervical-cancer-screening-guidelines-on-trichomoniasis",
@@ -86,7 +86,7 @@ def test_paper_grants(test_client):
     }
 
     for test_type, details in queries.items():
-        print('Test for ' + test_type.replace('_',' '))
+        print('Test for ' + test_type.replace('_', ' '))
         response = run_papers_pull(test_client, details['query_params'])
         assert response.status_code == 200
         assert json.loads(response.data.decode('utf-8')) == details['expected_result']

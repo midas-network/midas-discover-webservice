@@ -2,3 +2,7 @@
 .DS_Store
 .env
 venv/
+/midas-data/GRANTS_ENDPOINT.json
+/midas-data/ORGANIZATIONS_ENDPOINT.json
+/midas-data/PAPERS_ENDPOINT.json
+/midas-data/PEOPLE_ENDPOINT.json

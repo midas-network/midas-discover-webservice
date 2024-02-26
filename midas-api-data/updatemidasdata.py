@@ -22,8 +22,8 @@ ENDPOINT_KEYS = {
 }
 
 API_KEY = ""
-VIZ_OUTPUT_DIR = "midas-viz-data"
-MIDAS_API_OUTPUT_DIR = "midas-api-data"
+VIZ_OUTPUT_DIR = "../midas-viz-data"
+MIDAS_API_OUTPUT_DIR = ""
 
 
 
@@ -52,9 +52,7 @@ def main():
         with open(os.path.join(MIDAS_API_OUTPUT_DIR, endpoint + ".json"), "w", encoding="utf-8") as outfile:
             json.dump(data.json(), outfile, indent=4, ensure_ascii=True)
         data = json_array_to_dict_for_viz(endpoint, data)
-        if data is not None:
-            with open(os.path.join(VIZ_OUTPUT_DIR, endpoint + ".json"), "w", encoding="utf-8") as outfile:
-                json.dump(data, outfile, indent=4, ensure_ascii=True)
+
 
 
 

@@ -19,6 +19,7 @@ def call_shutdown():
 
 midas_blueprint = Blueprint('queries', __name__, template_folder='templates')
 
+
 DB_LOCATION = get_db()
 if not os.path.isfile(DB_LOCATION):
     print('The database listed in the config file (' + DB_LOCATION + ') does not exist.')

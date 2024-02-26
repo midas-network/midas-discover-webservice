@@ -9,7 +9,7 @@ ENDPOINTS = {
     "ORGANIZATION_HIERARCHY_ENDPOINT": "orgHierarchy/"
 }
 
-VIZ_OUTPUT_DIR = "../midas-viz-data"
+VIZ_OUTPUT_DIR = ""
 MIDAS_API_OUTPUT_DIR = ""
 
 

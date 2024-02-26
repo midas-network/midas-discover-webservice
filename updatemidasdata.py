@@ -21,13 +21,16 @@ ENDPOINT_KEYS = {
     "ORGANIZATIONS_ENDPOINT": "uri"
 }
 
-API_KEY = ""
-VIZ_OUTPUT_DIR = "../midas-viz-data"
+VIZ_OUTPUT_DIR = "./midas-viz-data"
 MIDAS_API_OUTPUT_DIR = ""
 
 
+##function to read APIKEY from a file
+def fetch_api_key():
+    if os.path.isfile("key.txt"):
+        with open("key.txt") as keyFile:
+            return keyFile.read()
 
-##make function to read APIKEY from a file
 
 
 
@@ -42,18 +45,17 @@ def json_array_to_dict_for_viz(endpoint, midasdata):
             processed_data[str(entry[ENDPOINT_KEYS[endpoint]])] = entry
         return processed_data
     else:
+        print(midasdata.status_code)
         return None
 
 
-
 def main():
+    global API_KEY
+    API_KEY = fetch_api_key()
     for endpoint in ENDPOINTS:
-        data = fetch_visualizer_data(ENDPOINTS[endpoint])
-        with open(os.path.join(MIDAS_API_OUTPUT_DIR, endpoint + ".json"), "w", encoding="utf-8") as outfile:
-            json.dump(data.json(), outfile, indent=4, ensure_ascii=True)
-        data = json_array_to_dict_for_viz(endpoint, data)
-
-
+        data = json_array_to_dict_for_viz(endpoint, fetch_visualizer_data(ENDPOINTS[endpoint]))
+        with open(os.path.join(VIZ_OUTPUT_DIR, endpoint + ".json"), "w", encoding="utf-8") as outfile:
+            json.dump(data, outfile, indent=4, ensure_ascii=True)
 
 
 if __name__ == '__main__':

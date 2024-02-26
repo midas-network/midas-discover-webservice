@@ -30,8 +30,8 @@ def fetch_api_key():
     if os.path.isfile("key.txt"):
         with open("key.txt") as keyFile:
             return keyFile.read()
-
-
+    else:
+        print("No key.txt file found.")
 
 
 def fetch_visualizer_data(endpoint):
@@ -45,7 +45,7 @@ def json_array_to_dict_for_viz(endpoint, midasdata):
             processed_data[str(entry[ENDPOINT_KEYS[endpoint]])] = entry
         return processed_data
     else:
-        print(midasdata.status_code)
+        print("API call returned status code: " + midasdata.status_code)
         return None
 
 

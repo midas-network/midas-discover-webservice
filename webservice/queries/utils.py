@@ -3,7 +3,7 @@ import traceback
 
 from flask import request
 
-from project.queries import DB_LOCATION
+from webservice.queries import DB_LOCATION
 from .constants import withPeople, withOrgs, withKeywords, withPapers, withDates, withGrants, PEOPLE, ORGANIZATIONS, \
     KEYWORDS, PAPERS, GRANT_DATE_RANGE, GRANTS, START, END, DATES
 from .errorchecking import check_payload

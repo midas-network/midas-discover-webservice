@@ -1,0 +1,47 @@
+Endpoint for pulling all grants with common data elements
+---
+parameters:
+    - name: body
+      in: body
+      required: False
+      schema: 
+        type: object
+        properties:
+          people:
+            type: array
+            description: The list of people associated with the grants in the target grant set.
+            items:
+              $ref: '#/definitions/UniqueIdentifier'
+          organizations:
+            type: array
+            description: The list of organizations of people who are associated with grants in the target grant set.
+            items:
+              $ref: '#/definitions/UniqueIdentifier'
+          papers:
+            type: object
+            description: The list of papers associated with the grants in the target grant set and/or the date range papers were published in that are associated with grants in the target grant set.
+            properties:
+              paperList:
+                type: array
+                items:
+                  $ref: '#/definitions/UniqueIdentifier'
+              dates:
+                $ref: '#/definitions/DateRange'
+          keywords:
+            type: array
+            description: The list of keywords for papers associated with grants in the target grant set.
+            items:
+              $ref: '#/definitions/UniqueIdentifier'
+          grantDateRange:
+            description: The date range the grants were active in.
+            $ref: '#/definitions/DateRange'
+responses:
+  200:
+    description: A list of all grants that match the filter
+    schema:
+      $ref: '#/definitions/DataList'
+    # examples:
+    #     application/json: {'papers': [{"id": "https://midasnetwork.us/papers/The-first-MIDAS-paper-ever",
+    #                         "name": "The first MIDAS paper ever."},
+    #                         {"id": "The-first-MIDAS-paper-ever---Response",
+    #                         "name": "The first MIDAS paper ever - response."}]}

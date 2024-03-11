@@ -1,0 +1,48 @@
+Endpoint for pulling all organizations with common data elements
+---
+parameters:
+    - name: body
+      in: body
+      required: False
+      schema: 
+        type: object
+        properties:
+          person:
+            type: string
+            description: The person associated with the organization.
+            $ref: '#/definitions/UniqueIdentifier'
+          papers:
+            type: object
+            description: The list of papers written by members of the organizations in the target organization set and/or the date range papers were published in written by members of the organizations in the target organization set.
+            properties:
+              paperList:
+                type: array
+                items:
+                  $ref: '#/definitions/UniqueIdentifier'
+              dates:
+                $ref: '#/definitions/DateRange'
+          grants:
+            type: object
+            description: The list of grants associated with members of the organizations in the target organization set and/or the active date range of grants associated with members of the organizations in the target organization set.
+            properties:
+              grantList:
+                type: array
+                items:
+                  $ref: '#/definitions/UniqueIdentifier'
+              dates:
+                $ref: '#/definitions/DateRange'
+          keywords:
+            type: array
+            description: The keywords on papers written by members of the organizations in the target organization set.
+            items:
+              $ref: '#/definitions/UniqueIdentifier'
+responses:
+  200:
+    description: A list of all organizations that match the filter
+    schema:
+      $ref: '#/definitions/DataList'
+    # examples:
+    #     application/json: {'papers': [{"id": "https://midasnetwork.us/papers/The-first-MIDAS-paper-ever",
+    #                         "name": "The first MIDAS paper ever."},
+    #                         {"id": "The-first-MIDAS-paper-ever---Response",
+    #                         "name": "The first MIDAS paper ever - response."}]}

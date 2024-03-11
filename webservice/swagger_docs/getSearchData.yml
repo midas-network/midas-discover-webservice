@@ -1,0 +1,74 @@
+Endpoint for pulling lists of available data by category.
+---
+parameters:
+    - name: body
+      in: body
+      required: False
+      schema: 
+        type: object
+        properties:
+            categories:
+                type: array
+                items:
+                    $ref: '#/definitions/Category'
+                example: ['papers', 'organizations', 'people', 'grants', 'keywords']
+definitions:
+    Category:
+        type: string
+        description: The categories of search terms to retrieve from the database
+        enum: ['papers', 'organizations', 'people', 'grants', 'keywords']
+    UniqueIdentifier:
+        type: string
+        description: The unique identifier for a search term
+    DateRange:
+        type: object
+        properties:
+          start:
+            type: integer
+            description: 4-digit year for start of date filter
+            example: 2015
+          end:
+            type: integer
+            description: 4-digit year for end of date filter
+            example: 2020
+    AvailableData:
+        type: object
+        properties:
+            papers:
+                $ref: '#/definitions/DataList'
+            organizations:
+                $ref: '#/definitions/DataList'
+            people:
+                $ref: '#/definitions/DataList'
+            grants:
+                $ref: '#/definitions/DataList'
+            keywords:
+                type: array
+                items:
+                    $ref: '#/definitions/KeywordList'
+    DataList:
+        type: array
+        items:
+            $ref: '#/definitions/UniqueItem'
+    UniqueItem:
+        type: object
+        properties:
+            id:
+                type: string
+                description: the unique identifier for the item
+            name:
+                type: string
+                description: the name or title of the item
+    KeywordList:
+        type: string
+        description: available keywords from the papers
+responses:
+  200:
+    description: A list of available data
+    schema:
+      $ref: '#/definitions/AvailableData'
+    # examples:
+    #     application/json: {'papers': [{"id": "https://midasnetwork.us/papers/The-first-MIDAS-paper-ever",
+    #                         "name": "The first MIDAS paper ever."},
+    #                         {"id": "The-first-MIDAS-paper-ever---Response",
+    #                         "name": "The first MIDAS paper ever - response."}]}

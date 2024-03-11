@@ -1,0 +1,53 @@
+Endpoint for pulling all authors with common data elements
+---
+parameters:
+    - name: body
+      in: body
+      required: False
+      schema: 
+        type: object
+        properties:
+          papers:
+            type: object
+            description: The list of papers written by people in the target people set and/or the date range papers written by people in the target people set were published in.
+            properties:
+              paperList:
+                type: array
+                items:
+                  $ref: '#/definitions/UniqueIdentifier'
+              dates:
+                description: The date range the papers were published in.
+                $ref: '#/definitions/DateRange'
+          coauthors:
+            type: array
+            description: The list of people that coauthored papers with the people in the target people set.
+            items:
+              $ref: '#/definitions/UniqueIdentifier'
+          organization:
+            type: string
+            description: The organization of the people in the target people set.
+          grants:
+            type: object
+            description: The list of grants associated with the people in the target people set and/or the active date range of grants associated with people in the target people set.
+            properties:
+              grantList:
+                type: array
+                items:
+                  $ref: '#/definitions/UniqueIdentifier'
+              dates:
+                $ref: '#/definitions/DateRange'
+          keywords:
+            type: array
+            description: The list of keywords for papers written by people in the target people set.
+            items:
+              $ref: '#/definitions/UniqueIdentifier'
+responses:
+  200:
+    description: A list of all authors that match the filter
+    schema:
+      $ref: '#/definitions/DataList'
+    # examples:
+    #     application/json: {'papers': [{"id": "https://midasnetwork.us/papers/The-first-MIDAS-paper-ever",
+    #                         "name": "The first MIDAS paper ever."},
+    #                         {"id": "The-first-MIDAS-paper-ever---Response",
+    #                         "name": "The first MIDAS paper ever - response."}]}

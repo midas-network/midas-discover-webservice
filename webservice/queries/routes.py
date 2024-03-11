@@ -49,6 +49,18 @@ def get_search_data():
     return make_response(jsonify(response), 200)
 
 
+@midas_blueprint.route('/orgHierarchy/', methods=['GET'])
+def get_parent_orgs():
+    conn = connect_to_db()
+    cur = conn.cursor()
+    
+    q = 'SELECT DISTINCT A.orgid, A.top_level, B.org_name FROM odetails A JOIN odetails B ON A.top_level=B.orgid'
+    cur.execute(q)
+    rows = cur.fetchall()
+    org_parents = {x['orgid']: {'parent': x['top_level'], 'parent_name': x['org_name']} for x in rows}
+    return make_response(jsonify(org_parents), 200)
+
+
 @midas_blueprint.route('/intersection/papers/', methods=['POST'])
 @swag_from('../swagger_docs/paperOverlap.yml')
 def get_paper_list():

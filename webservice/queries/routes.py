@@ -64,7 +64,7 @@ def get_parent_orgs():
 @midas_blueprint.route('/intersection/papers/', methods=['POST'])
 @swag_from('../swagger_docs/paperOverlap.yml')
 def get_paper_list():
-    paper_options = [PEOPLE, GRANTS, KEYWORDS, ORGANIZATIONS, PUBLICATION_DATE_RANGE]
+    paper_options = [PEOPLE, GRANTS, KEYWORDS, ORGANIZATIONS, PAPERS, PUBLICATION_DATE_RANGE]
     [q, formatted_ids, cur, keys, errors] = init_endpoint(request, paper_options, None, None)
     if errors is not None:
         return errors
@@ -82,6 +82,14 @@ def get_paper_list():
         elif END in request.json[PUBLICATION_DATE_RANGE].keys():
             q += 'year <= ?'
             formatted_ids.extend([request.json[PUBLICATION_DATE_RANGE][END]])
+    if keys[withPapers]:
+        check_payload(request, None, PAPERS, PAPER_LIST)
+        if PAPER_LIST in request.json[PAPERS].keys():
+            for paper in request.json[PAPERS][PAPER_LIST]:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += 'SELECT DISTINCT paperid from pdetails WHERE paperid=?'
+                formatted_ids.append(paper) 
     if keys[withPeople]:
         for author in request.json[PEOPLE]:
             if len(q) != 0:
@@ -332,3 +340,53 @@ def get_org_list():
     rows = cur.fetchall()
     orgs = [{'id': x['orgid'], 'name': x['org_name']} for x in rows]
     return make_response(jsonify(orgs), 200)
+
+@midas_blueprint.route('/intersection/keywords/', methods=['POST'])
+@swag_from('../swagger_docs/keywordOverlap.yml')
+def get_keyword_list():
+    keyword_options = [PEOPLE, GRANTS, ORGANIZATIONS, PAPERS]
+    [q, formatted_ids, cur, keys, errors] = init_endpoint(request, keyword_options, None, None)
+    if errors is not None:
+        return errors
+    if keys[withPeople]:
+        for person in request.json[PEOPLE]:
+            if len(q) != 0:
+                q += ' INTERSECT '
+            q += 'SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT DISTINCT paperid FROM p2au WHERE authorid=?)'
+            formatted_ids.append(person)
+    if keys[withGrants]:
+        check_payload(request, None, GRANTS, GRANT_LIST)
+        if GRANT_LIST in request.json[GRANTS].keys():
+            for grant in request.json[GRANTS][GRANT_LIST]:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += ('SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT DISTINCT paperid FROM g2p WHERE '
+                      'grantid=?)')
+                formatted_ids.append(grant)
+        if DATES in request.json[GRANTS].keys():
+            if len(q) != 0:
+                q += ' INTERSECT '
+            q += ('SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT DISTINCT paperid FROM g2p WHERE '
+                  'grantid IN (SELECT DISTINCT grantid FROM gdetails WHERE')
+            q = handle_grants_dates(request, q, formatted_ids)
+            q += '))'
+    if keys[withPapers]:
+        check_payload(request, None, PAPERS, PAPER_LIST)
+        if PAPER_LIST in request.json[PAPERS].keys():
+            for paper in request.json[PAPERS][PAPER_LIST]:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += 'SELECT DISTINCT term FROM pcount WHERE paperid=?'
+                formatted_ids.append(paper)
+        if DATES in request.json[PAPERS].keys():
+            if len(q) != 0:
+                q += ' INTERSECT '
+            q += 'SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT paperid FROM pdetails WHERE '
+            q = handle_papers_dates(request, q, formatted_ids)
+            q += ')'
+
+    print(('=' * 5) + 'query' + ('=' * 5) + '\n' + q)
+    cur.execute(q, tuple(formatted_ids))
+    rows = cur.fetchall()
+    terms = [x['term'] for x in rows]
+    return make_response(terms, 200)

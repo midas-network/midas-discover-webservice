@@ -1,0 +1,48 @@
+Endpoint for pulling all authors with common data elements
+---
+parameters:
+    - name: body
+      in: body
+      required: False
+      schema: 
+        type: object
+        properties:
+          papers:
+            type: object
+            description: The list of papers which cover the keywords in the target keyword set.
+            properties:
+              paperList:
+                type: array
+                items:
+                  $ref: '#/definitions/UniqueIdentifier'
+              dates:
+                description: The date range the papers were published in.
+                $ref: '#/definitions/DateRange'
+          people:
+            type: array
+            description: The list of people that authored papers which cover the keywords in the target keyword set.
+            items:
+              $ref: '#/definitions/UniqueIdentifier'
+          organizations:
+            type: string
+            description: The list of organizations whose members have written papers which cover the keywords in the target keyword set.
+          grants:
+            type: object
+            description: The list of grants associated with papers which cover the keywords in the target keyword set.
+            properties:
+              grantList:
+                type: array
+                items:
+                  $ref: '#/definitions/UniqueIdentifier'
+              dates:
+                $ref: '#/definitions/DateRange'
+responses:
+  200:
+    description: A list of all keywords that match the filter
+    schema:
+      $ref: '#/definitions/DataList'
+    # examples:
+    #     application/json: {'papers': [{"id": "https://midasnetwork.us/papers/The-first-MIDAS-paper-ever",
+    #                         "name": "The first MIDAS paper ever."},
+    #                         {"id": "The-first-MIDAS-paper-ever---Response",
+    #                         "name": "The first MIDAS paper ever - response."}]}

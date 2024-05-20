@@ -35,6 +35,11 @@ parameters:
           publicationDateRange:
             description: The date range the papers in the target paper set was published in.
             $ref: '#/definitions/DateRange'
+          papers:
+            type: array
+            description: The papers that match the target paper (note that this will only return papers if only one paper is sent, and that it will match that paper).
+            items:
+              $ref: '#/definitions/UniqueIdentifier'
 responses:
   200:
     description: A list of all papers that match the filter

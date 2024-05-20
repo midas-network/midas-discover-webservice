@@ -352,7 +352,7 @@ def get_org_list():
 @midas_blueprint.route('/intersection/keywords/', methods=['POST'])
 @swag_from('../swagger_docs/keywordOverlap.yml')
 def get_keyword_list():
-    keyword_options = [PEOPLE, GRANTS, ORGANIZATIONS, PAPERS]
+    keyword_options = [PEOPLE, GRANTS, ORGANIZATIONS, PAPERS, KEYWORDS]
     [q, formatted_ids, cur, keys, errors] = init_endpoint(request, keyword_options, None, None)
     if errors is not None:
         return errors
@@ -400,6 +400,12 @@ def get_keyword_list():
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT paperid from p2org WHERE orgid IN ' + org_q + ')'
             formatted_ids.extend(orgs)
+    if keys[withKeywords]:
+        for term in request.json[KEYWORDS]:
+            if len(q) != 0:
+                q += ' INTERSECT '
+            q += 'SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT paperid FROM pcount where lower(term)=?)'
+            formatted_ids.append(term.lower())
     print(('=' * 5) + 'query' + ('=' * 5) + '\n' + q)
     cur.execute(q, tuple(formatted_ids))
     rows = cur.fetchall()

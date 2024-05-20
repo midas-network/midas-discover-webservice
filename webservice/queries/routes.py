@@ -384,7 +384,14 @@ def get_keyword_list():
             q += 'SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT paperid FROM pdetails WHERE '
             q = handle_papers_dates(request, q, formatted_ids)
             q += ')'
-
+    if keys[withOrgs]:
+        for org in request.json[ORGANIZATIONS]:
+            orgs = find_org_children(cur,org)
+            org_q = '(' + ('?, ' * len(orgs))[:-2] + ')'
+            if len(q) != 0:
+                q += ' INTERSECT '
+            q += 'SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT paperid from p2org WHERE orgid IN ' + org_q + ')'
+            formatted_ids.extend(orgs)
     print(('=' * 5) + 'query' + ('=' * 5) + '\n' + q)
     cur.execute(q, tuple(formatted_ids))
     rows = cur.fetchall()

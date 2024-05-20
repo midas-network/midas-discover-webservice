@@ -395,5 +395,5 @@ def get_keyword_list():
     print(('=' * 5) + 'query' + ('=' * 5) + '\n' + q)
     cur.execute(q, tuple(formatted_ids))
     rows = cur.fetchall()
-    terms = [x['term'] for x in rows]
-    return make_response(terms, 200)
+    terms = [{'name': x['term']} for x in rows]
+    return make_response(jsonify(terms), 200)

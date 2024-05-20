@@ -163,7 +163,6 @@ def connect_papers(org_relations):
     return (paper_to_author_df, paper_to_source_df, paper_to_org_df, author_details)
 
 def fill_words(paper_counts_df, paper_details, min_year, max_year):
-    papers = pd.read_json('/Users/looseymoose/code/midas/midas_api/midas-api-data/PAPERS_ENDPOINT.json')
     papers = pd.read_json(os.path.join(INPUT_DIR, 'PAPERS_ENDPOINT.json'))
 
     pprdicts = []

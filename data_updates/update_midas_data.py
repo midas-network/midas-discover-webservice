@@ -17,7 +17,7 @@ ENDPOINTS = {
 ENDPOINT_KEYS = {
     "PEOPLE_ENDPOINT": "uri",
     "PAPERS_ENDPOINT": "uri",
-    "GRANTS_ENDPOINT": "grantNumber",
+    "GRANTS_ENDPOINT": "grantID",
     "ORGANIZATIONS_ENDPOINT": "uri"
 }
 
@@ -25,15 +25,16 @@ API_KEY = ""
 VIZ_OUTPUT_DIR = "midas-viz-data"
 MIDAS_API_OUTPUT_DIR = "midas-api-data"
 
-
-
-##make function to read APIKEY from a file
-
+def fetch_api_key():
+    if os.path.isfile("key.txt"):
+        with open("key.txt") as keyFile:
+            return keyFile.read()
+    else:
+        print("No key.txt file found.")
 
 
 def fetch_visualizer_data(endpoint):
-    return requests.get(BASE_URL + endpoint + VISUALIZER_SUFFIX + "?apiKey=" + API_KEY)
-
+    return requests.get(BASE_URL + endpoint + VISUALIZER_SUFFIX + "?apiKey=" + fetch_api_key())
 
 def json_array_to_dict_for_viz(endpoint, midasdata):
     if midasdata.status_code == 200:

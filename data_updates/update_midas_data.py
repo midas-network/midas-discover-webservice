@@ -3,6 +3,14 @@ import os.path
 
 import requests
 
+"""
+This creates the .json files in the midas-api-data, and -viz-data directories
+
+Copy the midas-viz-data files to the visualizer/data/webservice.  
+
+Run this before running update_database.
+
+"""
 BASE_URL = "https://members.midasnetwork.us/midascontacts/query/"
 
 VISUALIZER_SUFFIX = "/visualizer/all"

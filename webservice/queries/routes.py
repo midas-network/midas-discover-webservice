@@ -151,7 +151,7 @@ def handle_papers_dates(request_payload, q, formatted_ids):
 @midas_blueprint.route('/intersection/grants/', methods=['POST'])
 @swag_from('../swagger_docs/grantOverlap.yml')
 def get_grant_list():
-    grant_options = [PEOPLE, PAPERS, KEYWORDS, ORGANIZATIONS, GRANT_DATE_RANGE]
+    grant_options = [PEOPLE, PAPERS, KEYWORDS, ORGANIZATIONS, GRANTS, GRANT_DATE_RANGE]
     [q, formatted_ids, cur, keys, errors] = init_endpoint(request, grant_options, None, None)
     if errors is not None:
         return errors
@@ -202,6 +202,14 @@ def get_grant_list():
             q += 'SELECT DISTINCT grantid FROM g2p WHERE paperid IN (SELECT paperid FROM pdetails WHERE '
             q = handle_papers_dates(request, q, formatted_ids)
             q += ')'
+    if keys[withGrants]:
+        check_payload(request, None, GRANTS, GRANT_LIST)
+        if GRANT_LIST in request.json[GRANTS].keys():
+            for grant in request.json[GRANTS][GRANT_LIST]:
+                if len(q) != 0:
+                    q += ' INTERSECT '
+                q += ('SELECT DISTINCT grantid FROM gdetails WHERE grantid=?')
+                formatted_ids.append(grant)
 
     final_q = 'SELECT DISTINCT grantid, title FROM gdetails WHERE grantid IN (' + q + ')'
     print(('=' * 5) + 'query' + ('=' * 5) + '\n' + q)
@@ -344,7 +352,7 @@ def get_org_list():
 @midas_blueprint.route('/intersection/keywords/', methods=['POST'])
 @swag_from('../swagger_docs/keywordOverlap.yml')
 def get_keyword_list():
-    keyword_options = [PEOPLE, GRANTS, ORGANIZATIONS, PAPERS]
+    keyword_options = [PEOPLE, GRANTS, ORGANIZATIONS, PAPERS, KEYWORDS]
     [q, formatted_ids, cur, keys, errors] = init_endpoint(request, keyword_options, None, None)
     if errors is not None:
         return errors
@@ -392,8 +400,14 @@ def get_keyword_list():
                 q += ' INTERSECT '
             q += 'SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT paperid from p2org WHERE orgid IN ' + org_q + ')'
             formatted_ids.extend(orgs)
+    if keys[withKeywords]:
+        for term in request.json[KEYWORDS]:
+            if len(q) != 0:
+                q += ' INTERSECT '
+            q += 'SELECT DISTINCT term FROM pcount WHERE paperid IN (SELECT paperid FROM pcount where lower(term)=?)'
+            formatted_ids.append(term.lower())
     print(('=' * 5) + 'query' + ('=' * 5) + '\n' + q)
     cur.execute(q, tuple(formatted_ids))
     rows = cur.fetchall()
-    terms = [x['term'] for x in rows]
-    return make_response(terms, 200)
+    terms = [{'name': x['term']} for x in rows]
+    return make_response(jsonify(terms), 200)

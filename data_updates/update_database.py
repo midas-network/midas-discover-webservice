@@ -18,7 +18,7 @@ Process data from midas-api-data and midas-viz-data folders for webservice datab
 """
 
 MIN_YEAR = 2012
-MAX_YEAR = 2022
+MAX_YEAR = 2024
 INPUT_DIR = 'midas-api-data'
 # OUTPUT_DIR = 'midas-db-files'
 

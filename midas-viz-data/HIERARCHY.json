@@ -1,0 +1,3786 @@
+{
+  "1": {
+    "parent": "https://midasnetwork.us/organizations/1",
+    "parent_name": "Binghamton University"
+  },
+  "10": {
+    "parent": "https://midasnetwork.us/organizations/7",
+    "parent_name": "Boston University"
+  },
+  "100": {
+    "parent": "https://midasnetwork.us/organizations/100",
+    "parent_name": "North Carolina State University"
+  },
+  "101": {
+    "parent": "https://midasnetwork.us/organizations/100",
+    "parent_name": "North Carolina State University"
+  },
+  "102": {
+    "parent": "https://midasnetwork.us/organizations/100",
+    "parent_name": "North Carolina State University"
+  },
+  "103": {
+    "parent": "https://midasnetwork.us/organizations/103",
+    "parent_name": "Northeastern University"
+  },
+  "104": {
+    "parent": "https://midasnetwork.us/organizations/103",
+    "parent_name": "Northeastern University"
+  },
+  "105": {
+    "parent": "https://midasnetwork.us/organizations/105",
+    "parent_name": "University of Notre Dame"
+  },
+  "106": {
+    "parent": "https://midasnetwork.us/organizations/105",
+    "parent_name": "University of Notre Dame"
+  },
+  "108": {
+    "parent": "https://midasnetwork.us/organizations/112",
+    "parent_name": "Penn State University"
+  },
+  "109": {
+    "parent": "https://midasnetwork.us/organizations/112",
+    "parent_name": "Penn State University"
+  },
+  "11": {
+    "parent": "https://midasnetwork.us/organizations/11",
+    "parent_name": "Brandeis University"
+  },
+  "110": {
+    "parent": "https://midasnetwork.us/organizations/112",
+    "parent_name": "Penn State University"
+  },
+  "111": {
+    "parent": "https://midasnetwork.us/organizations/112",
+    "parent_name": "Penn State University"
+  },
+  "112": {
+    "parent": "https://midasnetwork.us/organizations/112",
+    "parent_name": "Penn State University"
+  },
+  "113": {
+    "parent": "https://midasnetwork.us/organizations/113",
+    "parent_name": "Princeton University"
+  },
+  "114": {
+    "parent": "https://midasnetwork.us/organizations/113",
+    "parent_name": "Princeton University"
+  },
+  "115": {
+    "parent": "https://midasnetwork.us/organizations/113",
+    "parent_name": "Princeton University"
+  },
+  "116": {
+    "parent": "https://midasnetwork.us/organizations/116",
+    "parent_name": "Scripps Research"
+  },
+  "117": {
+    "parent": "https://midasnetwork.us/organizations/116",
+    "parent_name": "Scripps Research"
+  },
+  "118": {
+    "parent": "https://midasnetwork.us/organizations/116",
+    "parent_name": "Scripps Research"
+  },
+  "119": {
+    "parent": "https://midasnetwork.us/organizations/119",
+    "parent_name": "Stellenbosch University"
+  },
+  "12": {
+    "parent": "https://midasnetwork.us/organizations/11",
+    "parent_name": "Brandeis University"
+  },
+  "120": {
+    "parent": "https://midasnetwork.us/organizations/119",
+    "parent_name": "Stellenbosch University"
+  },
+  "121": {
+    "parent": "https://midasnetwork.us/organizations/121",
+    "parent_name": "Temple University"
+  },
+  "122": {
+    "parent": "https://midasnetwork.us/organizations/121",
+    "parent_name": "Temple University"
+  },
+  "123": {
+    "parent": "https://midasnetwork.us/organizations/123",
+    "parent_name": "Tulane University"
+  },
+  "124": {
+    "parent": "https://midasnetwork.us/organizations/123",
+    "parent_name": "Tulane University"
+  },
+  "126": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "127": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "128": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "129": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "13": {
+    "parent": "https://midasnetwork.us/organizations/11",
+    "parent_name": "Brandeis University"
+  },
+  "130": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "131": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "132": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "133": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "134": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "136": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "137": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "138": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "139": {
+    "parent": "https://midasnetwork.us/organizations/139",
+    "parent_name": "University of Antwerp"
+  },
+  "14": {
+    "parent": "https://midasnetwork.us/organizations/14",
+    "parent_name": "Bruno Kessler Foundation"
+  },
+  "140": {
+    "parent": "https://midasnetwork.us/organizations/139",
+    "parent_name": "University of Antwerp"
+  },
+  "141": {
+    "parent": "https://midasnetwork.us/organizations/141",
+    "parent_name": "University of Buffalo"
+  },
+  "142": {
+    "parent": "https://midasnetwork.us/organizations/141",
+    "parent_name": "University of Buffalo"
+  },
+  "143": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "144": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "145": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "146": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "147": {
+    "parent": "https://midasnetwork.us/organizations/147",
+    "parent_name": "University of California Davis"
+  },
+  "148": {
+    "parent": "https://midasnetwork.us/organizations/147",
+    "parent_name": "University of California Davis"
+  },
+  "149": {
+    "parent": "https://midasnetwork.us/organizations/147",
+    "parent_name": "University of California Davis"
+  },
+  "15": {
+    "parent": "https://midasnetwork.us/organizations/14",
+    "parent_name": "Bruno Kessler Foundation"
+  },
+  "150": {
+    "parent": "https://midasnetwork.us/organizations/150",
+    "parent_name": "University of California San Francisco"
+  },
+  "151": {
+    "parent": "https://midasnetwork.us/organizations/150",
+    "parent_name": "University of California San Francisco"
+  },
+  "152": {
+    "parent": "https://midasnetwork.us/organizations/150",
+    "parent_name": "University of California San Francisco"
+  },
+  "153": {
+    "parent": "https://midasnetwork.us/organizations/153",
+    "parent_name": "University of California Santa Cruz"
+  },
+  "154": {
+    "parent": "https://midasnetwork.us/organizations/153",
+    "parent_name": "University of California Santa Cruz"
+  },
+  "155": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "156": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "157": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "158": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "159": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "16": {
+    "parent": "https://midasnetwork.us/organizations/16",
+    "parent_name": "Carnegie Mellon University"
+  },
+  "160": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "161": {
+    "parent": "https://midasnetwork.us/organizations/161",
+    "parent_name": "University of Colorado Boulder"
+  },
+  "162": {
+    "parent": "https://midasnetwork.us/organizations/161",
+    "parent_name": "University of Colorado Boulder"
+  },
+  "163": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "164": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "165": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "166": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "167": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "168": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "169": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "17": {
+    "parent": "https://midasnetwork.us/organizations/16",
+    "parent_name": "Carnegie Mellon University"
+  },
+  "170": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "171": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "172": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "173": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "174": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "175": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "176": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "177": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "178": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "179": {
+    "parent": "https://midasnetwork.us/organizations/179",
+    "parent_name": "University of Idaho"
+  },
+  "18": {
+    "parent": "https://midasnetwork.us/organizations/16",
+    "parent_name": "Carnegie Mellon University"
+  },
+  "180": {
+    "parent": "https://midasnetwork.us/organizations/179",
+    "parent_name": "University of Idaho"
+  },
+  "181": {
+    "parent": "https://midasnetwork.us/organizations/179",
+    "parent_name": "University of Idaho"
+  },
+  "182": {
+    "parent": "https://midasnetwork.us/organizations/182",
+    "parent_name": "University of Illinois Chicago"
+  },
+  "183": {
+    "parent": "https://midasnetwork.us/organizations/182",
+    "parent_name": "University of Illinois Chicago"
+  },
+  "184": {
+    "parent": "https://midasnetwork.us/organizations/184",
+    "parent_name": "University of Massachusetts Amherst"
+  },
+  "185": {
+    "parent": "https://midasnetwork.us/organizations/184",
+    "parent_name": "University of Massachusetts Amherst"
+  },
+  "186": {
+    "parent": "https://midasnetwork.us/organizations/184",
+    "parent_name": "University of Massachusetts Amherst"
+  },
+  "187": {
+    "parent": "https://midasnetwork.us/organizations/184",
+    "parent_name": "University of Massachusetts Amherst"
+  },
+  "188": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "189": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "19": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "190": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "191": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "192": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "193": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "194": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "195": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "196": {
+    "parent": "https://midasnetwork.us/organizations/196",
+    "parent_name": "University of Minnesota"
+  },
+  "197": {
+    "parent": "https://midasnetwork.us/organizations/196",
+    "parent_name": "University of Minnesota"
+  },
+  "198": {
+    "parent": "https://midasnetwork.us/organizations/198",
+    "parent_name": "University of Missouri"
+  },
+  "199": {
+    "parent": "https://midasnetwork.us/organizations/198",
+    "parent_name": "University of Missouri"
+  },
+  "2": {
+    "parent": "https://midasnetwork.us/organizations/1",
+    "parent_name": "Binghamton University"
+  },
+  "200": {
+    "parent": "https://midasnetwork.us/organizations/198",
+    "parent_name": "University of Missouri"
+  },
+  "201": {
+    "parent": "https://midasnetwork.us/organizations/201",
+    "parent_name": "University of Nebraska-Lincoln"
+  },
+  "202": {
+    "parent": "https://midasnetwork.us/organizations/201",
+    "parent_name": "University of Nebraska-Lincoln"
+  },
+  "203": {
+    "parent": "https://midasnetwork.us/organizations/201",
+    "parent_name": "University of Nebraska-Lincoln"
+  },
+  "204": {
+    "parent": "https://midasnetwork.us/organizations/204",
+    "parent_name": "University of New Mexico"
+  },
+  "206": {
+    "parent": "https://midasnetwork.us/organizations/204",
+    "parent_name": "University of New Mexico"
+  },
+  "207": {
+    "parent": "https://midasnetwork.us/organizations/204",
+    "parent_name": "University of New Mexico"
+  },
+  "208": {
+    "parent": "https://midasnetwork.us/organizations/208",
+    "parent_name": "University of North Carolina at Chapel Hill"
+  },
+  "209": {
+    "parent": "https://midasnetwork.us/organizations/208",
+    "parent_name": "University of North Carolina at Chapel Hill"
+  },
+  "21": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "210": {
+    "parent": "https://midasnetwork.us/organizations/208",
+    "parent_name": "University of North Carolina at Chapel Hill"
+  },
+  "211": {
+    "parent": "https://midasnetwork.us/organizations/208",
+    "parent_name": "University of North Carolina at Chapel Hill"
+  },
+  "212": {
+    "parent": "https://midasnetwork.us/organizations/212",
+    "parent_name": "University of Oxford"
+  },
+  "213": {
+    "parent": "https://midasnetwork.us/organizations/212",
+    "parent_name": "University of Oxford"
+  },
+  "214": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "215": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "216": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "217": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "218": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "219": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "22": {
+    "parent": "https://midasnetwork.us/organizations/22",
+    "parent_name": "Clark University"
+  },
+  "220": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "221": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "222": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "223": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "224": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "225": {
+    "parent": "https://midasnetwork.us/organizations/225",
+    "parent_name": "University of Southern California"
+  },
+  "226": {
+    "parent": "https://midasnetwork.us/organizations/225",
+    "parent_name": "University of Southern California"
+  },
+  "227": {
+    "parent": "https://midasnetwork.us/organizations/225",
+    "parent_name": "University of Southern California"
+  },
+  "228": {
+    "parent": "https://midasnetwork.us/organizations/228",
+    "parent_name": "University of Texas at Austin"
+  },
+  "229": {
+    "parent": "https://midasnetwork.us/organizations/228",
+    "parent_name": "University of Texas at Austin"
+  },
+  "23": {
+    "parent": "https://midasnetwork.us/organizations/22",
+    "parent_name": "Clark University"
+  },
+  "230": {
+    "parent": "https://midasnetwork.us/organizations/228",
+    "parent_name": "University of Texas at Austin"
+  },
+  "231": {
+    "parent": "https://midasnetwork.us/organizations/228",
+    "parent_name": "University of Texas at Austin"
+  },
+  "232": {
+    "parent": "https://midasnetwork.us/organizations/232",
+    "parent_name": "University of Utah"
+  },
+  "233": {
+    "parent": "https://midasnetwork.us/organizations/232",
+    "parent_name": "University of Utah"
+  },
+  "234": {
+    "parent": "https://midasnetwork.us/organizations/232",
+    "parent_name": "University of Utah"
+  },
+  "235": {
+    "parent": "https://midasnetwork.us/organizations/235",
+    "parent_name": "University of Virginia"
+  },
+  "236": {
+    "parent": "https://midasnetwork.us/organizations/235",
+    "parent_name": "University of Virginia"
+  },
+  "237": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "238": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "239": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "24": {
+    "parent": "https://midasnetwork.us/organizations/24",
+    "parent_name": "Columbia University"
+  },
+  "240": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "241": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "242": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "243": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "244": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "245": {
+    "parent": "https://midasnetwork.us/organizations/245",
+    "parent_name": "Yale University"
+  },
+  "246": {
+    "parent": "https://midasnetwork.us/organizations/245",
+    "parent_name": "Yale University"
+  },
+  "247": {
+    "parent": "https://midasnetwork.us/organizations/245",
+    "parent_name": "Yale University"
+  },
+  "248": {
+    "parent": "https://midasnetwork.us/organizations/245",
+    "parent_name": "Yale University"
+  },
+  "25": {
+    "parent": "https://midasnetwork.us/organizations/24",
+    "parent_name": "Columbia University"
+  },
+  "250": {
+    "parent": "https://midasnetwork.us/organizations/250",
+    "parent_name": "Massachussets Institute of Technology"
+  },
+  "251": {
+    "parent": "https://midasnetwork.us/organizations/251",
+    "parent_name": "Stanford University"
+  },
+  "252": {
+    "parent": "https://midasnetwork.us/organizations/252",
+    "parent_name": "Haverford College"
+  },
+  "253": {
+    "parent": "https://midasnetwork.us/organizations/253",
+    "parent_name": "Nanjing University"
+  },
+  "254": {
+    "parent": "https://midasnetwork.us/organizations/254",
+    "parent_name": "Reed College"
+  },
+  "255": {
+    "parent": "https://midasnetwork.us/organizations/255",
+    "parent_name": "Tongji University"
+  },
+  "256": {
+    "parent": "https://midasnetwork.us/organizations/256",
+    "parent_name": "University of California Los Angeles"
+  },
+  "257": {
+    "parent": "https://midasnetwork.us/organizations/257",
+    "parent_name": "University of British Columbia"
+  },
+  "258": {
+    "parent": "https://midasnetwork.us/organizations/258",
+    "parent_name": "Colby College"
+  },
+  "259": {
+    "parent": "https://midasnetwork.us/organizations/259",
+    "parent_name": "Rutgers University"
+  },
+  "26": {
+    "parent": "https://midasnetwork.us/organizations/24",
+    "parent_name": "Columbia University"
+  },
+  "260": {
+    "parent": "https://midasnetwork.us/organizations/260",
+    "parent_name": "Foundation for the National Institutes of Health"
+  },
+  "261": {
+    "parent": "https://midasnetwork.us/organizations/261",
+    "parent_name": "Universidad Nacional Aut\u00f3noma de M\u00e9xico"
+  },
+  "262": {
+    "parent": "https://midasnetwork.us/organizations/262",
+    "parent_name": "Brown University"
+  },
+  "263": {
+    "parent": "https://midasnetwork.us/organizations/263",
+    "parent_name": "Santa Clara University"
+  },
+  "264": {
+    "parent": "https://midasnetwork.us/organizations/264",
+    "parent_name": "Beijing Normal University"
+  },
+  "265": {
+    "parent": "https://midasnetwork.us/organizations/265",
+    "parent_name": "Quest University Canada"
+  },
+  "266": {
+    "parent": "https://midasnetwork.us/organizations/266",
+    "parent_name": "Dartmouth College"
+  },
+  "267": {
+    "parent": "https://midasnetwork.us/organizations/182",
+    "parent_name": "University of Illinois Chicago"
+  },
+  "268": {
+    "parent": "https://midasnetwork.us/organizations/268",
+    "parent_name": "Norfolk State University"
+  },
+  "269": {
+    "parent": "https://midasnetwork.us/organizations/269",
+    "parent_name": "Fisk University"
+  },
+  "27": {
+    "parent": "https://midasnetwork.us/organizations/24",
+    "parent_name": "Columbia University"
+  },
+  "270": {
+    "parent": "https://midasnetwork.us/organizations/270",
+    "parent_name": "University of Arizona"
+  },
+  "271": {
+    "parent": "https://midasnetwork.us/organizations/271",
+    "parent_name": "McGill University"
+  },
+  "272": {
+    "parent": "https://midasnetwork.us/organizations/272",
+    "parent_name": "University of Edinburgh"
+  },
+  "273": {
+    "parent": "https://midasnetwork.us/organizations/273",
+    "parent_name": "Case Western Reserve University"
+  },
+  "274": {
+    "parent": "https://midasnetwork.us/organizations/274",
+    "parent_name": "University of Queensland"
+  },
+  "275": {
+    "parent": "https://midasnetwork.us/organizations/275",
+    "parent_name": "Nankai University"
+  },
+  "276": {
+    "parent": "https://midasnetwork.us/organizations/276",
+    "parent_name": "William & Mary"
+  },
+  "277": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "278": {
+    "parent": "https://midasnetwork.us/organizations/103",
+    "parent_name": "Northeastern University"
+  },
+  "279": {
+    "parent": "https://midasnetwork.us/organizations/103",
+    "parent_name": "Northeastern University"
+  },
+  "28": {
+    "parent": "https://midasnetwork.us/organizations/24",
+    "parent_name": "Columbia University"
+  },
+  "280": {
+    "parent": "https://midasnetwork.us/organizations/280",
+    "parent_name": "Oberlin College & Conservatory"
+  },
+  "281": {
+    "parent": "https://midasnetwork.us/organizations/281",
+    "parent_name": "University of Warwick"
+  },
+  "282": {
+    "parent": "https://midasnetwork.us/organizations/67",
+    "parent_name": "Hong Kong University"
+  },
+  "283": {
+    "parent": "https://midasnetwork.us/organizations/283",
+    "parent_name": "University of Cambridge"
+  },
+  "284": {
+    "parent": "https://midasnetwork.us/organizations/284",
+    "parent_name": "Vanderbilt University"
+  },
+  "285": {
+    "parent": "https://midasnetwork.us/organizations/284",
+    "parent_name": "Vanderbilt University"
+  },
+  "286": {
+    "parent": "https://midasnetwork.us/organizations/286",
+    "parent_name": "Ave Maria University"
+  },
+  "287": {
+    "parent": "https://midasnetwork.us/organizations/287",
+    "parent_name": "Arizona State University"
+  },
+  "288": {
+    "parent": "https://midasnetwork.us/organizations/287",
+    "parent_name": "Arizona State University"
+  },
+  "289": {
+    "parent": "https://midasnetwork.us/organizations/289",
+    "parent_name": "Indiana University Bloomington"
+  },
+  "29": {
+    "parent": "https://midasnetwork.us/organizations/24",
+    "parent_name": "Columbia University"
+  },
+  "290": {
+    "parent": "https://midasnetwork.us/organizations/289",
+    "parent_name": "Indiana University Bloomington"
+  },
+  "291": {
+    "parent": "https://midasnetwork.us/organizations/289",
+    "parent_name": "Indiana University Bloomington"
+  },
+  "292": {
+    "parent": "https://midasnetwork.us/organizations/292",
+    "parent_name": "University of Maryland"
+  },
+  "293": {
+    "parent": "https://midasnetwork.us/organizations/292",
+    "parent_name": "University of Maryland"
+  },
+  "294": {
+    "parent": "https://midasnetwork.us/organizations/292",
+    "parent_name": "University of Maryland"
+  },
+  "295": {
+    "parent": "https://midasnetwork.us/organizations/295",
+    "parent_name": "Mount Holyoke College"
+  },
+  "296": {
+    "parent": "https://midasnetwork.us/organizations/295",
+    "parent_name": "Mount Holyoke College"
+  },
+  "297": {
+    "parent": "https://midasnetwork.us/organizations/297",
+    "parent_name": "University of Tennessee Chattanooga"
+  },
+  "298": {
+    "parent": "https://midasnetwork.us/organizations/297",
+    "parent_name": "University of Tennessee Chattanooga"
+  },
+  "299": {
+    "parent": "https://midasnetwork.us/organizations/299",
+    "parent_name": "Ohio State University"
+  },
+  "3": {
+    "parent": "https://midasnetwork.us/organizations/1",
+    "parent_name": "Binghamton University"
+  },
+  "30": {
+    "parent": "https://midasnetwork.us/organizations/24",
+    "parent_name": "Columbia University"
+  },
+  "300": {
+    "parent": "https://midasnetwork.us/organizations/299",
+    "parent_name": "Ohio State University"
+  },
+  "301": {
+    "parent": "https://midasnetwork.us/organizations/299",
+    "parent_name": "Ohio State University"
+  },
+  "302": {
+    "parent": "https://midasnetwork.us/organizations/302",
+    "parent_name": "Leiden University"
+  },
+  "303": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "304": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "309": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "31": {
+    "parent": "https://midasnetwork.us/organizations/31",
+    "parent_name": "CZ Biohub"
+  },
+  "310": {
+    "parent": "https://midasnetwork.us/organizations/310",
+    "parent_name": "Amazon"
+  },
+  "311": {
+    "parent": "https://midasnetwork.us/organizations/67",
+    "parent_name": "Hong Kong University"
+  },
+  "312": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "313": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "314": {
+    "parent": "https://midasnetwork.us/organizations/314",
+    "parent_name": "Public Health England"
+  },
+  "315": {
+    "parent": "https://midasnetwork.us/organizations/314",
+    "parent_name": "Public Health England"
+  },
+  "316": {
+    "parent": "https://midasnetwork.us/organizations/314",
+    "parent_name": "Public Health England"
+  },
+  "317": {
+    "parent": "https://midasnetwork.us/organizations/70",
+    "parent_name": "Imperial College London"
+  },
+  "318": {
+    "parent": "https://midasnetwork.us/organizations/245",
+    "parent_name": "Yale University"
+  },
+  "319": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "32": {
+    "parent": "https://midasnetwork.us/organizations/32",
+    "parent_name": "Duke University"
+  },
+  "320": {
+    "parent": "https://midasnetwork.us/organizations/103",
+    "parent_name": "Northeastern University"
+  },
+  "321": {
+    "parent": "https://midasnetwork.us/organizations/103",
+    "parent_name": "Northeastern University"
+  },
+  "322": {
+    "parent": "https://midasnetwork.us/organizations/103",
+    "parent_name": "Northeastern University"
+  },
+  "323": {
+    "parent": "https://midasnetwork.us/organizations/32",
+    "parent_name": "Duke University"
+  },
+  "324": {
+    "parent": "https://midasnetwork.us/organizations/32",
+    "parent_name": "Duke University"
+  },
+  "325": {
+    "parent": "https://midasnetwork.us/organizations/325",
+    "parent_name": "Azimuth1"
+  },
+  "326": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "327": {
+    "parent": "https://midasnetwork.us/organizations/45",
+    "parent_name": "Fred Hutchinson Cancer Research Center"
+  },
+  "328": {
+    "parent": "https://midasnetwork.us/organizations/103",
+    "parent_name": "Northeastern University"
+  },
+  "329": {
+    "parent": "https://midasnetwork.us/organizations/103",
+    "parent_name": "Northeastern University"
+  },
+  "33": {
+    "parent": "https://midasnetwork.us/organizations/32",
+    "parent_name": "Duke University"
+  },
+  "330": {
+    "parent": "https://midasnetwork.us/organizations/16",
+    "parent_name": "Carnegie Mellon University"
+  },
+  "331": {
+    "parent": "https://midasnetwork.us/organizations/16",
+    "parent_name": "Carnegie Mellon University"
+  },
+  "332": {
+    "parent": "https://midasnetwork.us/organizations/425",
+    "parent_name": "Walter Reed Army Institute of Research"
+  },
+  "333": {
+    "parent": "https://midasnetwork.us/organizations/425",
+    "parent_name": "Walter Reed Army Institute of Research"
+  },
+  "334": {
+    "parent": "https://midasnetwork.us/organizations/334",
+    "parent_name": "James Cook University"
+  },
+  "335": {
+    "parent": "https://midasnetwork.us/organizations/334",
+    "parent_name": "James Cook University"
+  },
+  "336": {
+    "parent": "https://midasnetwork.us/organizations/334",
+    "parent_name": "James Cook University"
+  },
+  "337": {
+    "parent": "https://midasnetwork.us/organizations/334",
+    "parent_name": "James Cook University"
+  },
+  "338": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "339": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "34": {
+    "parent": "https://midasnetwork.us/organizations/32",
+    "parent_name": "Duke University"
+  },
+  "340": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "341": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "343": {
+    "parent": "https://midasnetwork.us/organizations/150",
+    "parent_name": "University of California San Francisco"
+  },
+  "344": {
+    "parent": "https://midasnetwork.us/organizations/121",
+    "parent_name": "Temple University"
+  },
+  "345": {
+    "parent": "https://midasnetwork.us/organizations/245",
+    "parent_name": "Yale University"
+  },
+  "346": {
+    "parent": "https://midasnetwork.us/organizations/346",
+    "parent_name": "Argonne National Laboratory"
+  },
+  "347": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "348": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "349": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "35": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "350": {
+    "parent": "https://midasnetwork.us/organizations/150",
+    "parent_name": "University of California San Francisco"
+  },
+  "351": {
+    "parent": "https://midasnetwork.us/organizations/351",
+    "parent_name": "Leidos"
+  },
+  "352": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "353": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "354": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "355": {
+    "parent": "https://midasnetwork.us/organizations/235",
+    "parent_name": "University of Virginia"
+  },
+  "356": {
+    "parent": "https://midasnetwork.us/organizations/235",
+    "parent_name": "University of Virginia"
+  },
+  "357": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "358": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "359": {
+    "parent": "https://midasnetwork.us/organizations/359",
+    "parent_name": "City University of New York"
+  },
+  "36": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "360": {
+    "parent": "https://midasnetwork.us/organizations/359",
+    "parent_name": "City University of New York"
+  },
+  "361": {
+    "parent": "https://midasnetwork.us/organizations/359",
+    "parent_name": "City University of New York"
+  },
+  "362": {
+    "parent": "https://midasnetwork.us/organizations/100",
+    "parent_name": "North Carolina State University"
+  },
+  "363": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "364": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "365": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "366": {
+    "parent": "https://midasnetwork.us/organizations/366",
+    "parent_name": "Heritage University"
+  },
+  "367": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "368": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "369": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "370": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "371": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "372": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "373": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "374": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "375": {
+    "parent": "https://midasnetwork.us/organizations/375",
+    "parent_name": "Sustainable Sciences Institute"
+  },
+  "376": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "377": {
+    "parent": "https://midasnetwork.us/organizations/45",
+    "parent_name": "Fred Hutchinson Cancer Research Center"
+  },
+  "378": {
+    "parent": "https://midasnetwork.us/organizations/77",
+    "parent_name": "Istanbul Medeniyet University"
+  },
+  "379": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "38": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "380": {
+    "parent": "https://midasnetwork.us/organizations/380",
+    "parent_name": "In-Q-Tel"
+  },
+  "381": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "382": {
+    "parent": "https://midasnetwork.us/organizations/245",
+    "parent_name": "Yale University"
+  },
+  "383": {
+    "parent": "https://midasnetwork.us/organizations/235",
+    "parent_name": "University of Virginia"
+  },
+  "384": {
+    "parent": "https://midasnetwork.us/organizations/105",
+    "parent_name": "University of Notre Dame"
+  },
+  "385": {
+    "parent": "https://midasnetwork.us/organizations/196",
+    "parent_name": "University of Minnesota"
+  },
+  "386": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "387": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "388": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "389": {
+    "parent": "https://midasnetwork.us/organizations/201",
+    "parent_name": "University of Nebraska-Lincoln"
+  },
+  "39": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "390": {
+    "parent": "https://midasnetwork.us/organizations/87",
+    "parent_name": "Los Alamos National Laboratory"
+  },
+  "391": {
+    "parent": "https://midasnetwork.us/organizations/245",
+    "parent_name": "Yale University"
+  },
+  "392": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "393": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "394": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "395": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "396": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "397": {
+    "parent": "https://midasnetwork.us/organizations/182",
+    "parent_name": "University of Illinois Chicago"
+  },
+  "398": {
+    "parent": "https://midasnetwork.us/organizations/398",
+    "parent_name": "Cosmic Events LLC"
+  },
+  "399": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "4": {
+    "parent": "https://midasnetwork.us/organizations/4",
+    "parent_name": "Boston Children's Hospital"
+  },
+  "40": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "400": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "401": {
+    "parent": "https://midasnetwork.us/organizations/141",
+    "parent_name": "University of Buffalo"
+  },
+  "402": {
+    "parent": "https://midasnetwork.us/organizations/45",
+    "parent_name": "Fred Hutchinson Cancer Research Center"
+  },
+  "403": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "404": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "405": {
+    "parent": "https://midasnetwork.us/organizations/204",
+    "parent_name": "University of New Mexico"
+  },
+  "406": {
+    "parent": "https://midasnetwork.us/organizations/204",
+    "parent_name": "University of New Mexico"
+  },
+  "407": {
+    "parent": "https://midasnetwork.us/organizations/212",
+    "parent_name": "University of Oxford"
+  },
+  "408": {
+    "parent": "https://midasnetwork.us/organizations/408",
+    "parent_name": "French National Institute for Sustainable Development"
+  },
+  "409": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "41": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "410": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "411": {
+    "parent": "https://midasnetwork.us/organizations/179",
+    "parent_name": "University of Idaho"
+  },
+  "412": {
+    "parent": "https://midasnetwork.us/organizations/225",
+    "parent_name": "University of Southern California"
+  },
+  "413": {
+    "parent": "https://midasnetwork.us/organizations/105",
+    "parent_name": "University of Notre Dame"
+  },
+  "414": {
+    "parent": "https://midasnetwork.us/organizations/98",
+    "parent_name": "McMaster University"
+  },
+  "415": {
+    "parent": "https://midasnetwork.us/organizations/121",
+    "parent_name": "Temple University"
+  },
+  "416": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "417": {
+    "parent": "https://midasnetwork.us/organizations/235",
+    "parent_name": "University of Virginia"
+  },
+  "418": {
+    "parent": "https://midasnetwork.us/organizations/141",
+    "parent_name": "University of Buffalo"
+  },
+  "419": {
+    "parent": "https://midasnetwork.us/organizations/123",
+    "parent_name": "Tulane University"
+  },
+  "42": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "420": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "421": {
+    "parent": "https://midasnetwork.us/organizations/198",
+    "parent_name": "University of Missouri"
+  },
+  "422": {
+    "parent": "https://midasnetwork.us/organizations/16",
+    "parent_name": "Carnegie Mellon University"
+  },
+  "423": {
+    "parent": "https://midasnetwork.us/organizations/32",
+    "parent_name": "Duke University"
+  },
+  "424": {
+    "parent": "https://midasnetwork.us/organizations/235",
+    "parent_name": "University of Virginia"
+  },
+  "425": {
+    "parent": "https://midasnetwork.us/organizations/425",
+    "parent_name": "Walter Reed Army Institute of Research"
+  },
+  "426": {
+    "parent": "https://midasnetwork.us/organizations/426",
+    "parent_name": "Bar-Ilan University"
+  },
+  "427": {
+    "parent": "https://midasnetwork.us/organizations/427",
+    "parent_name": "New Jersey Institute of Technology"
+  },
+  "428": {
+    "parent": "https://midasnetwork.us/organizations/428",
+    "parent_name": "Wesleyan University"
+  },
+  "429": {
+    "parent": "https://midasnetwork.us/organizations/429",
+    "parent_name": "Universidad Nacional de Colombia"
+  },
+  "43": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "430": {
+    "parent": "https://midasnetwork.us/organizations/430",
+    "parent_name": "Brigham Young University"
+  },
+  "431": {
+    "parent": "https://midasnetwork.us/organizations/431",
+    "parent_name": "University of Oregon"
+  },
+  "432": {
+    "parent": "https://midasnetwork.us/organizations/432",
+    "parent_name": "University of Rochester"
+  },
+  "433": {
+    "parent": "https://midasnetwork.us/organizations/24",
+    "parent_name": "Columbia University"
+  },
+  "434": {
+    "parent": "https://midasnetwork.us/organizations/434",
+    "parent_name": "Sage Bionetworks"
+  },
+  "435": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "436": {
+    "parent": "https://midasnetwork.us/organizations/436",
+    "parent_name": "Bat1Health"
+  },
+  "437": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "438": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "439": {
+    "parent": "https://midasnetwork.us/organizations/439",
+    "parent_name": "Newcastle University"
+  },
+  "44": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "440": {
+    "parent": "https://midasnetwork.us/organizations/439",
+    "parent_name": "Newcastle University"
+  },
+  "441": {
+    "parent": "https://midasnetwork.us/organizations/439",
+    "parent_name": "Newcastle University"
+  },
+  "442": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "443": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "444": {
+    "parent": "https://midasnetwork.us/organizations/444",
+    "parent_name": "Ronald E McNair Scholars Program"
+  },
+  "445": {
+    "parent": "https://midasnetwork.us/organizations/445",
+    "parent_name": "Act Six"
+  },
+  "446": {
+    "parent": "https://midasnetwork.us/organizations/446",
+    "parent_name": "Math Alliance"
+  },
+  "447": {
+    "parent": "https://midasnetwork.us/organizations/87",
+    "parent_name": "Los Alamos National Laboratory"
+  },
+  "448": {
+    "parent": "https://midasnetwork.us/organizations/448",
+    "parent_name": "Outbreak Science"
+  },
+  "449": {
+    "parent": "https://midasnetwork.us/organizations/449",
+    "parent_name": "R Epidemics Consortium"
+  },
+  "45": {
+    "parent": "https://midasnetwork.us/organizations/45",
+    "parent_name": "Fred Hutchinson Cancer Research Center"
+  },
+  "450": {
+    "parent": "https://midasnetwork.us/organizations/450",
+    "parent_name": "Centre for Research Excellence in Policy Relevant Infectious diseases Simulation and Mathematical Modelling"
+  },
+  "451": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "452": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "454": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "455": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "456": {
+    "parent": "https://midasnetwork.us/organizations/456",
+    "parent_name": "University of Sussex"
+  },
+  "457": {
+    "parent": "https://midasnetwork.us/organizations/456",
+    "parent_name": "University of Sussex"
+  },
+  "458": {
+    "parent": "https://midasnetwork.us/organizations/456",
+    "parent_name": "University of Sussex"
+  },
+  "459": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "46": {
+    "parent": "https://midasnetwork.us/organizations/45",
+    "parent_name": "Fred Hutchinson Cancer Research Center"
+  },
+  "460": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "461": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "462": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "463": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "464": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "465": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "466": {
+    "parent": "https://midasnetwork.us/organizations/243",
+    "parent_name": "Virginia Tech"
+  },
+  "467": {
+    "parent": "https://midasnetwork.us/organizations/467",
+    "parent_name": "Massachusetts Institute of Technology"
+  },
+  "468": {
+    "parent": "https://midasnetwork.us/organizations/467",
+    "parent_name": "Massachusetts Institute of Technology"
+  },
+  "469": {
+    "parent": "https://midasnetwork.us/organizations/469",
+    "parent_name": "University of Nottingham"
+  },
+  "47": {
+    "parent": "https://midasnetwork.us/organizations/45",
+    "parent_name": "Fred Hutchinson Cancer Research Center"
+  },
+  "470": {
+    "parent": "https://midasnetwork.us/organizations/469",
+    "parent_name": "University of Nottingham"
+  },
+  "471": {
+    "parent": "https://midasnetwork.us/organizations/84",
+    "parent_name": "London School of Hygiene & Tropical Medicine"
+  },
+  "472": {
+    "parent": "https://midasnetwork.us/organizations/84",
+    "parent_name": "London School of Hygiene & Tropical Medicine"
+  },
+  "473": {
+    "parent": "https://midasnetwork.us/organizations/473",
+    "parent_name": "Wellcome Trust"
+  },
+  "474": {
+    "parent": "https://midasnetwork.us/organizations/84",
+    "parent_name": "London School of Hygiene & Tropical Medicine"
+  },
+  "475": {
+    "parent": "https://midasnetwork.us/organizations/262",
+    "parent_name": "Brown University"
+  },
+  "476": {
+    "parent": "https://midasnetwork.us/organizations/262",
+    "parent_name": "Brown University"
+  },
+  "477": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "478": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "479": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "48": {
+    "parent": "https://midasnetwork.us/organizations/45",
+    "parent_name": "Fred Hutchinson Cancer Research Center"
+  },
+  "480": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "481": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "482": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "483": {
+    "parent": "https://midasnetwork.us/organizations/112",
+    "parent_name": "Penn State University"
+  },
+  "484": {
+    "parent": "https://midasnetwork.us/organizations/112",
+    "parent_name": "Penn State University"
+  },
+  "485": {
+    "parent": "https://midasnetwork.us/organizations/485",
+    "parent_name": "The Chinese University of Hong Kong"
+  },
+  "486": {
+    "parent": "https://midasnetwork.us/organizations/485",
+    "parent_name": "The Chinese University of Hong Kong"
+  },
+  "487": {
+    "parent": "https://midasnetwork.us/organizations/485",
+    "parent_name": "The Chinese University of Hong Kong"
+  },
+  "488": {
+    "parent": "https://midasnetwork.us/organizations/485",
+    "parent_name": "The Chinese University of Hong Kong"
+  },
+  "489": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "49": {
+    "parent": "https://midasnetwork.us/organizations/49",
+    "parent_name": "George Washington University"
+  },
+  "490": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "491": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "492": {
+    "parent": "https://midasnetwork.us/organizations/492",
+    "parent_name": "Indian Council of Medical Research"
+  },
+  "493": {
+    "parent": "https://midasnetwork.us/organizations/493",
+    "parent_name": "Fondazione Edmund Mach"
+  },
+  "494": {
+    "parent": "https://midasnetwork.us/organizations/493",
+    "parent_name": "Fondazione Edmund Mach"
+  },
+  "495": {
+    "parent": "https://midasnetwork.us/organizations/493",
+    "parent_name": "Fondazione Edmund Mach"
+  },
+  "496": {
+    "parent": "https://midasnetwork.us/organizations/493",
+    "parent_name": "Fondazione Edmund Mach"
+  },
+  "497": {
+    "parent": "https://midasnetwork.us/organizations/497",
+    "parent_name": "Army Public Health Center"
+  },
+  "498": {
+    "parent": "https://midasnetwork.us/organizations/498",
+    "parent_name": "RTI International"
+  },
+  "499": {
+    "parent": "https://midasnetwork.us/organizations/499",
+    "parent_name": "Tsinghua University"
+  },
+  "5": {
+    "parent": "https://midasnetwork.us/organizations/4",
+    "parent_name": "Boston Children's Hospital"
+  },
+  "50": {
+    "parent": "https://midasnetwork.us/organizations/49",
+    "parent_name": "George Washington University"
+  },
+  "500": {
+    "parent": "https://midasnetwork.us/organizations/499",
+    "parent_name": "Tsinghua University"
+  },
+  "501": {
+    "parent": "https://midasnetwork.us/organizations/292",
+    "parent_name": "University of Maryland"
+  },
+  "502": {
+    "parent": "https://midasnetwork.us/organizations/292",
+    "parent_name": "University of Maryland"
+  },
+  "503": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "504": {
+    "parent": "https://midasnetwork.us/organizations/504",
+    "parent_name": "University of Venda"
+  },
+  "505": {
+    "parent": "https://midasnetwork.us/organizations/504",
+    "parent_name": "University of Venda"
+  },
+  "506": {
+    "parent": "https://midasnetwork.us/organizations/504",
+    "parent_name": "University of Venda"
+  },
+  "507": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "508": {
+    "parent": "https://midasnetwork.us/organizations/508",
+    "parent_name": "Monash University"
+  },
+  "509": {
+    "parent": "https://midasnetwork.us/organizations/508",
+    "parent_name": "Monash University"
+  },
+  "51": {
+    "parent": "https://midasnetwork.us/organizations/49",
+    "parent_name": "George Washington University"
+  },
+  "510": {
+    "parent": "https://midasnetwork.us/organizations/508",
+    "parent_name": "Monash University"
+  },
+  "511": {
+    "parent": "https://midasnetwork.us/organizations/281",
+    "parent_name": "University of Warwick"
+  },
+  "512": {
+    "parent": "https://midasnetwork.us/organizations/281",
+    "parent_name": "University of Warwick"
+  },
+  "513": {
+    "parent": "https://midasnetwork.us/organizations/513",
+    "parent_name": "Kenya Medical Research Institute"
+  },
+  "514": {
+    "parent": "https://midasnetwork.us/organizations/513",
+    "parent_name": "Kenya Medical Research Institute"
+  },
+  "515": {
+    "parent": "https://midasnetwork.us/organizations/515",
+    "parent_name": "University of Nairobi"
+  },
+  "516": {
+    "parent": "https://midasnetwork.us/organizations/515",
+    "parent_name": "University of Nairobi"
+  },
+  "517": {
+    "parent": "https://midasnetwork.us/organizations/517",
+    "parent_name": "Zoonotic Disease Unit - Republic of Kenya"
+  },
+  "518": {
+    "parent": "https://midasnetwork.us/organizations/518",
+    "parent_name": "Washington State University"
+  },
+  "519": {
+    "parent": "https://midasnetwork.us/organizations/518",
+    "parent_name": "Washington State University"
+  },
+  "52": {
+    "parent": "https://midasnetwork.us/organizations/49",
+    "parent_name": "George Washington University"
+  },
+  "520": {
+    "parent": "https://midasnetwork.us/organizations/518",
+    "parent_name": "Washington State University"
+  },
+  "521": {
+    "parent": "https://midasnetwork.us/organizations/212",
+    "parent_name": "University of Oxford"
+  },
+  "522": {
+    "parent": "https://midasnetwork.us/organizations/212",
+    "parent_name": "University of Oxford"
+  },
+  "523": {
+    "parent": "https://midasnetwork.us/organizations/523",
+    "parent_name": "University of Stirling"
+  },
+  "524": {
+    "parent": "https://midasnetwork.us/organizations/523",
+    "parent_name": "University of Stirling"
+  },
+  "525": {
+    "parent": "https://midasnetwork.us/organizations/523",
+    "parent_name": "University of Stirling"
+  },
+  "526": {
+    "parent": "https://midasnetwork.us/organizations/523",
+    "parent_name": "University of Stirling"
+  },
+  "527": {
+    "parent": "https://midasnetwork.us/organizations/283",
+    "parent_name": "University of Cambridge"
+  },
+  "528": {
+    "parent": "https://midasnetwork.us/organizations/283",
+    "parent_name": "University of Cambridge"
+  },
+  "529": {
+    "parent": "https://midasnetwork.us/organizations/529",
+    "parent_name": "University of California San Diego"
+  },
+  "53": {
+    "parent": "https://midasnetwork.us/organizations/49",
+    "parent_name": "George Washington University"
+  },
+  "530": {
+    "parent": "https://midasnetwork.us/organizations/529",
+    "parent_name": "University of California San Diego"
+  },
+  "531": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "532": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "533": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "534": {
+    "parent": "https://midasnetwork.us/organizations/163",
+    "parent_name": "University of Florida"
+  },
+  "535": {
+    "parent": "https://midasnetwork.us/organizations/535",
+    "parent_name": "Upstate Medical University"
+  },
+  "536": {
+    "parent": "https://midasnetwork.us/organizations/535",
+    "parent_name": "Upstate Medical University"
+  },
+  "537": {
+    "parent": "https://midasnetwork.us/organizations/299",
+    "parent_name": "Ohio State University"
+  },
+  "538": {
+    "parent": "https://midasnetwork.us/organizations/299",
+    "parent_name": "Ohio State University"
+  },
+  "539": {
+    "parent": "https://midasnetwork.us/organizations/539",
+    "parent_name": "Sun Yat-Sen University"
+  },
+  "54": {
+    "parent": "https://midasnetwork.us/organizations/49",
+    "parent_name": "George Washington University"
+  },
+  "540": {
+    "parent": "https://midasnetwork.us/organizations/539",
+    "parent_name": "Sun Yat-Sen University"
+  },
+  "541": {
+    "parent": "https://midasnetwork.us/organizations/139",
+    "parent_name": "University of Antwerp"
+  },
+  "542": {
+    "parent": "https://midasnetwork.us/organizations/408",
+    "parent_name": "French National Institute for Sustainable Development"
+  },
+  "543": {
+    "parent": "https://midasnetwork.us/organizations/91",
+    "parent_name": "Loyola University Chicago"
+  },
+  "544": {
+    "parent": "https://midasnetwork.us/organizations/544",
+    "parent_name": "Bill & Melinda Gates Foundation"
+  },
+  "545": {
+    "parent": "https://midasnetwork.us/organizations/545",
+    "parent_name": "Independent Scholar - Not currently affiliated with an organization"
+  },
+  "546": {
+    "parent": "https://midasnetwork.us/organizations/546",
+    "parent_name": "Institut de Recherche pour le D\u00e9veloppement"
+  },
+  "547": {
+    "parent": "https://midasnetwork.us/organizations/547",
+    "parent_name": "Burnet Institute"
+  },
+  "548": {
+    "parent": "https://midasnetwork.us/organizations/548",
+    "parent_name": "St. Jude Children's Research Hospital"
+  },
+  "549": {
+    "parent": "https://midasnetwork.us/organizations/281",
+    "parent_name": "University of Warwick"
+  },
+  "55": {
+    "parent": "https://midasnetwork.us/organizations/55",
+    "parent_name": "Georgetown University"
+  },
+  "550": {
+    "parent": "https://midasnetwork.us/organizations/550",
+    "parent_name": "University of Hawaii"
+  },
+  "551": {
+    "parent": "https://midasnetwork.us/organizations/551",
+    "parent_name": "United States Geological Survey"
+  },
+  "552": {
+    "parent": "https://midasnetwork.us/organizations/98",
+    "parent_name": "McMaster University"
+  },
+  "553": {
+    "parent": "https://midasnetwork.us/organizations/292",
+    "parent_name": "University of Maryland"
+  },
+  "554": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "555": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "556": {
+    "parent": "https://midasnetwork.us/organizations/32",
+    "parent_name": "Duke University"
+  },
+  "557": {
+    "parent": "https://midasnetwork.us/organizations/168",
+    "parent_name": "University of Georgia"
+  },
+  "558": {
+    "parent": "https://midasnetwork.us/organizations/558",
+    "parent_name": "Johns Hopkins Applied Physics Laboratory"
+  },
+  "559": {
+    "parent": "https://midasnetwork.us/organizations/559",
+    "parent_name": "Armed Forces Health Surveillance Branch"
+  },
+  "56": {
+    "parent": "https://midasnetwork.us/organizations/55",
+    "parent_name": "Georgetown University"
+  },
+  "560": {
+    "parent": "https://midasnetwork.us/organizations/560",
+    "parent_name": "Uniformed Services University of the Health Sciences"
+  },
+  "561": {
+    "parent": "https://midasnetwork.us/organizations/561",
+    "parent_name": "National Oceanic and Atmospheric Administration (UCAR Affiliate)"
+  },
+  "563": {
+    "parent": "https://midasnetwork.us/organizations/563",
+    "parent_name": "The BioCollective, LLC."
+  },
+  "565": {
+    "parent": "https://midasnetwork.us/organizations/565",
+    "parent_name": "Old Dominion University"
+  },
+  "566": {
+    "parent": "https://midasnetwork.us/organizations/600",
+    "parent_name": "University of Oklahoma"
+  },
+  "568": {
+    "parent": "https://midasnetwork.us/organizations/568",
+    "parent_name": "University of Nebraska Medical Center"
+  },
+  "569": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "57": {
+    "parent": "https://midasnetwork.us/organizations/55",
+    "parent_name": "Georgetown University"
+  },
+  "570": {
+    "parent": "https://midasnetwork.us/organizations/590",
+    "parent_name": "University of Connecticut"
+  },
+  "572": {
+    "parent": "https://midasnetwork.us/organizations/281",
+    "parent_name": "University of Warwick"
+  },
+  "573": {
+    "parent": "https://midasnetwork.us/organizations/251",
+    "parent_name": "Stanford University"
+  },
+  "574": {
+    "parent": "https://midasnetwork.us/organizations/574",
+    "parent_name": "National Institute for Research in Tuberculosis"
+  },
+  "575": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "576": {
+    "parent": "https://midasnetwork.us/organizations/262",
+    "parent_name": "Brown University"
+  },
+  "577": {
+    "parent": "https://midasnetwork.us/organizations/591",
+    "parent_name": "Georgia State University"
+  },
+  "578": {
+    "parent": "https://midasnetwork.us/organizations/235",
+    "parent_name": "University of Virginia"
+  },
+  "579": {
+    "parent": "https://midasnetwork.us/organizations/112",
+    "parent_name": "Penn State University"
+  },
+  "58": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "580": {
+    "parent": "https://midasnetwork.us/organizations/589",
+    "parent_name": "Cornell University"
+  },
+  "581": {
+    "parent": "https://midasnetwork.us/organizations/581",
+    "parent_name": "National Center for Atmospheric Research"
+  },
+  "582": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "583": {
+    "parent": "https://midasnetwork.us/organizations/593",
+    "parent_name": "University of Iowa"
+  },
+  "584": {
+    "parent": "https://midasnetwork.us/organizations/592",
+    "parent_name": "Texas A&M University"
+  },
+  "585": {
+    "parent": "https://midasnetwork.us/organizations/196",
+    "parent_name": "University of Minnesota"
+  },
+  "586": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "588": {
+    "parent": "https://midasnetwork.us/organizations/663",
+    "parent_name": "University of Illinois Urbana-Champaign"
+  },
+  "589": {
+    "parent": "https://midasnetwork.us/organizations/589",
+    "parent_name": "Cornell University"
+  },
+  "59": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "590": {
+    "parent": "https://midasnetwork.us/organizations/590",
+    "parent_name": "University of Connecticut"
+  },
+  "591": {
+    "parent": "https://midasnetwork.us/organizations/591",
+    "parent_name": "Georgia State University"
+  },
+  "592": {
+    "parent": "https://midasnetwork.us/organizations/592",
+    "parent_name": "Texas A&M University"
+  },
+  "593": {
+    "parent": "https://midasnetwork.us/organizations/593",
+    "parent_name": "University of Iowa"
+  },
+  "594": {
+    "parent": "https://midasnetwork.us/organizations/594",
+    "parent_name": "University of Rhode Island"
+  },
+  "595": {
+    "parent": "https://midasnetwork.us/organizations/594",
+    "parent_name": "University of Rhode Island"
+  },
+  "596": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "597": {
+    "parent": "https://midasnetwork.us/organizations/597",
+    "parent_name": "Catholic University of America"
+  },
+  "598": {
+    "parent": "https://midasnetwork.us/organizations/597",
+    "parent_name": "Catholic University of America"
+  },
+  "599": {
+    "parent": "https://midasnetwork.us/organizations/597",
+    "parent_name": "Catholic University of America"
+  },
+  "6": {
+    "parent": "https://midasnetwork.us/organizations/4",
+    "parent_name": "Boston Children's Hospital"
+  },
+  "60": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "600": {
+    "parent": "https://midasnetwork.us/organizations/600",
+    "parent_name": "University of Oklahoma"
+  },
+  "601": {
+    "parent": "https://midasnetwork.us/organizations/600",
+    "parent_name": "University of Oklahoma"
+  },
+  "602": {
+    "parent": "https://midasnetwork.us/organizations/602",
+    "parent_name": "BC Centre for Disease Control"
+  },
+  "603": {
+    "parent": "https://midasnetwork.us/organizations/45",
+    "parent_name": "Fred Hutchinson Cancer Research Center"
+  },
+  "606": {
+    "parent": "https://midasnetwork.us/organizations/606",
+    "parent_name": "National Socio-Environmental Synthesis Center (SESYNC)"
+  },
+  "607": {
+    "parent": "https://midasnetwork.us/organizations/607",
+    "parent_name": "Zhongnan University of Economics and Law"
+  },
+  "608": {
+    "parent": "https://midasnetwork.us/organizations/608",
+    "parent_name": "Predictive Science Inc."
+  },
+  "609": {
+    "parent": "https://midasnetwork.us/organizations/281",
+    "parent_name": "University of Warwick"
+  },
+  "61": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "610": {
+    "parent": "https://midasnetwork.us/organizations/84",
+    "parent_name": "London School of Hygiene & Tropical Medicine"
+  },
+  "611": {
+    "parent": "https://midasnetwork.us/organizations/611",
+    "parent_name": "University of Tennessee Knoxville"
+  },
+  "612": {
+    "parent": "https://midasnetwork.us/organizations/612",
+    "parent_name": "Mahidol-Oxford Tropical Medicine Research Unit"
+  },
+  "613": {
+    "parent": "https://midasnetwork.us/organizations/613",
+    "parent_name": "Funda\u00e7\u00e3o Oswaldo Cruz"
+  },
+  "614": {
+    "parent": "https://midasnetwork.us/organizations/614",
+    "parent_name": "Michigan State University"
+  },
+  "615": {
+    "parent": "https://midasnetwork.us/organizations/614",
+    "parent_name": "Michigan State University"
+  },
+  "616": {
+    "parent": "https://midasnetwork.us/organizations/616",
+    "parent_name": "Universidad del Sinu"
+  },
+  "617": {
+    "parent": "https://midasnetwork.us/organizations/617",
+    "parent_name": "Birla Institute of Technology and Science, Pilani"
+  },
+  "618": {
+    "parent": "https://midasnetwork.us/organizations/618",
+    "parent_name": "University of Botswana"
+  },
+  "619": {
+    "parent": "https://midasnetwork.us/organizations/619",
+    "parent_name": "Calvin University"
+  },
+  "62": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "620": {
+    "parent": "https://midasnetwork.us/organizations/620",
+    "parent_name": "MRC/UVRI & LSHTM Uganda Research Unit"
+  },
+  "621": {
+    "parent": "https://midasnetwork.us/organizations/621",
+    "parent_name": "National Veterinary School of Toulouse"
+  },
+  "622": {
+    "parent": "https://midasnetwork.us/organizations/259",
+    "parent_name": "Rutgers University"
+  },
+  "623": {
+    "parent": "https://midasnetwork.us/organizations/623",
+    "parent_name": "Illinois Department of Public Health"
+  },
+  "624": {
+    "parent": "https://midasnetwork.us/organizations/624",
+    "parent_name": "University of California Merced"
+  },
+  "625": {
+    "parent": "https://midasnetwork.us/organizations/624",
+    "parent_name": "University of California Merced"
+  },
+  "626": {
+    "parent": "https://midasnetwork.us/organizations/624",
+    "parent_name": "University of California Merced"
+  },
+  "627": {
+    "parent": "https://midasnetwork.us/organizations/245",
+    "parent_name": "Yale University"
+  },
+  "628": {
+    "parent": "https://midasnetwork.us/organizations/283",
+    "parent_name": "University of Cambridge"
+  },
+  "629": {
+    "parent": "https://midasnetwork.us/organizations/283",
+    "parent_name": "University of Cambridge"
+  },
+  "63": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "630": {
+    "parent": "https://midasnetwork.us/organizations/630",
+    "parent_name": "Sanofi Pasteur"
+  },
+  "631": {
+    "parent": "https://midasnetwork.us/organizations/631",
+    "parent_name": "Universidad CEU Cardenal Herrera"
+  },
+  "632": {
+    "parent": "https://midasnetwork.us/organizations/632",
+    "parent_name": "University of Kansas"
+  },
+  "633": {
+    "parent": "https://midasnetwork.us/organizations/632",
+    "parent_name": "University of Kansas"
+  },
+  "634": {
+    "parent": "https://midasnetwork.us/organizations/632",
+    "parent_name": "University of Kansas"
+  },
+  "635": {
+    "parent": "https://midasnetwork.us/organizations/635",
+    "parent_name": "National Science Foundation"
+  },
+  "636": {
+    "parent": "https://midasnetwork.us/organizations/251",
+    "parent_name": "Stanford University"
+  },
+  "637": {
+    "parent": "https://midasnetwork.us/organizations/251",
+    "parent_name": "Stanford University"
+  },
+  "64": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "640": {
+    "parent": "https://midasnetwork.us/organizations/640",
+    "parent_name": "Fondazione Bruno Kessler"
+  },
+  "641": {
+    "parent": "https://midasnetwork.us/organizations/591",
+    "parent_name": "Georgia State University"
+  },
+  "642": {
+    "parent": "https://midasnetwork.us/organizations/251",
+    "parent_name": "Stanford University"
+  },
+  "644": {
+    "parent": "https://midasnetwork.us/organizations/644",
+    "parent_name": "University of Southampton"
+  },
+  "645": {
+    "parent": "https://midasnetwork.us/organizations/644",
+    "parent_name": "University of Southampton"
+  },
+  "646": {
+    "parent": "https://midasnetwork.us/organizations/646",
+    "parent_name": "Robert Gordon University"
+  },
+  "647": {
+    "parent": "https://midasnetwork.us/organizations/647",
+    "parent_name": "University of Yaounde"
+  },
+  "648": {
+    "parent": "https://midasnetwork.us/organizations/648",
+    "parent_name": "University of Colorado Anschutz Medical Campus"
+  },
+  "649": {
+    "parent": "https://midasnetwork.us/organizations/648",
+    "parent_name": "University of Colorado Anschutz Medical Campus"
+  },
+  "65": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "650": {
+    "parent": "https://midasnetwork.us/organizations/648",
+    "parent_name": "University of Colorado Anschutz Medical Campus"
+  },
+  "651": {
+    "parent": "https://midasnetwork.us/organizations/651",
+    "parent_name": "University of Rochester Medical Center"
+  },
+  "652": {
+    "parent": "https://midasnetwork.us/organizations/652",
+    "parent_name": "flashPub, Inc"
+  },
+  "653": {
+    "parent": "https://midasnetwork.us/organizations/653",
+    "parent_name": "University of Reading"
+  },
+  "654": {
+    "parent": "https://midasnetwork.us/organizations/653",
+    "parent_name": "University of Reading"
+  },
+  "655": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "656": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "657": {
+    "parent": "https://midasnetwork.us/organizations/292",
+    "parent_name": "University of Maryland"
+  },
+  "658": {
+    "parent": "https://midasnetwork.us/organizations/568",
+    "parent_name": "University of Nebraska Medical Center"
+  },
+  "659": {
+    "parent": "https://midasnetwork.us/organizations/568",
+    "parent_name": "University of Nebraska Medical Center"
+  },
+  "66": {
+    "parent": "https://midasnetwork.us/organizations/58",
+    "parent_name": "Harvard University"
+  },
+  "660": {
+    "parent": "https://midasnetwork.us/organizations/251",
+    "parent_name": "Stanford University"
+  },
+  "663": {
+    "parent": "https://midasnetwork.us/organizations/663",
+    "parent_name": "University of Illinois Urbana-Champaign"
+  },
+  "664": {
+    "parent": "https://midasnetwork.us/organizations/663",
+    "parent_name": "University of Illinois Urbana-Champaign"
+  },
+  "665": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "666": {
+    "parent": "https://midasnetwork.us/organizations/666",
+    "parent_name": "CIINAS CORP"
+  },
+  "667": {
+    "parent": "https://midasnetwork.us/organizations/667",
+    "parent_name": "University of the Sciences"
+  },
+  "668": {
+    "parent": "https://midasnetwork.us/organizations/668",
+    "parent_name": "Frankfurt Institute of Advanced Studies"
+  },
+  "669": {
+    "parent": "https://midasnetwork.us/organizations/669",
+    "parent_name": "Tufts University"
+  },
+  "67": {
+    "parent": "https://midasnetwork.us/organizations/67",
+    "parent_name": "Hong Kong University"
+  },
+  "670": {
+    "parent": "https://midasnetwork.us/organizations/590",
+    "parent_name": "University of Connecticut"
+  },
+  "671": {
+    "parent": "https://midasnetwork.us/organizations/590",
+    "parent_name": "University of Connecticut"
+  },
+  "672": {
+    "parent": "https://midasnetwork.us/organizations/672",
+    "parent_name": "The American Naturalist"
+  },
+  "673": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "674": {
+    "parent": "https://midasnetwork.us/organizations/674",
+    "parent_name": "Georgia Institute of Technology"
+  },
+  "675": {
+    "parent": "https://midasnetwork.us/organizations/674",
+    "parent_name": "Georgia Institute of Technology"
+  },
+  "676": {
+    "parent": "https://midasnetwork.us/organizations/674",
+    "parent_name": "Georgia Institute of Technology"
+  },
+  "677": {
+    "parent": "https://midasnetwork.us/organizations/677",
+    "parent_name": "University of Toronto"
+  },
+  "678": {
+    "parent": "https://midasnetwork.us/organizations/678",
+    "parent_name": "University of Central Florida"
+  },
+  "679": {
+    "parent": "https://midasnetwork.us/organizations/679",
+    "parent_name": "Taipei Medical University"
+  },
+  "68": {
+    "parent": "https://midasnetwork.us/organizations/67",
+    "parent_name": "Hong Kong University"
+  },
+  "680": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "681": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "682": {
+    "parent": "https://midasnetwork.us/organizations/682",
+    "parent_name": "Central South University"
+  },
+  "683": {
+    "parent": "https://midasnetwork.us/organizations/682",
+    "parent_name": "Central South University"
+  },
+  "684": {
+    "parent": "https://midasnetwork.us/organizations/684",
+    "parent_name": "West Virginia University"
+  },
+  "685": {
+    "parent": "https://midasnetwork.us/organizations/685",
+    "parent_name": "Hayleys Advantis Limited"
+  },
+  "686": {
+    "parent": "https://midasnetwork.us/organizations/686",
+    "parent_name": "Universidad de Santiago de Chile"
+  },
+  "687": {
+    "parent": "https://midasnetwork.us/organizations/589",
+    "parent_name": "Cornell University"
+  },
+  "688": {
+    "parent": "https://midasnetwork.us/organizations/688",
+    "parent_name": "University of Montpellier"
+  },
+  "689": {
+    "parent": "https://midasnetwork.us/organizations/689",
+    "parent_name": "Meharry Medical College"
+  },
+  "69": {
+    "parent": "https://midasnetwork.us/organizations/67",
+    "parent_name": "Hong Kong University"
+  },
+  "690": {
+    "parent": "https://midasnetwork.us/organizations/690",
+    "parent_name": "Universidad Adolfo Ib\u00e1\u00f1ez"
+  },
+  "691": {
+    "parent": "https://midasnetwork.us/organizations/691",
+    "parent_name": "Pardee RAND Graduate School"
+  },
+  "692": {
+    "parent": "https://midasnetwork.us/organizations/692",
+    "parent_name": "Ugandan Christian University"
+  },
+  "693": {
+    "parent": "https://midasnetwork.us/organizations/692",
+    "parent_name": "Ugandan Christian University"
+  },
+  "694": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "695": {
+    "parent": "https://midasnetwork.us/organizations/155",
+    "parent_name": "University of Chicago"
+  },
+  "696": {
+    "parent": "https://midasnetwork.us/organizations/696",
+    "parent_name": "University of North Carolina at Charlotte"
+  },
+  "697": {
+    "parent": "https://midasnetwork.us/organizations/696",
+    "parent_name": "University of North Carolina at Charlotte"
+  },
+  "698": {
+    "parent": "https://midasnetwork.us/organizations/698",
+    "parent_name": "Lehigh University"
+  },
+  "699": {
+    "parent": "https://midasnetwork.us/organizations/699",
+    "parent_name": "Middlebury College"
+  },
+  "7": {
+    "parent": "https://midasnetwork.us/organizations/7",
+    "parent_name": "Boston University"
+  },
+  "70": {
+    "parent": "https://midasnetwork.us/organizations/70",
+    "parent_name": "Imperial College London"
+  },
+  "700": {
+    "parent": "https://midasnetwork.us/organizations/700",
+    "parent_name": "University of California Irvine"
+  },
+  "701": {
+    "parent": "https://midasnetwork.us/organizations/701",
+    "parent_name": "Northwestern University"
+  },
+  "702": {
+    "parent": "https://midasnetwork.us/organizations/702",
+    "parent_name": "University of Louisville"
+  },
+  "703": {
+    "parent": "https://midasnetwork.us/organizations/703",
+    "parent_name": "Fudan University"
+  },
+  "704": {
+    "parent": "https://midasnetwork.us/organizations/703",
+    "parent_name": "Fudan University"
+  },
+  "705": {
+    "parent": "https://midasnetwork.us/organizations/705",
+    "parent_name": "University of Hawai'i at Manoa"
+  },
+  "706": {
+    "parent": "https://midasnetwork.us/organizations/705",
+    "parent_name": "University of Hawai'i at Manoa"
+  },
+  "707": {
+    "parent": "https://midasnetwork.us/organizations/707",
+    "parent_name": "RAND Corporation"
+  },
+  "708": {
+    "parent": "https://midasnetwork.us/organizations/708",
+    "parent_name": "National Taiwan University"
+  },
+  "709": {
+    "parent": "https://midasnetwork.us/organizations/708",
+    "parent_name": "National Taiwan University"
+  },
+  "71": {
+    "parent": "https://midasnetwork.us/organizations/70",
+    "parent_name": "Imperial College London"
+  },
+  "710": {
+    "parent": "https://midasnetwork.us/organizations/708",
+    "parent_name": "National Taiwan University"
+  },
+  "711": {
+    "parent": "https://midasnetwork.us/organizations/711",
+    "parent_name": "Illinois State University"
+  },
+  "712": {
+    "parent": "https://midasnetwork.us/organizations/711",
+    "parent_name": "Illinois State University"
+  },
+  "713": {
+    "parent": "https://midasnetwork.us/organizations/711",
+    "parent_name": "Illinois State University"
+  },
+  "714": {
+    "parent": "https://midasnetwork.us/organizations/87",
+    "parent_name": "Los Alamos National Laboratory"
+  },
+  "715": {
+    "parent": "https://midasnetwork.us/organizations/87",
+    "parent_name": "Los Alamos National Laboratory"
+  },
+  "716": {
+    "parent": "https://midasnetwork.us/organizations/716",
+    "parent_name": "Indian Institute of Technology, Mandi"
+  },
+  "717": {
+    "parent": "https://midasnetwork.us/organizations/717",
+    "parent_name": "Anand International College of Engineering"
+  },
+  "718": {
+    "parent": "https://midasnetwork.us/organizations/718",
+    "parent_name": "Mount Sinai Health System"
+  },
+  "719": {
+    "parent": "https://midasnetwork.us/organizations/718",
+    "parent_name": "Mount Sinai Health System"
+  },
+  "72": {
+    "parent": "https://midasnetwork.us/organizations/70",
+    "parent_name": "Imperial College London"
+  },
+  "720": {
+    "parent": "https://midasnetwork.us/organizations/720",
+    "parent_name": "Central University of Rajasthan"
+  },
+  "721": {
+    "parent": "https://midasnetwork.us/organizations/648",
+    "parent_name": "University of Colorado Anschutz Medical Campus"
+  },
+  "722": {
+    "parent": "https://midasnetwork.us/organizations/196",
+    "parent_name": "University of Minnesota"
+  },
+  "723": {
+    "parent": "https://midasnetwork.us/organizations/196",
+    "parent_name": "University of Minnesota"
+  },
+  "724": {
+    "parent": "https://midasnetwork.us/organizations/686",
+    "parent_name": "Universidad de Santiago de Chile"
+  },
+  "725": {
+    "parent": "https://midasnetwork.us/organizations/725",
+    "parent_name": "Photrek, LLC"
+  },
+  "726": {
+    "parent": "https://midasnetwork.us/organizations/726",
+    "parent_name": "Epistemix"
+  },
+  "727": {
+    "parent": "https://midasnetwork.us/organizations/727",
+    "parent_name": "University of Wisconsin-Whitewater"
+  },
+  "728": {
+    "parent": "https://midasnetwork.us/organizations/728",
+    "parent_name": "Purdue University"
+  },
+  "729": {
+    "parent": "https://midasnetwork.us/organizations/728",
+    "parent_name": "Purdue University"
+  },
+  "73": {
+    "parent": "https://midasnetwork.us/organizations/73",
+    "parent_name": "Institut Pasteur"
+  },
+  "730": {
+    "parent": "https://midasnetwork.us/organizations/730",
+    "parent_name": "Hasselt University"
+  },
+  "731": {
+    "parent": "https://midasnetwork.us/organizations/731",
+    "parent_name": "University of Nevada, Reno"
+  },
+  "732": {
+    "parent": "https://midasnetwork.us/organizations/732",
+    "parent_name": "University of North Texas"
+  },
+  "733": {
+    "parent": "https://midasnetwork.us/organizations/732",
+    "parent_name": "University of North Texas"
+  },
+  "734": {
+    "parent": "https://midasnetwork.us/organizations/734",
+    "parent_name": "University of Maryland, Baltimore County"
+  },
+  "735": {
+    "parent": "https://midasnetwork.us/organizations/735",
+    "parent_name": "Taraba State University"
+  },
+  "736": {
+    "parent": "https://midasnetwork.us/organizations/736",
+    "parent_name": "Universidad de los Andes"
+  },
+  "737": {
+    "parent": "https://midasnetwork.us/organizations/736",
+    "parent_name": "Universidad de los Andes"
+  },
+  "738": {
+    "parent": "https://midasnetwork.us/organizations/631",
+    "parent_name": "Universidad CEU Cardenal Herrera"
+  },
+  "739": {
+    "parent": "https://midasnetwork.us/organizations/739",
+    "parent_name": "Virginia Commonwealth University"
+  },
+  "74": {
+    "parent": "https://midasnetwork.us/organizations/73",
+    "parent_name": "Institut Pasteur"
+  },
+  "740": {
+    "parent": "https://midasnetwork.us/organizations/739",
+    "parent_name": "Virginia Commonwealth University"
+  },
+  "741": {
+    "parent": "https://midasnetwork.us/organizations/739",
+    "parent_name": "Virginia Commonwealth University"
+  },
+  "742": {
+    "parent": "https://midasnetwork.us/organizations/742",
+    "parent_name": "Cankiri Karatekin University"
+  },
+  "743": {
+    "parent": "https://midasnetwork.us/organizations/88",
+    "parent_name": "Louisiana State University"
+  },
+  "744": {
+    "parent": "https://midasnetwork.us/organizations/228",
+    "parent_name": "University of Texas at Austin"
+  },
+  "745": {
+    "parent": "https://midasnetwork.us/organizations/745",
+    "parent_name": "University of Vermont"
+  },
+  "746": {
+    "parent": "https://midasnetwork.us/organizations/746",
+    "parent_name": "West University of Timi\u0219oara"
+  },
+  "747": {
+    "parent": "https://midasnetwork.us/organizations/746",
+    "parent_name": "West University of Timi\u0219oara"
+  },
+  "748": {
+    "parent": "https://midasnetwork.us/organizations/748",
+    "parent_name": "Bowdoin College"
+  },
+  "749": {
+    "parent": "https://midasnetwork.us/organizations/749",
+    "parent_name": "The Center For Disease Dynamics, Economics & Policy"
+  },
+  "75": {
+    "parent": "https://midasnetwork.us/organizations/73",
+    "parent_name": "Institut Pasteur"
+  },
+  "750": {
+    "parent": "https://midasnetwork.us/organizations/750",
+    "parent_name": "Indian Institute of Technology Kanpur"
+  },
+  "751": {
+    "parent": "https://midasnetwork.us/organizations/750",
+    "parent_name": "Indian Institute of Technology Kanpur"
+  },
+  "752": {
+    "parent": "https://midasnetwork.us/organizations/752",
+    "parent_name": "Northern Illinois University"
+  },
+  "753": {
+    "parent": "https://midasnetwork.us/organizations/752",
+    "parent_name": "Northern Illinois University"
+  },
+  "754": {
+    "parent": "https://midasnetwork.us/organizations/754",
+    "parent_name": "Sonoma State University"
+  },
+  "755": {
+    "parent": "https://midasnetwork.us/organizations/755",
+    "parent_name": "University of Colorado, Denver"
+  },
+  "756": {
+    "parent": "https://midasnetwork.us/organizations/756",
+    "parent_name": "Cary Institute of Ecosystem Studies"
+  },
+  "757": {
+    "parent": "https://midasnetwork.us/organizations/757",
+    "parent_name": "Rochester Institute of Technology"
+  },
+  "758": {
+    "parent": "https://midasnetwork.us/organizations/758",
+    "parent_name": "University of Pennsylvania"
+  },
+  "759": {
+    "parent": "https://midasnetwork.us/organizations/758",
+    "parent_name": "University of Pennsylvania"
+  },
+  "76": {
+    "parent": "https://midasnetwork.us/organizations/76",
+    "parent_name": "Institute for Disease Modeling"
+  },
+  "760": {
+    "parent": "https://midasnetwork.us/organizations/758",
+    "parent_name": "University of Pennsylvania"
+  },
+  "761": {
+    "parent": "https://midasnetwork.us/organizations/761",
+    "parent_name": "Consejo Nacional de Investigaciones Cient\u00edficas y T\u00e9cnicas"
+  },
+  "762": {
+    "parent": "https://midasnetwork.us/organizations/762",
+    "parent_name": "US Department of Veterans Affairs"
+  },
+  "763": {
+    "parent": "https://midasnetwork.us/organizations/762",
+    "parent_name": "US Department of Veterans Affairs"
+  },
+  "764": {
+    "parent": "https://midasnetwork.us/organizations/762",
+    "parent_name": "US Department of Veterans Affairs"
+  },
+  "765": {
+    "parent": "https://midasnetwork.us/organizations/765",
+    "parent_name": "Georgia Southern University"
+  },
+  "766": {
+    "parent": "https://midasnetwork.us/organizations/766",
+    "parent_name": "U.S. Department of Agriculture"
+  },
+  "767": {
+    "parent": "https://midasnetwork.us/organizations/767",
+    "parent_name": "University of Wisconsin - Madison"
+  },
+  "768": {
+    "parent": "https://midasnetwork.us/organizations/768",
+    "parent_name": "University of Alabama - Birmingham"
+  },
+  "769": {
+    "parent": "https://midasnetwork.us/organizations/769",
+    "parent_name": "Tennessee Department of Health"
+  },
+  "77": {
+    "parent": "https://midasnetwork.us/organizations/77",
+    "parent_name": "Istanbul Medeniyet University"
+  },
+  "770": {
+    "parent": "https://midasnetwork.us/organizations/518",
+    "parent_name": "Washington State University"
+  },
+  "771": {
+    "parent": "https://midasnetwork.us/organizations/123",
+    "parent_name": "Tulane University"
+  },
+  "772": {
+    "parent": "https://midasnetwork.us/organizations/772",
+    "parent_name": "University of South Carolina"
+  },
+  "773": {
+    "parent": "https://midasnetwork.us/organizations/773",
+    "parent_name": "George Mason University"
+  },
+  "774": {
+    "parent": "https://midasnetwork.us/organizations/774",
+    "parent_name": "Universidad Nacional de General Sarmiento"
+  },
+  "775": {
+    "parent": "https://midasnetwork.us/organizations/775",
+    "parent_name": "Roskilde University"
+  },
+  "776": {
+    "parent": "https://midasnetwork.us/organizations/776",
+    "parent_name": "University of Nevada, Las Vegas"
+  },
+  "777": {
+    "parent": "https://midasnetwork.us/organizations/777",
+    "parent_name": "Universidade de Aveiro"
+  },
+  "778": {
+    "parent": "https://midasnetwork.us/organizations/777",
+    "parent_name": "Universidade de Aveiro"
+  },
+  "779": {
+    "parent": "https://midasnetwork.us/organizations/779",
+    "parent_name": "Institute of Electrical and Electronics Engineers, Europe Office"
+  },
+  "78": {
+    "parent": "https://midasnetwork.us/organizations/77",
+    "parent_name": "Istanbul Medeniyet University"
+  },
+  "780": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "781": {
+    "parent": "https://midasnetwork.us/organizations/214",
+    "parent_name": "University of Pittsburgh"
+  },
+  "782": {
+    "parent": "https://midasnetwork.us/organizations/767",
+    "parent_name": "University of Wisconsin - Madison"
+  },
+  "783": {
+    "parent": "https://midasnetwork.us/organizations/767",
+    "parent_name": "University of Wisconsin - Madison"
+  },
+  "784": {
+    "parent": "https://midasnetwork.us/organizations/767",
+    "parent_name": "University of Wisconsin - Madison"
+  },
+  "785": {
+    "parent": "https://midasnetwork.us/organizations/785",
+    "parent_name": "Rio de Janeiro State University"
+  },
+  "786": {
+    "parent": "https://midasnetwork.us/organizations/786",
+    "parent_name": "Technological University Dublin"
+  },
+  "787": {
+    "parent": "https://midasnetwork.us/organizations/787",
+    "parent_name": "Universidad del Valle de Guatemala"
+  },
+  "788": {
+    "parent": "https://midasnetwork.us/organizations/188",
+    "parent_name": "University of Michigan"
+  },
+  "789": {
+    "parent": "https://midasnetwork.us/organizations/789",
+    "parent_name": "Max Planck Institute for Infection Biology"
+  },
+  "79": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "790": {
+    "parent": "https://midasnetwork.us/organizations/790",
+    "parent_name": "Kyoto University"
+  },
+  "791": {
+    "parent": "https://midasnetwork.us/organizations/791",
+    "parent_name": "University of Melbourne"
+  },
+  "792": {
+    "parent": "https://midasnetwork.us/organizations/791",
+    "parent_name": "University of Melbourne"
+  },
+  "793": {
+    "parent": "https://midasnetwork.us/organizations/793",
+    "parent_name": "Universidad Nacional del Litoral"
+  },
+  "794": {
+    "parent": "https://midasnetwork.us/organizations/794",
+    "parent_name": "Federal University of Technology"
+  },
+  "795": {
+    "parent": "https://midasnetwork.us/organizations/795",
+    "parent_name": "Lawrence Livermore National Laboratory"
+  },
+  "796": {
+    "parent": "https://midasnetwork.us/organizations/796",
+    "parent_name": "University of Louisiana at Lafayette"
+  },
+  "797": {
+    "parent": "https://midasnetwork.us/organizations/797",
+    "parent_name": "Dominican University of California"
+  },
+  "798": {
+    "parent": "https://midasnetwork.us/organizations/798",
+    "parent_name": "Texas State University"
+  },
+  "799": {
+    "parent": "https://midasnetwork.us/organizations/799",
+    "parent_name": "Wageningen University & Research"
+  },
+  "8": {
+    "parent": "https://midasnetwork.us/organizations/7",
+    "parent_name": "Boston University"
+  },
+  "80": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "800": {
+    "parent": "https://midasnetwork.us/organizations/800",
+    "parent_name": "University of Leeds"
+  },
+  "801": {
+    "parent": "https://midasnetwork.us/organizations/674",
+    "parent_name": "Georgia Institute of Technology"
+  },
+  "802": {
+    "parent": "https://midasnetwork.us/organizations/802",
+    "parent_name": "Signature Science LLC"
+  },
+  "803": {
+    "parent": "https://midasnetwork.us/organizations/803",
+    "parent_name": "The State University of New York"
+  },
+  "804": {
+    "parent": "https://midasnetwork.us/organizations/803",
+    "parent_name": "The State University of New York"
+  },
+  "805": {
+    "parent": "https://midasnetwork.us/organizations/805",
+    "parent_name": "American International University of Bangladesh"
+  },
+  "806": {
+    "parent": "https://midasnetwork.us/organizations/805",
+    "parent_name": "American International University of Bangladesh"
+  },
+  "807": {
+    "parent": "https://midasnetwork.us/organizations/807",
+    "parent_name": "Charit\u00e9 \u2013 Universit\u00e4tsmedizin Berlin"
+  },
+  "808": {
+    "parent": "https://midasnetwork.us/organizations/808",
+    "parent_name": "University of Texas at Dalls"
+  },
+  "809": {
+    "parent": "https://midasnetwork.us/organizations/809",
+    "parent_name": "Oak Ridge Institute for Science and Education"
+  },
+  "81": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "810": {
+    "parent": "https://midasnetwork.us/organizations/810",
+    "parent_name": "Universidad Peruana Cayetano Heredia"
+  },
+  "811": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "812": {
+    "parent": "https://midasnetwork.us/organizations/812",
+    "parent_name": "Norwegian University of Science and Technology"
+  },
+  "813": {
+    "parent": "https://midasnetwork.us/organizations/4",
+    "parent_name": "Boston Children's Hospital"
+  },
+  "814": {
+    "parent": "https://midasnetwork.us/organizations/814",
+    "parent_name": "Swiss Tropical and Public Health Institute"
+  },
+  "815": {
+    "parent": "https://midasnetwork.us/organizations/815",
+    "parent_name": "University of Cape Town"
+  },
+  "816": {
+    "parent": "https://midasnetwork.us/organizations/816",
+    "parent_name": "Santa Fe Institute"
+  },
+  "817": {
+    "parent": "https://midasnetwork.us/organizations/817",
+    "parent_name": "University of Hawaii at Manoa"
+  },
+  "818": {
+    "parent": "https://midasnetwork.us/organizations/818",
+    "parent_name": "Swiss Federal Institute of Technology Lausanne"
+  },
+  "819": {
+    "parent": "https://midasnetwork.us/organizations/819",
+    "parent_name": "Centre for Genomic Regulation"
+  },
+  "82": {
+    "parent": "https://midasnetwork.us/organizations/79",
+    "parent_name": "Johns Hopkins University"
+  },
+  "820": {
+    "parent": "https://midasnetwork.us/organizations/820",
+    "parent_name": "University of Lisbon"
+  },
+  "821": {
+    "parent": "https://midasnetwork.us/organizations/821",
+    "parent_name": "University of South Africa"
+  },
+  "822": {
+    "parent": "https://midasnetwork.us/organizations/822",
+    "parent_name": "La Asociaci\u00f3n Peruana de Helmintolog\u00eda e Invertebrados Afines"
+  },
+  "823": {
+    "parent": "https://midasnetwork.us/organizations/823",
+    "parent_name": "Northern Arizona University"
+  },
+  "824": {
+    "parent": "https://midasnetwork.us/organizations/824",
+    "parent_name": "PRECISIONheor"
+  },
+  "825": {
+    "parent": "https://midasnetwork.us/organizations/825",
+    "parent_name": "University of Ngaoundere"
+  },
+  "826": {
+    "parent": "https://midasnetwork.us/organizations/826",
+    "parent_name": "Gangneung-Wonju National University"
+  },
+  "827": {
+    "parent": "https://midasnetwork.us/organizations/827",
+    "parent_name": "Ginkgo Bioworks"
+  },
+  "828": {
+    "parent": "https://midasnetwork.us/organizations/828",
+    "parent_name": "City University of Hong Kong"
+  },
+  "829": {
+    "parent": "https://midasnetwork.us/organizations/829",
+    "parent_name": "Eastern Virginia Medical School"
+  },
+  "83": {
+    "parent": "https://midasnetwork.us/organizations/302",
+    "parent_name": "Leiden University"
+  },
+  "830": {
+    "parent": "https://midasnetwork.us/organizations/830",
+    "parent_name": "Paustenbach & Associates"
+  },
+  "831": {
+    "parent": "https://midasnetwork.us/organizations/831",
+    "parent_name": "University of Texas at San Antonio"
+  },
+  "832": {
+    "parent": "https://midasnetwork.us/organizations/832",
+    "parent_name": "National Research Council of Italy"
+  },
+  "833": {
+    "parent": "https://midasnetwork.us/organizations/833",
+    "parent_name": "Frankfurt School of Finance and Management"
+  },
+  "834": {
+    "parent": "https://midasnetwork.us/organizations/834",
+    "parent_name": "Iowa State University"
+  },
+  "835": {
+    "parent": "https://midasnetwork.us/organizations/835",
+    "parent_name": "Indian Institute of Engineering Science and Technology, Shibpur"
+  },
+  "836": {
+    "parent": "https://midasnetwork.us/organizations/836",
+    "parent_name": "Siena College"
+  },
+  "837": {
+    "parent": "https://midasnetwork.us/organizations/837",
+    "parent_name": "University of South Florida"
+  },
+  "838": {
+    "parent": "https://midasnetwork.us/organizations/838",
+    "parent_name": "Scripps College"
+  },
+  "839": {
+    "parent": "https://midasnetwork.us/organizations/839",
+    "parent_name": "Wolkite University"
+  },
+  "84": {
+    "parent": "https://midasnetwork.us/organizations/84",
+    "parent_name": "London School of Hygiene & Tropical Medicine"
+  },
+  "840": {
+    "parent": "https://midasnetwork.us/organizations/840",
+    "parent_name": "African Institute for Mathematical Sciences"
+  },
+  "841": {
+    "parent": "https://midasnetwork.us/organizations/841",
+    "parent_name": "Universiti Sains Malaysia"
+  },
+  "842": {
+    "parent": "https://midasnetwork.us/organizations/842",
+    "parent_name": "Spanish National Research Council"
+  },
+  "843": {
+    "parent": "https://midasnetwork.us/organizations/843",
+    "parent_name": "Skidmore College"
+  },
+  "844": {
+    "parent": "https://midasnetwork.us/organizations/844",
+    "parent_name": "French National Research Institute for Sustainable Development"
+  },
+  "845": {
+    "parent": "https://midasnetwork.us/organizations/845",
+    "parent_name": "Texas Christian University"
+  },
+  "846": {
+    "parent": "https://midasnetwork.us/organizations/846",
+    "parent_name": "Hokkaido University"
+  },
+  "847": {
+    "parent": "https://midasnetwork.us/organizations/847",
+    "parent_name": "NYU Grossman School of Medicine"
+  },
+  "848": {
+    "parent": "https://midasnetwork.us/organizations/848",
+    "parent_name": "EcoHealth Alliance"
+  },
+  "849": {
+    "parent": "https://midasnetwork.us/organizations/237",
+    "parent_name": "University of Washington"
+  },
+  "85": {
+    "parent": "https://midasnetwork.us/organizations/84",
+    "parent_name": "London School of Hygiene & Tropical Medicine"
+  },
+  "850": {
+    "parent": "https://midasnetwork.us/organizations/850",
+    "parent_name": "Konyang University College of Medicine"
+  },
+  "851": {
+    "parent": "https://midasnetwork.us/organizations/851",
+    "parent_name": "California Department of Public Health"
+  },
+  "852": {
+    "parent": "https://midasnetwork.us/organizations/852",
+    "parent_name": "The Pirbright Institute"
+  },
+  "853": {
+    "parent": "https://midasnetwork.us/organizations/853",
+    "parent_name": "International Vaccine Institute"
+  },
+  "854": {
+    "parent": "https://midasnetwork.us/organizations/854",
+    "parent_name": "University Medical Center Utrecht"
+  },
+  "855": {
+    "parent": "https://midasnetwork.us/organizations/855",
+    "parent_name": "World Health Organization"
+  },
+  "856": {
+    "parent": "https://midasnetwork.us/organizations/855",
+    "parent_name": "World Health Organization"
+  },
+  "857": {
+    "parent": "https://midasnetwork.us/organizations/857",
+    "parent_name": "Bocconi University"
+  },
+  "858": {
+    "parent": "https://midasnetwork.us/organizations/858",
+    "parent_name": "eMed Labs"
+  },
+  "859": {
+    "parent": "https://midasnetwork.us/organizations/791",
+    "parent_name": "University of Melbourne"
+  },
+  "86": {
+    "parent": "https://midasnetwork.us/organizations/84",
+    "parent_name": "London School of Hygiene & Tropical Medicine"
+  },
+  "860": {
+    "parent": "https://midasnetwork.us/organizations/860",
+    "parent_name": "Epidemiology, Biostatistics and Prevention Institute"
+  },
+  "861": {
+    "parent": "https://midasnetwork.us/organizations/861",
+    "parent_name": "University of Missouri - Kansas City"
+  },
+  "862": {
+    "parent": "https://midasnetwork.us/organizations/862",
+    "parent_name": "UMC Utrecht"
+  },
+  "863": {
+    "parent": "https://midasnetwork.us/organizations/863",
+    "parent_name": "Tel Aviv University"
+  },
+  "864": {
+    "parent": "https://midasnetwork.us/organizations/864",
+    "parent_name": "University of California Santa Barbara"
+  },
+  "865": {
+    "parent": "https://midasnetwork.us/organizations/865",
+    "parent_name": "Weill Cornell Medicine"
+  },
+  "866": {
+    "parent": "https://midasnetwork.us/organizations/866",
+    "parent_name": "University of Ilorin"
+  },
+  "867": {
+    "parent": "https://midasnetwork.us/organizations/867",
+    "parent_name": "Oklahoma State University"
+  },
+  "868": {
+    "parent": "https://midasnetwork.us/organizations/868",
+    "parent_name": "Pandemic Prevention Institute"
+  },
+  "869": {
+    "parent": "https://midasnetwork.us/organizations/869",
+    "parent_name": "The Public Health Company"
+  },
+  "87": {
+    "parent": "https://midasnetwork.us/organizations/87",
+    "parent_name": "Los Alamos National Laboratory"
+  },
+  "870": {
+    "parent": "https://midasnetwork.us/organizations/870",
+    "parent_name": "Universidad Javeriana"
+  },
+  "871": {
+    "parent": "https://midasnetwork.us/organizations/256",
+    "parent_name": "University of California Los Angeles"
+  },
+  "872": {
+    "parent": "https://midasnetwork.us/organizations/915",
+    "parent_name": "The University of Tokyo"
+  },
+  "873": {
+    "parent": "https://midasnetwork.us/organizations/873",
+    "parent_name": "Surgo Ventures"
+  },
+  "874": {
+    "parent": "https://midasnetwork.us/organizations/874",
+    "parent_name": "National Cancer Center"
+  },
+  "875": {
+    "parent": "https://midasnetwork.us/organizations/875",
+    "parent_name": "Oswaldo Cruz Foundation"
+  },
+  "876": {
+    "parent": "https://midasnetwork.us/organizations/876",
+    "parent_name": "NYU School of Medicine"
+  },
+  "877": {
+    "parent": "https://midasnetwork.us/organizations/877",
+    "parent_name": "Federal University of Bahia"
+  },
+  "878": {
+    "parent": "https://midasnetwork.us/organizations/878",
+    "parent_name": "American University"
+  },
+  "879": {
+    "parent": "https://midasnetwork.us/organizations/879",
+    "parent_name": "Council of State and Territorial Epidemiologists"
+  },
+  "88": {
+    "parent": "https://midasnetwork.us/organizations/88",
+    "parent_name": "Louisiana State University"
+  },
+  "880": {
+    "parent": "https://midasnetwork.us/organizations/143",
+    "parent_name": "University of California Berkeley"
+  },
+  "882": {
+    "parent": "https://midasnetwork.us/organizations/861",
+    "parent_name": "University of Missouri - Kansas City"
+  },
+  "883": {
+    "parent": "https://midasnetwork.us/organizations/883",
+    "parent_name": "Kansas City Missouri Health Department"
+  },
+  "884": {
+    "parent": "https://midasnetwork.us/organizations/884",
+    "parent_name": "Accenture Federal Services and University of Maryland"
+  },
+  "885": {
+    "parent": "https://midasnetwork.us/organizations/885",
+    "parent_name": "Crow Tribe"
+  },
+  "886": {
+    "parent": "https://midasnetwork.us/organizations/886",
+    "parent_name": "Gambela Teachers Education And Health Science College"
+  },
+  "887": {
+    "parent": "https://midasnetwork.us/organizations/887",
+    "parent_name": "Middle Tennessee State University"
+  },
+  "888": {
+    "parent": "https://midasnetwork.us/organizations/888",
+    "parent_name": "University of Benin"
+  },
+  "889": {
+    "parent": "https://midasnetwork.us/organizations/889",
+    "parent_name": "Adekunle Ajasin University"
+  },
+  "89": {
+    "parent": "https://midasnetwork.us/organizations/88",
+    "parent_name": "Louisiana State University"
+  },
+  "890": {
+    "parent": "https://midasnetwork.us/organizations/890",
+    "parent_name": "Instituto Tecnol\u00f3gico de Santo Domingo"
+  },
+  "891": {
+    "parent": "https://midasnetwork.us/organizations/891",
+    "parent_name": "Hospital Pediatrico Dr. Hugo Mendoza"
+  },
+  "892": {
+    "parent": "https://midasnetwork.us/organizations/892",
+    "parent_name": "University of Lincoln"
+  },
+  "893": {
+    "parent": "https://midasnetwork.us/organizations/121",
+    "parent_name": "Temple University"
+  },
+  "894": {
+    "parent": "https://midasnetwork.us/organizations/256",
+    "parent_name": "University of California Los Angeles"
+  },
+  "895": {
+    "parent": "https://midasnetwork.us/organizations/895",
+    "parent_name": "University of Nigeria, Nsukka"
+  },
+  "896": {
+    "parent": "https://midasnetwork.us/organizations/896",
+    "parent_name": "Tai Solarin University of Education"
+  },
+  "897": {
+    "parent": "https://midasnetwork.us/organizations/897",
+    "parent_name": "University of Energy and Natural Resources"
+  },
+  "898": {
+    "parent": "https://midasnetwork.us/organizations/898",
+    "parent_name": "Children's National Hospital"
+  },
+  "899": {
+    "parent": "https://midasnetwork.us/organizations/914",
+    "parent_name": "Wake Forest University"
+  },
+  "9": {
+    "parent": "https://midasnetwork.us/organizations/7",
+    "parent_name": "Boston University"
+  },
+  "90": {
+    "parent": "https://midasnetwork.us/organizations/88",
+    "parent_name": "Louisiana State University"
+  },
+  "900": {
+    "parent": "https://midasnetwork.us/organizations/900",
+    "parent_name": "A Global Healthcare Public Foundation"
+  },
+  "901": {
+    "parent": "https://midasnetwork.us/organizations/901",
+    "parent_name": "IQVIA"
+  },
+  "902": {
+    "parent": "https://midasnetwork.us/organizations/917",
+    "parent_name": "Saveetha Institute of Medical and Technical Sciences"
+  },
+  "903": {
+    "parent": "https://midasnetwork.us/organizations/861",
+    "parent_name": "University of Missouri - Kansas City"
+  },
+  "904": {
+    "parent": "https://midasnetwork.us/organizations/904",
+    "parent_name": "DevGlobal"
+  },
+  "905": {
+    "parent": "https://midasnetwork.us/organizations/905",
+    "parent_name": "UNSW Sydney"
+  },
+  "906": {
+    "parent": "https://midasnetwork.us/organizations/906",
+    "parent_name": "Altro USA, Inc."
+  },
+  "907": {
+    "parent": "https://midasnetwork.us/organizations/907",
+    "parent_name": "National Emergency Operation Centre (EOC) for Polio Eradication"
+  },
+  "908": {
+    "parent": "https://midasnetwork.us/organizations/908",
+    "parent_name": "University of Calgary"
+  },
+  "909": {
+    "parent": "https://midasnetwork.us/organizations/909",
+    "parent_name": "Massachusetts General Hospital"
+  },
+  "91": {
+    "parent": "https://midasnetwork.us/organizations/91",
+    "parent_name": "Loyola University Chicago"
+  },
+  "910": {
+    "parent": "https://midasnetwork.us/organizations/910",
+    "parent_name": "kisii University"
+  },
+  "911": {
+    "parent": "https://midasnetwork.us/organizations/911",
+    "parent_name": "University of Delhi"
+  },
+  "912": {
+    "parent": "https://midasnetwork.us/organizations/861",
+    "parent_name": "University of Missouri - Kansas City"
+  },
+  "913": {
+    "parent": "https://midasnetwork.us/organizations/913",
+    "parent_name": "Epidemiologic Research & Methods, LLC"
+  },
+  "914": {
+    "parent": "https://midasnetwork.us/organizations/914",
+    "parent_name": "Wake Forest University"
+  },
+  "915": {
+    "parent": "https://midasnetwork.us/organizations/915",
+    "parent_name": "The University of Tokyo"
+  },
+  "916": {
+    "parent": "https://midasnetwork.us/organizations/121",
+    "parent_name": "Temple University"
+  },
+  "917": {
+    "parent": "https://midasnetwork.us/organizations/917",
+    "parent_name": "Saveetha Institute of Medical and Technical Sciences"
+  },
+  "918": {
+    "parent": "https://midasnetwork.us/organizations/918",
+    "parent_name": "Pontificia Universidad Cat\u00f3lica de Valpara\u00edso"
+  },
+  "919": {
+    "parent": "https://midasnetwork.us/organizations/918",
+    "parent_name": "Pontificia Universidad Cat\u00f3lica de Valpara\u00edso"
+  },
+  "92": {
+    "parent": "https://midasnetwork.us/organizations/92",
+    "parent_name": "DahariLAB"
+  },
+  "920": {
+    "parent": "https://midasnetwork.us/organizations/920",
+    "parent_name": "Institute for Complex Systems"
+  },
+  "921": {
+    "parent": "https://midasnetwork.us/organizations/921",
+    "parent_name": "Kennesaw State University"
+  },
+  "922": {
+    "parent": "https://midasnetwork.us/organizations/922",
+    "parent_name": "University Corporation for Atmospheric Research"
+  },
+  "923": {
+    "parent": "https://midasnetwork.us/organizations/923",
+    "parent_name": "University of Ibadan"
+  },
+  "924": {
+    "parent": "https://midasnetwork.us/organizations/924",
+    "parent_name": "Vassar College"
+  },
+  "925": {
+    "parent": "https://midasnetwork.us/organizations/925",
+    "parent_name": "Polit\u00e9cnico Grnacolombiano University"
+  },
+  "926": {
+    "parent": "https://midasnetwork.us/organizations/926",
+    "parent_name": "First Technical University"
+  },
+  "927": {
+    "parent": "https://midasnetwork.us/organizations/927",
+    "parent_name": "Ohio University"
+  },
+  "928": {
+    "parent": "https://midasnetwork.us/organizations/928",
+    "parent_name": "German Aerospace Center"
+  },
+  "929": {
+    "parent": "https://midasnetwork.us/organizations/929",
+    "parent_name": "Villanova University"
+  },
+  "93": {
+    "parent": "https://midasnetwork.us/organizations/91",
+    "parent_name": "Loyola University Chicago"
+  },
+  "930": {
+    "parent": "https://midasnetwork.us/organizations/930",
+    "parent_name": "Queens University of Charlotte"
+  },
+  "931": {
+    "parent": "https://midasnetwork.us/organizations/931",
+    "parent_name": "National University of Singapore"
+  },
+  "932": {
+    "parent": "https://midasnetwork.us/organizations/931",
+    "parent_name": "National University of Singapore"
+  },
+  "933": {
+    "parent": "https://midasnetwork.us/organizations/933",
+    "parent_name": "Cyprus West University"
+  },
+  "934": {
+    "parent": "https://midasnetwork.us/organizations/934",
+    "parent_name": "Abt Associates"
+  },
+  "935": {
+    "parent": "https://midasnetwork.us/organizations/126",
+    "parent_name": "U.S. Department of Health and Human Services"
+  },
+  "936": {
+    "parent": "https://midasnetwork.us/organizations/936",
+    "parent_name": "University of Eswatini"
+  },
+  "937": {
+    "parent": "https://midasnetwork.us/organizations/936",
+    "parent_name": "University of Eswatini"
+  },
+  "938": {
+    "parent": "https://midasnetwork.us/organizations/938",
+    "parent_name": "University College London"
+  },
+  "939": {
+    "parent": "https://midasnetwork.us/organizations/292",
+    "parent_name": "University of Maryland"
+  },
+  "94": {
+    "parent": "https://midasnetwork.us/organizations/91",
+    "parent_name": "Loyola University Chicago"
+  },
+  "940": {
+    "parent": "https://midasnetwork.us/organizations/940",
+    "parent_name": "Academy of Scientific and Innovative Research"
+  },
+  "941": {
+    "parent": "https://midasnetwork.us/organizations/941",
+    "parent_name": "University of Burgundy"
+  },
+  "942": {
+    "parent": "https://midasnetwork.us/organizations/942",
+    "parent_name": "New York University"
+  },
+  "943": {
+    "parent": "https://midasnetwork.us/organizations/943",
+    "parent_name": "Federal University Oye-Ekiti"
+  },
+  "944": {
+    "parent": "https://midasnetwork.us/organizations/943",
+    "parent_name": "Federal University Oye-Ekiti"
+  },
+  "945": {
+    "parent": "https://midasnetwork.us/organizations/945",
+    "parent_name": "United Arab Emirates University"
+  },
+  "946": {
+    "parent": "https://midasnetwork.us/organizations/946",
+    "parent_name": "University of Trento"
+  },
+  "947": {
+    "parent": "https://midasnetwork.us/organizations/946",
+    "parent_name": "University of Trento"
+  },
+  "948": {
+    "parent": "https://midasnetwork.us/organizations/948",
+    "parent_name": "Bigelow Laboratory for Ocean Sciences"
+  },
+  "949": {
+    "parent": "https://midasnetwork.us/organizations/949",
+    "parent_name": "University of South Alabama"
+  },
+  "95": {
+    "parent": "https://midasnetwork.us/organizations/95",
+    "parent_name": "Mayo Clinic"
+  },
+  "950": {
+    "parent": "https://midasnetwork.us/organizations/950",
+    "parent_name": "University of Zimbabwe"
+  },
+  "951": {
+    "parent": "https://midasnetwork.us/organizations/951",
+    "parent_name": "Ambo University"
+  },
+  "952": {
+    "parent": "https://midasnetwork.us/organizations/952",
+    "parent_name": "University of Ghana"
+  },
+  "953": {
+    "parent": "https://midasnetwork.us/organizations/953",
+    "parent_name": "King Khalid University"
+  },
+  "954": {
+    "parent": "https://midasnetwork.us/organizations/954",
+    "parent_name": "Universidad Cooperativa de Colombia"
+  },
+  "955": {
+    "parent": "https://midasnetwork.us/organizations/955",
+    "parent_name": "Medical College of Wisconsin"
+  },
+  "956": {
+    "parent": "https://midasnetwork.us/organizations/955",
+    "parent_name": "Medical College of Wisconsin"
+  },
+  "957": {
+    "parent": "https://midasnetwork.us/organizations/957",
+    "parent_name": "Tarleton State University"
+  },
+  "958": {
+    "parent": "https://midasnetwork.us/organizations/958",
+    "parent_name": "La Trobe University"
+  },
+  "959": {
+    "parent": "https://midasnetwork.us/organizations/959",
+    "parent_name": "University of Arkansas for Medical Sciences"
+  },
+  "96": {
+    "parent": "https://midasnetwork.us/organizations/95",
+    "parent_name": "Mayo Clinic"
+  },
+  "960": {
+    "parent": "https://midasnetwork.us/organizations/960",
+    "parent_name": "Defense Health Agency Public Health"
+  },
+  "961": {
+    "parent": "https://midasnetwork.us/organizations/960",
+    "parent_name": "Defense Health Agency Public Health"
+  },
+  "962": {
+    "parent": "https://midasnetwork.us/organizations/962",
+    "parent_name": "U.S. Department of Defense"
+  },
+  "963": {
+    "parent": "https://midasnetwork.us/organizations/963",
+    "parent_name": "ABV-Indian Institute of Information Technology and Management"
+  },
+  "964": {
+    "parent": "https://midasnetwork.us/organizations/964",
+    "parent_name": "University of Southern Mississippi"
+  },
+  "965": {
+    "parent": "https://midasnetwork.us/organizations/113",
+    "parent_name": "Princeton University"
+  },
+  "966": {
+    "parent": "https://midasnetwork.us/organizations/966",
+    "parent_name": "Clemson University"
+  },
+  "967": {
+    "parent": "https://midasnetwork.us/organizations/35",
+    "parent_name": "Emory University"
+  },
+  "968": {
+    "parent": "https://midasnetwork.us/organizations/968",
+    "parent_name": "University of Leicester"
+  },
+  "969": {
+    "parent": "https://midasnetwork.us/organizations/969",
+    "parent_name": "University of Guelph"
+  },
+  "97": {
+    "parent": "https://midasnetwork.us/organizations/95",
+    "parent_name": "Mayo Clinic"
+  },
+  "970": {
+    "parent": "https://midasnetwork.us/organizations/970",
+    "parent_name": "KLE Academy of Higher Education and Research"
+  },
+  "971": {
+    "parent": "https://midasnetwork.us/organizations/971",
+    "parent_name": "MS Ramaiah University of Applied Sciences"
+  },
+  "972": {
+    "parent": "https://midasnetwork.us/organizations/972",
+    "parent_name": "INRAE"
+  },
+  "98": {
+    "parent": "https://midasnetwork.us/organizations/98",
+    "parent_name": "McMaster University"
+  },
+  "99": {
+    "parent": "https://midasnetwork.us/organizations/98",
+    "parent_name": "McMaster University"
+  }
+}

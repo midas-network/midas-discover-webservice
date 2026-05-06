@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 import os
 import sqlite3
 import time
@@ -36,6 +37,17 @@ df_map = {
     'paper_counts_df': 'pcount'
 }
 
+def load_endpoint_records(filename):
+    """Load endpoint JSON as a list of records, supporting array or dict payloads."""
+    path = os.path.join(INPUT_DIR, filename)
+    with open(path, "r", encoding="utf-8") as infile:
+        payload = json.load(infile)
+    if isinstance(payload, dict):
+        return list(payload.values())
+    if isinstance(payload, list):
+        return payload
+    raise ValueError(f"Unsupported JSON structure in {path}: {type(payload)}")
+
 
 def print_time(start_time, what):
     stop_time = time.perf_counter()
@@ -57,7 +69,7 @@ def get_db():
 
 
 def make_grants_dfs():
-    grants = pd.read_json(os.path.join(INPUT_DIR, 'GRANTS_ENDPOINT.json'))
+    grants = pd.DataFrame.from_records(load_endpoint_records('GRANTS_ENDPOINT.json'))
 
     grant_to_person_df = pd.DataFrame(columns=['authorid', 'grantid'])
     grant_to_paper_df = pd.DataFrame(columns=['paperid', 'grantid'])
@@ -90,7 +102,7 @@ def make_org_link_dfs():
     org_dicts = []
     org_info = []
 
-    orgs = pd.read_json(os.path.join(INPUT_DIR, 'ORGANIZATIONS_ENDPOINT.json'))
+    orgs = pd.DataFrame.from_records(load_endpoint_records('ORGANIZATIONS_ENDPOINT.json'))
     orgs.loc[orgs['type'] == '', 'type'] = '#NotSpecified'
 
     for org_idx, org in orgs.iterrows():
@@ -131,7 +143,7 @@ def connect_papers(org_relations):
     paper_to_org_df = pd.DataFrame(columns=['paperid', 'orgid'])
     author_details = pd.DataFrame(columns=['authorid', 'author_name', 'orgid'])
 
-    people = pd.read_json(os.path.join(INPUT_DIR, 'PEOPLE_ENDPOINT.json'))
+    people = pd.DataFrame.from_records(load_endpoint_records('PEOPLE_ENDPOINT.json'))
 
     for person_idx, person in people.iterrows():
         good_org = True
@@ -182,7 +194,7 @@ def connect_papers(org_relations):
 
 
 def fill_words(paper_counts_df, paper_details, min_year, max_year):
-    papers = pd.read_json(os.path.join(INPUT_DIR, 'PAPERS_ENDPOINT.json'))
+    papers = pd.DataFrame.from_records(load_endpoint_records('PAPERS_ENDPOINT.json'))
 
     pprdicts = []
     for paper_idx, paper in papers.iterrows():

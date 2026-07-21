@@ -13,6 +13,9 @@ dependencies = [
   "pandas~=2.2.1",
   "python-decouple~=3.8",
   "gunicorn>=21.2.0,<23",
+  # Transitive security floors (pulled in by flasgger / requests):
+  "mistune>=3.3.0",   # ReDoS / quadratic-time DoS fixes
+  "urllib3>=2.7.0",   # decompression-bomb + cross-origin header-leak fixes
 ]
 
 [dependency-groups]
